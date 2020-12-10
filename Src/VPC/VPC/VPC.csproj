@@ -162,23 +162,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="..\..\..\AsLink\IsoStorage.cs">
-      <Link>Common\IsoStorage.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\AsLink\PlatformNeutral\MediaHelper.cs">
+    <Compile Include="..\..\..\..\AAV.Shared\Src\AsLink\UWP\MediaHelper.cs">
       <Link>Common\MediaHelper.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\AsLink\UI\WindowExt.cs">
-      <Link>Common\WindowExt.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\AsLink\ConverterEx.cs">
+    <Compile Include="..\..\DDJ\DDJ.Main\AsLink\ConverterEx.cs">
       <Link>Common\ConverterEx.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\AsLink\Converters.cs">
+    <Compile Include="..\..\DDJ\DDJ.Main\AsLink\Converters.cs">
       <Link>Common\Converters.cs</Link>
-    </Compile>
-    <Compile Include="C:\c\AsLink\BMO\ToDo.cs">
-      <Link>Common\ToDo.cs</Link>
     </Compile>
     <Compile Include="C:\c\AsLink\DevOpStartup.Wpf.cs">
       <Link>Common\DevOpStartup.Wpf.cs</Link>
@@ -189,6 +180,7 @@
     <Compile Include="C:\c\AsLink\Serializer.cs">
       <Link>Common\Serializer.cs</Link>
     </Compile>
+    <Compile Include="Common\IsoStorage.cs" />
     <Compile Include="Common\Settings.cs" />
     <Compile Include="Models\FileIO.cs" />
     <Compile Include="Models\ViewTime.cs" />
@@ -414,6 +406,18 @@
     <Resource Include="Assets\movies.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\AAV.Shared\Src\Net4.8\AAV.Mvvm\AAV.Mvvm.csproj">
+      <Project>{4e1334f8-b843-41dd-96a8-64a41f528cff}</Project>
+      <Name>AAV.Mvvm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\AAV.Shared\Src\Net4.8\AAV.WPF\AAV.WPF.4.8.csproj">
+      <Project>{1ce2c02f-5fa8-41ca-ac2e-ba91ab283a02}</Project>
+      <Name>AAV.WPF.4.8</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\AAV.Shared\Src\Net6.0\AAV.Sys\AAV.Sys.csproj">
+      <Project>{40f87211-3fda-47ba-a613-a0fe942839b1}</Project>
+      <Name>AAV.Sys</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Cmn\Common.UI.Lib\Common.UI.Lib.csproj">
       <Project>{2d4e577e-cdc4-4319-9b90-cd2748a1b75c}</Project>
       <Name>Common.UI.Lib</Name>

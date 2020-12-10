@@ -77,10 +77,6 @@
       <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -187,6 +183,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\AAV.Shared\Src\Net4.8\AAV.Mvvm\AAV.Mvvm.csproj">
+      <Project>{4e1334f8-b843-41dd-96a8-64a41f528cff}</Project>
+      <Name>AAV.Mvvm</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\AAV.Shared\Src\Net6.0\AAV.Sys\AAV.Sys.csproj">
       <Project>{40f87211-3fda-47ba-a613-a0fe942839b1}</Project>
       <Name>AAV.Sys</Name>

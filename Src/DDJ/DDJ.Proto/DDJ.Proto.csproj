@@ -144,6 +144,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\AAV.Shared\Src\Net6.0\AAV.Sys\AAV.Sys.csproj">
+      <Project>{40f87211-3fda-47ba-a613-a0fe942839b1}</Project>
+      <Name>AAV.Sys</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DDJ.DB\DDJ.DB.csproj">
       <Project>{42386634-b7a3-42cf-be77-130b772d9d40}</Project>
       <Name>DDJ.DB</Name>
