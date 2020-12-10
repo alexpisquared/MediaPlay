@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="ABR.Vws.Pg3_VideoUC"    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    xmlns:local="using:ABR.Vws"    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"    mc:Ignorable="d"
+             d:DesignHeight="300"    d:DesignWidth="400"
+             xmlns:mdl="using:VpxCmn.Model" 
+             xmlns:VMs="using:ABR.VMs"  
+             xmlns:Vws="using:ABR.Vws" >
+  <UserControl.Resources>
+    <DataTemplate x:Key="BhMini1" x:DataType="mdl:MediaInfoDto">
+      <Vws:DTLibItemUC />
+    </DataTemplate>
+  </UserControl.Resources>
+  <Grid Background="#1ff0" Margin="-12 0" >
+    <Grid.RowDefinitions>
+      <RowDefinition Height="0"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <ListView x:Name="lv1" Margin="3" Grid.RowSpan="3" 
+              ItemsSource="{x:Bind  _abrVM.LibLst}" ItemTemplate="{StaticResource BhMini1}"			
+              SelectedItem="{x:Bind _abrVM.SlctLib, Mode=TwoWay}"
+				      ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+				      ScrollViewer.VerticalScrollBarVisibility="Visible" 
+				      ScrollViewer.HorizontalScrollMode="Enabled" 
+				      ScrollViewer.VerticalScrollMode="Enabled" >
+      <ListView.ItemsPanel>
+        <ItemsPanelTemplate>
+          <ItemsWrapGrid MaximumRowsOrColumns="100" />
+        </ItemsPanelTemplate>
+      </ListView.ItemsPanel>
+    </ListView>
+
+    <StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Right" Background="#a000" >
+      <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+        <TextBlock    Foreground="#8cf" Text="Load:" x:Name="tbInfo" TextWrapping="Wrap" Margin="6" />
+
+        <AppBarButton Foreground="#0c0" Icon="Next"       Label="Play Pause"  Command="{x:Bind _abrVM.PlayPaus}"      ToolTipService.ToolTip="PlayPaus" />
+        <!--<AppBarButton Foreground="#0c0" Icon="{x:Bind _abrVM.PlPsIcon, Mode=OneWay}" Label="{x:Bind _abrVM.PlyPsCap, Mode=OneWay}" Command="{x:Bind _abrVM.PlayPaus}" ToolTipService.ToolTip="PlayPaus" />-->
+        <AppBarButton Foreground="#8cf" Icon="Audio"      Label="Music" Command="{x:Bind _abrVM.LoadLib_Video}"   />
+        <AppBarButton Foreground="#8cf" Icon="Video"      Label="Video" Command="{x:Bind _abrVM.LoadLib_Audio}"   />
+        <!--<AppBarButton Foreground="#8cf" Icon="Pictures"   Label="Thumb" Command="{x:Bind _abrVM.SetThumbsLibs}"   />-->
+      </StackPanel>
+    </StackPanel>
+
+    <Image x:Name="img1" Grid.RowSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
+
+  </Grid>
+</UserControl>

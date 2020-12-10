@@ -1,0 +1,117 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Models="clr-namespace:DDJ.DB.Models;assembly=DDJ.DB" mc:Ignorable="d" x:Class="DDJ.Proto.MainWindow"
+        Title="MainWindow" Height="950" Width="525" Loaded="Window_Loaded">
+	<Window.Resources>
+		<CollectionViewSource x:Key="mediaUnitViewSource" d:DesignSource="{d:DesignInstance {x:Type Models:MediaUnit}, CreateList=True}"/>
+		<CollectionViewSource x:Key="mediaUnitMuAuditionsViewSource" Source="{Binding MuAuditions, Source={StaticResource mediaUnitViewSource}}"/>
+		<CollectionViewSource x:Key="muAuditionViewSource" d:DesignSource="{d:DesignInstance {x:Type Models:MuAudition}, CreateList=True}"/>
+	</Window.Resources>
+	<Grid DataContext="{StaticResource mediaUnitViewSource}">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="397*"/>
+			<RowDefinition Height="522*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="221*"/>
+			<ColumnDefinition Width="296*"/>
+		</Grid.ColumnDefinitions>
+
+		<DataGrid x:Name="mediaUnitDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="5" ItemsSource="{Binding}" 
+							EnableRowVirtualization="True" AutoGenerateColumns="False" Grid.RowSpan="2">
+			<DataGrid.Columns>
+				<DataGridTextColumn Width="*" Header="Path File Ext Org" Binding="{Binding PathFileExtOrg}" />
+				<!--
+				<DataGridTextColumn Width="SizeToHeader" Header="Path Name" Binding="{Binding PathName}"/>
+				<DataGridTemplateColumn Width="SizeToHeader" Header="Added At">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding AddedAt}"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				<DataGridTextColumn Width="SizeToHeader" Header="Cur Position Sec" Binding="{Binding CurPositionSec}"/>
+				<DataGridTextColumn Width="SizeToHeader" Header="Duration Sec" Binding="{Binding DurationSec}"/>
+				<DataGridTextColumn Width="SizeToHeader" Header="File Hash MD 5" Binding="{Binding FileHashMD5}"/>
+				<DataGridTextColumn Width="SizeToHeader" Header="File Hash Qck" Binding="{Binding FileHashQck}"/>
+				<DataGridTextColumn Width="SizeToHeader" Header="File Length" Binding="{Binding FileLength}"/>
+				<DataGridTextColumn Width="SizeToHeader" Header="File Name" Binding="{Binding FileName}"/>
+				<DataGridTextColumn Width="SizeToHeader" Header="Genre ID" Binding="{Binding GenreID}"/>
+				<DataGridTextColumn Width="SizeToHeader" Header="ID" Binding="{Binding ID}"/>
+				<DataGridTextColumn Width="SizeToHeader" Header="Notes" Binding="{Binding Notes}"/>
+				-->
+			</DataGrid.Columns>
+		</DataGrid>
+
+		<Grid x:Name="grid1" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5,5,5,0" VerticalAlignment="Top" Height="384">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			<Label Content="Added At:" Grid.Column="0" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Center"/>
+			<TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="3 0" Grid.Row="0" Text="{Binding AddedAt}" VerticalAlignment="Center"/>
+			<Label Content="Cur Position Sec:" Grid.Column="0" HorizontalAlignment="Left" Margin="3 0" Grid.Row="1" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="1" Text="{Binding CurPositionSec, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+			<Label Content="Duration Sec:" Grid.Column="0" HorizontalAlignment="Left" Margin="3 0" Grid.Row="2" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="2" Text="{Binding DurationSec, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+			<Label Content="File Hash MD 5:" Grid.Column="0" HorizontalAlignment="Left" Margin="3 0" Grid.Row="3" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="3" Text="{Binding FileHashMD5, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+			<Label Content="File Hash Qck:" Grid.Column="0" HorizontalAlignment="Left" Margin="3 0" Grid.Row="4" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="4" Text="{Binding FileHashQck, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+			<Label Content="File Length:" Grid.Column="0" HorizontalAlignment="Left" Margin="3 0" Grid.Row="5" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="5" Text="{Binding FileLength, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+			<Label Content="File Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3 0" Grid.Row="6" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="6" Text="{Binding FileName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+			<Label Content="Genre ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3 0" Grid.Row="7" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="7" Text="{Binding GenreID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+			<Label Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3 0" Grid.Row="8" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="8" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+			<Label Content="Notes:" Grid.Column="0" HorizontalAlignment="Left" Margin="3 0" Grid.Row="9" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="9" Text="{Binding Notes, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+			<Label Content="Path File Ext Org:" Grid.Column="0" HorizontalAlignment="Left" Margin="3 0" Grid.Row="10" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="10" Text="{Binding PathFileExtOrg, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+			<Label Content="Path Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3 0" Grid.Row="11" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="11" Text="{Binding PathName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+		</Grid>
+
+		<DataGrid x:Name="muAuditionsDataGrid" AutoGenerateColumns="False" Grid.Column="1" EnableRowVirtualization="True" 
+							ItemsSource="{Binding Source={StaticResource mediaUnitMuAuditionsViewSource}}" 
+							Margin="5" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="1">
+			<DataGrid.Columns>
+				<DataGridTemplateColumn Header="Done At" Width="SizeToHeader">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<DatePicker SelectedDate="{Binding DoneAt, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				<DataGridTextColumn Binding="{Binding DoneBy}" Header="Done By" Width="SizeToHeader"/>
+				<DataGridTextColumn Binding="{Binding ID}" Header="ID" Width="SizeToHeader"/>
+				<DataGridTextColumn Binding="{Binding MediaUnitID}" Header="Media Unit ID" Width="SizeToHeader"/>
+				<DataGridCheckBoxColumn Binding="{Binding PartyMode}" Header="Party Mode" Width="SizeToHeader"/>
+
+				<DataGridTextColumn Binding="{Binding DoneAt}" Header="Done At" Width="SizeToHeader"/>
+				<DataGridTextColumn Binding="{Binding DoneBy}" Header="Done By" Width="SizeToHeader"/>
+				<DataGridTextColumn Binding="{Binding ID}" Header="ID" Width="SizeToHeader"/>
+				<DataGridTextColumn Binding="{Binding MediaUnitID}" Header="Media Unit ID" Width="SizeToHeader"/>
+				<DataGridTextColumn Binding="{Binding PartyMode}" Header="Party Mode" Width="SizeToHeader"/>
+			</DataGrid.Columns>
+		</DataGrid>
+
+	</Grid>
+</Window>

@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="VideoPlayerBackground.Vws.MruItemUC"    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    xmlns:local="using:VideoPlayerBackground.Vws"    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"    mc:Ignorable="d"    
+             xmlns:asl="using:AsLink"
+             Width="350" Height="60"  >
+  <UserControl.Resources>
+    <asl:StringFormatConverter x:Key="StringFormatConverter"/>
+  </UserControl.Resources>
+
+  <Grid Margin="1" Background="#3000" >
+    <Image       Source="{x:Bind Mid.Thumbnail}" HorizontalAlignment="Right" Margin="60 3"/>
+
+    <ProgressBar HorizontalAlignment="Stretch" VerticalAlignment="Stretch"            Value="{x:Bind Mid.PlayPosn.TotalSeconds}" Maximum="{x:Bind Mid.PlayLeng?.Value.TotalSeconds}" Opacity=".3" />
+    <ProgressBar HorizontalAlignment="Stretch" VerticalAlignment="Bottom"  Height="2" Value="{x:Bind Mid.PlayPosn.TotalSeconds}" Maximum="{x:Bind Mid.PlayLeng.Value.TotalSeconds}" />
+
+    <TextBlock HorizontalAlignment="Left"   VerticalAlignment="Top"    Text="{x:Bind Mid.FileOnly, FallbackValue='White Noise . com - Victoria Falls'}"	Style="{StaticResource BaseTextBlockStyle}" TextWrapping="NoWrap" />
+    <TextBlock HorizontalAlignment="Left"   VerticalAlignment="Center" Text="{x:Bind Mid.PathOnly, FallbackValue='C:\\temp'}"  FontSize="11" Foreground="#f80" />
+    <TextBlock HorizontalAlignment="Right"  VerticalAlignment="Center" Text="{x:Bind Mid.LastPcNm, FallbackValue='NUC1'}"      FontSize="11" Foreground="#0af" FontWeight="SemiBold" />
+    <TextBlock HorizontalAlignment="Right"  VerticalAlignment="Center" Text="{x:Bind Mid.LastPcNm, FallbackValue='NUC1'}"      FontSize="11" Foreground="{x:Bind Mid.PcBrush}" />
+    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind Mid.MuExists, FallbackValue='exis'}"      FontSize="11" Foreground="#ff0" />
+    <TextBlock HorizontalAlignment="Left"   VerticalAlignment="Bottom" Text="{x:Bind Mid.LastUsed, FallbackValue='Jun 3', ConverterParameter=\{0:MMM-d HH:mm\}, Converter={StaticResource StringFormatConverter}}"	/>
+    <TextBlock HorizontalAlignment="Right"  VerticalAlignment="Bottom" Text="{x:Bind Mid.PlayLeng, FallbackValue='0:00', ConverterParameter=\{0:h\\\\:mm\\\\:ss\}, Converter={StaticResource StringFormatConverter}}"	/>
+
+  </Grid>
+</UserControl>

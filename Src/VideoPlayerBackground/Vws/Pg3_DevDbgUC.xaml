@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="VideoPlayerBackground.Vws.Pg3_DevDbgUC"    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"    mc:Ignorable="d"    d:DesignHeight="300"    d:DesignWidth="400"
+             xmlns:lcl="using:VideoPlayerBackground.Vws"  
+             >
+  <Grid Background="#1f00" Margin="-12 0" >
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="30"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="30"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="0"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <ProgressBar Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="0"   x:Name="pb1" />
+    <StackPanel  Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="0"   Orientation="Vertical" Margin="3" >
+      <TextBlock Text="Roaming Space:" Foreground="#8888"/>
+      <TextBlock x:Name="tbRoamU" Text="Used  " />
+      <TextBlock x:Name="tbRoamL" Text="Left  " />
+      <TextBlock x:Name="tbRoamT" Text="Total " />
+    </StackPanel>
+
+    <TextBox     Grid.Row="2" Grid.ColumnSpan="4" Grid.Column="0"   x:Name="tbx"     Text="Total " HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+
+
+    <StackPanel   Orientation="Vertical" Margin="3" Grid.Row="3" Grid.ColumnSpan="4" Grid.Column="0"   >
+      <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+        <AppBarButton Icon="Refresh"     Label="Roaming Info"   Click="onRoamInfo" />
+        <AppBarButton Icon="Volume"      Label="Speak"          Click="onSpeakTest" />
+      </StackPanel>
+    </StackPanel>
+
+  </Grid>
+</UserControl>

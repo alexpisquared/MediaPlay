@@ -1,0 +1,59 @@
+﻿<Page x:Class="VPXx.MainPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="using:VPXx"
+    mc:Ignorable="d">
+
+  <Page.Resources>
+    <Style TargetType="AppBarButton">
+      <Setter Property="Margin" Value="0 10" />
+    </Style>
+  </Page.Resources>
+
+  <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <MediaElement x:Name="me_Xm" Source="/assets/ladybug.wmv" Volume="1" AutoPlay="False" AreTransportControlsEnabled="True" 
+									AllowDrop="True" Drop="mediaElement_Drop" DragOver="me1_DragOver" 
+                  MediaEnded="onMediaEnded" MediaFailed="onMediaFailed" MediaOpened="onMediaOpened"
+                  SeekCompleted="onMediaSeeked" PartialMediaFailureDetected="onMediaPmfd" 
+                  CurrentStateChanged="onMediaCoStChd" DefaultPlaybackRate="1.6" PlaybackRate="1.8" 
+									>
+      <MediaElement.TransportControls>
+        <MediaTransportControls IsCompact="False" IsFastForwardButtonVisible="True" IsFastRewindButtonVisible="True" IsPlaybackRateButtonVisible="True" IsPlaybackRateEnabled="True" 
+                                IsFastForwardEnabled="True" IsFastRewindEnabled="True"                                 />
+      </MediaElement.TransportControls>
+      <MediaElement.Markers>
+        <TimelineMarker Time="0:1:0" Text="tlm1"/>
+        <TimelineMarker Time="0:2:0" Text="tlm2"/>
+      </MediaElement.Markers>
+    </MediaElement>
+
+    <MediaPlayerElement x:Name="me2" AreTransportControlsEnabled="True" />
+
+    <TextBlock x:Name="tbInfo" Text="Abc" Foreground="#0f0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+
+    <StackPanel   VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Vertical"   >
+      <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+        <AppBarButton Icon="Back"     Label="-5."  Click="onJump" />
+        <AppBarButton Icon="Back"     Label="-1."  Click="onJump" />
+        <AppBarButton Icon="Previous" Label="-.3"  Click="onJump" />
+        <AppBarButton Icon="Forward"  Label="+1."  Click="onJump" />
+        <AppBarButton Icon="Forward"  Label="+5."  Click="onJump" />
+      </StackPanel>
+      <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Horizontal" >
+        <AppBarButton Icon="ZoomIn"   Label="Faster" Click="onFaster" />
+        <AppBarButton Icon="ZoomOut"  Label="Slower" Click="onSlower" />
+      </StackPanel>
+      <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Horizontal" >
+        <AppBarButton Icon="OpenFile" Label="Open"   Click="OnOpen" />
+      </StackPanel>
+    </StackPanel>
+
+    <!--
+			C:\gh\Windows-universal-samples\Samples\XamlUIBasics\cs\AppUIBasics\ControlPages\MediaElementPage.xaml			
+			                    "Docs": [
+                        { "Title": "Image", "Uri": "http://msdn.microsoft.com/library/windows/apps/windows.ui.xaml.controls.image.aspx" },
+                        { "Title": "Quickstart: video and audio", "Uri": "https://msdn.microsoft.com/en-us/library/windows/apps/hh465160.aspx" },
+                        { "Title": "Quickstart: create custom transport controls", "Uri": "https://msdn.microsoft.com/en-us/library/windows/apps/hh986967.aspx" }
+			-->
+
+  </Grid>
+</Page>

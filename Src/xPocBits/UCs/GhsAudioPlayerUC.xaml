@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="xPocBits.UCs.GhsAudioPlayerUC" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+						 xmlns:local="using:xPocBits.UCs" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" 
+						 >
+	<ScrollViewer x:Name="sv1" 
+								HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible"
+								VerticalScrollMode="Disabled" VerticalScrollBarVisibility="Auto">
+		<Grid x:Name="RootGrid" Margin="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="272"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+
+			<Viewbox Grid.Row="1" Width="272" Height="272" Stretch="Fill" >
+				<TextBlock Style="{StaticResource SampleHeaderTextStyle}" Text="    Nothing&#10;    Selected&#10;(or no image)" Foreground="#aaa" Margin="40" FontWeight="SemiBold" />
+			</Viewbox>
+			<Image   Grid.Row="1" x:Name="curArtImg" Width="272" Height="272" Grid.Column="0" />
+
+			<StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0" Grid.Column="0" Background="#fed">
+				<AppBarButton Icon="Previous"		x:Name="prevButton"		Click="prevButton_Click"	IsEnabled="False" />
+				<AppBarButton Icon="Play"				x:Name="playButton"		Click="playButton_Click"	                  />
+				<AppBarButton Icon="Next"				x:Name="nextButton"		Click="nextButton_Click"	IsEnabled="False" />
+				<AppBarButton Icon="MusicInfo"  x:Name="speedButton"	Click="speedButton_Click"                   />
+			</StackPanel>
+
+			<StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0" Grid.Column="0" Background="#fed">
+				<AppBarButton IsCompact="False" Icon="MusicInfo"   x:Name="Play5"  Background="#4040" Foreground="#f0f0" >
+					<Button.Flyout>
+						<MenuFlyout>
+							<MenuFlyoutItem					    Text="Priva Plicy"       ToolTipService.ToolTip="Priva Plicy" Foreground="#090"  />
+
+							<MenuFlyoutSubItem          Text="Future Features..." Visibility="{Binding DevDbgViz}" >
+								<MenuFlyoutSubItem.Items>
+									<ToggleMenuFlyoutItem   Text="DevOps"              IsChecked="{Binding IsDevDbg, Mode=TwoWay}" ToolTipService.ToolTip="Dev Ops visbility switch." />
+									<MenuFlyoutSeparator  />
+									<ToggleMenuFlyoutItem   Text="DevOps"              IsChecked="{Binding IsDevDbg, Mode=TwoWay}" ToolTipService.ToolTip="Dev Ops visbility switch." />
+								</MenuFlyoutSubItem.Items>
+							</MenuFlyoutSubItem>
+							<MenuFlyoutSeparator                                                                         />
+						</MenuFlyout>
+
+					</Button.Flyout>
+				</AppBarButton>
+			</StackPanel>
+
+
+			<StackPanel Grid.Row="4" Background="#def" Grid.Column="0" >
+				<TextBlock x:Name="txtCurrentTrack" Margin="5"  TextWrapping="Wrap" Style="{StaticResource BodyTextBlockStyle}" Foreground="#00f" />
+				<TextBlock x:Name="txtCurrentState" Margin="5"  TextWrapping="Wrap" Style="{StaticResource BodyTextBlockStyle}" Foreground="#080" />
+				<TextBlock x:Name="txtCurException" Margin="5"  TextWrapping="Wrap" Style="{StaticResource BodyTextBlockStyle}" Foreground="#d00" />
+			</StackPanel>
+
+			<local:GhsPlaylistUC x:Name="ghsPlaylistUC" Grid.Column="1" Grid.RowSpan="8" HorizontalAlignment="Left" >
+				<FlyoutBase.AttachedFlyout>
+					<MenuFlyout/>
+				</FlyoutBase.AttachedFlyout>
+			</local:GhsPlaylistUC>
+
+		</Grid>
+	</ScrollViewer>
+</UserControl>

@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="AudioCompare.MediaPlayerInfoUserControl" x:Name="uc1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+						 xmlns:conv="clr-namespace:Framework.FormattingConvert" Background="#777"
+						 PreviewKeyDown="UserControl_PreviewKeyDown" Width="800" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DesignWidth="939">
+	<UserControl.Resources>
+
+		<conv:LoadedBehaviorConverter x:Key="behaviorConverter" />
+
+		<Style TargetType="MediaElement">
+			<Setter Property="Volume" Value="0.1" />
+			<Style.Triggers>
+				<Trigger  Property="IsMouseOver" Value="true">
+					<Setter Property="Volume" Value="1" />
+					<Setter Property="Width"  Value="777" />
+					<Setter Property="Cursor" Value="Hand" />
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+		<Style TargetType="Slider">
+			<Style.Triggers>
+				<Trigger  Property="IsMouseOver"	Value="true">
+					<Setter Property="Cursor"				Value="ScrollWE" />
+					<Setter Property="Background"		Value="#ff0" />
+					<Setter Property="Value"				Value="0" />
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+		<Style TargetType="Button">
+			<Setter Property="MediaElement.Volume" Value="0.1" />
+			<Style.Triggers>
+				<Trigger  Property="IsMouseOver" Value="true">
+					<Setter Property="MediaElement.Volume" Value="1" />
+					<Setter Property="Width" Value="777" />
+					<Setter Property="Cursor" Value="Cross" />
+					<Setter Property="Rectangle.Fill" Value="#ff0" />
+				</Trigger>
+				<Trigger  Property="IsFocused" Value="true">
+					<Setter Property="MediaElement.Volume" Value="1" />
+					<Setter Property="Width" Value="777" />
+				</Trigger>
+				<Trigger  Property="IsKeyboardFocused" Value="true">
+					<Setter Property="MediaElement.Volume" Value="1" />
+					<Setter Property="Width" Value="777" />
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+
+		<Style TargetType="TextBlock">
+			<Setter Property="Foreground" Value="#888" />
+		</Style>
+
+		<Style TargetType="Rectangle">
+			<Setter Property="Opacity"				Value="0.1" />
+			<Setter Property="Fill"						Value="#000" />
+			<Style.Triggers>
+				<Trigger  Property="IsMouseOver"	Value="true">
+					<Setter Property="Opacity"				Value="1" />
+					<Setter Property="Fill"						Value="#fff" />
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+
+	</UserControl.Resources>
+
+	<Grid Margin="1,1"  PreviewKeyDown="UserControl_PreviewKeyDown"  >
+		<Grid.Background>
+			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+				<GradientStop Color="#fed" Offset="0"/>
+				<GradientStop Color="#fff" Offset="1"/>
+			</LinearGradientBrush>
+		</Grid.Background>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="10" />
+			<ColumnDefinition Width="30" />
+			<ColumnDefinition Width="30" />
+			<ColumnDefinition Width="100" />
+			<ColumnDefinition Width="35" />
+			<ColumnDefinition Width="20" />
+			<ColumnDefinition Width="*"  />
+			<ColumnDefinition Width="99" />
+			<ColumnDefinition Width="99" />
+			<ColumnDefinition Width="40" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<ProgressBar Orientation="Horizontal" Minimum="0" Maximum="{Binding Path=MuDurn, Mode=OneWay, ElementName=uc1}" Value="{Binding Path=MuPosn, Mode=OneWay, ElementName=uc1}" Grid.ColumnSpan="10" BorderThickness="0" Grid.RowSpan="2" Background="Transparent"/>
+
+		<TextBlock Margin="2" Grid.ColumnSpan="9" Text="{Binding Path=PathFileName, Mode=OneWay, FallbackValue=M:\\SJ\\PinkFloyd\\name.mp3}" FontWeight="Bold" x:Name="tbkPathFileName" Foreground="#0af"/>
+
+		<MediaElement x:Name="me1" Width="70"  Grid.RowSpan="2" Grid.Column="6" HorizontalAlignment="Right" Margin="5"
+									Source="{Binding Path=PathFileName, Mode=OneWay}" LoadedBehavior="Manual" MediaOpened="p_MediaOpened" 
+									Volume="{Binding ElementName=rectVolumeControl, Path=Opacity}"/>
+		<Rectangle                         x:Name="rectVolumeControl"                   Grid.RowSpan="2" Grid.Column="9" Fill="#f00" />
+
+		<!--LoadedBehavior="{Binding Path=Items.Count, Converter={StaticResource behaviorConverter}, ConverterParameter='\{0\}', ElementName=lbxMediaUnits, Mode=OneWay, FallbackValue=Manual}"-->
+
+		<TextBlock Margin="2,5" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center" Text="Use: " Height="16" />
+		<TextBlock Margin="2,5" Grid.Row="1" Grid.Column="2"  VerticalAlignment="Center" Text="{Binding Path=UsedTimesCount, Mode=OneWay, FallbackValue=22}" Foreground="#0af" />
+		<TextBlock Margin="2,5" Grid.Row="1" Grid.Column="3"  VerticalAlignment="Center" Text=" times.     Genre#: " Height="16" />
+		<TextBlock Margin="2,5" Grid.Row="1" Grid.Column="4"  VerticalAlignment="Center" Text="{Binding Path=GenreID, Mode=OneWay, FallbackValue=1-15}" x:Name="tbknGenre" Foreground="#0af" />
+
+		<TextBlock VerticalAlignment="Center" Text="{Binding Path=MediaUnitID, Mode=OneWay, FallbackValue=MediaUnitID}" x:Name="tbkMediaUnitID" Visibility="Collapsed" Margin="0,10" Height="0" />
+		<!--<TextBlock Text="{StaticResource MediaElementLoudWhenMouseOverStyleTypless}"  /> CANNOT ... -->
+
+		<StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="6" x:Name="fileOnDiskPanel" Visibility="Visible" Grid.ColumnSpan="3" >
+			<!--<Button Height="21.96" Click="Button_Rename_Click" Margin="2" Content="_Rename" IsEnabled="False" />
+			<Button Height="21.96" Click="Button_Delete_Click" Margin="2" Content="_Delete" IsEnabled="False" />-->
+			<ToggleButton Height="21.96" IsChecked="True" Checked="onPlayChecked" Unchecked="onPlayUnchekd"  Margin="2" VerticalAlignment="Center" Content="Play/Pause" />
+			<Button Height="22" Width="22" Click="Move60secLeft"		ToolTip="Move60secLeft"	>&lt;&lt;</Button>
+			<Button Height="22" Width="22" Click="Move10secLeft"		ToolTip="Move10secLeft"		>&lt;</Button>
+			<Button Height="22" Width="22" Click="MoveMidCenter"		ToolTip="Move 2 Center"			>|</Button>
+			<Button Height="22" Width="22" Click="Move10secRigt"		ToolTip="Move10secRight"	>&gt;</Button>
+			<Button Height="22" Width="22" Click="Move60secRigt"		ToolTip="Move60secRight"	>&gt;&gt;</Button>
+			<Slider Orientation="Horizontal" Width="140" x:Name="sldVolume" Minimum="0" Maximum="1" Value="{Binding Mode=TwoWay, ElementName=me1, Path=Volume}"   />
+		</StackPanel>
+
+		<TextBlock Text="0:12:33 " x:Name="tbkDuration" Margin="2" VerticalAlignment="Center" FontSize="22" Grid.Column="7" Grid.RowSpan="2" HorizontalAlignment="Left"  Foreground="#0af" />
+		<TextBlock Text="3.12" x:Name="tbkDuratio2" Margin="0,14,37,14" VerticalAlignment="Center" FontSize="22" Grid.Column="8" Grid.RowSpan="2" HorizontalAlignment="Right" Foreground="#0af" FontWeight="Bold" />
+		<TextBlock Text=" mb"      Margin="2" VerticalAlignment="Center" FontSize="22" Grid.Column="8" Grid.RowSpan="2" HorizontalAlignment="Right" Foreground="#0af" />
+	</Grid>
+</UserControl>

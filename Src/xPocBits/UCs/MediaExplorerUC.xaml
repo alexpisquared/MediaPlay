@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="xPocBits.UCs.MediaExplorerUC" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+             xmlns:local="using:xPocBits.UCs"
+						 xmlns:lcl="using:ApxCmn"
+						 xmlns:ucs="using:xPocBits.UCs"
+              d:DesignHeight="100"
+               d:DesignWidth="300"
+             >
+
+  <RelativePanel Background="#120">
+
+    <ListView x:Name="lv1" Background="#120" 
+              ItemsSource="{Binding MediaInfos}" SelectedItem="{Binding SelectMI, Mode=TwoWay}"	
+              RelativePanel.AlignTopWithPanel="True"
+              RelativePanel.AlignLeftWithPanel="True"
+              RelativePanel.AlignRightWithPanel="True"
+              RelativePanel.Above="sv1"
+				ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+				ScrollViewer.VerticalScrollBarVisibility="Visible" 
+				ScrollViewer.HorizontalScrollMode="Enabled" 
+				ScrollViewer.VerticalScrollMode="Enabled"
+								>
+      <ListView.ItemTemplate>
+        <DataTemplate x:DataType="lcl:MediaInfo">
+          <Grid Margin="0 1">
+            <ucs:MediaInfoItemUC Height="62" MaxWidth="340" />
+            
+            <AppBarButton Icon="OpenWith" HorizontalAlignment="Right" IsCompact="True" Background="#1000" >
+              <AppBarButton.Flyout>
+                <MenuFlyout>
+                  <MenuFlyoutItem Text="DltCmd" x:Name="x1" Command="{Binding DltCmd}" CommandParameter="123"			/>
+									<!--<MenuFlyoutItem Text="Dela" x:Name="x2" Command="{Binding DltCmd, RelativeSource={RelativeSource Mode=TemplatedParent}}" CommandParameter="123"			/>-->
+                  <MenuFlyoutItem Text="VM.DltCmd" x:Name="x3" Command="{Binding VM.DltCmd}" CommandParameter="123"			/>
+                </MenuFlyout>
+              </AppBarButton.Flyout>
+            </AppBarButton>
+            <!-- this binds to MediaInfo ... why not menu above? 'cause menu binds at the moment of clickoing on it.
+						<Button  Content="???" x:Name="x4" HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+										 Command="{Binding VM.DltCmd}" CommandParameter="123"			
+										 />
+						<Button  
+										 Command="{Binding DltCmd, RelativeSource={RelativeSource TemplatedParent}}" 
+										 DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
+										 DataContext="{Binding DataContext, RelativeSource={RelativeSource FindAncestor}}" 
+										 />-->
+          </Grid>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+      <ListView.ItemsPanel>
+        <ItemsPanelTemplate>
+          <ItemsWrapGrid MaximumRowsOrColumns="100" />
+        </ItemsPanelTemplate>
+      </ListView.ItemsPanel>
+
+      <!-- //tu: see msdn for details
+						<ListView.GroupStyle>
+							<GroupStyle HidesIfEmpty="True">
+								<GroupStyle.HeaderTemplate>
+									<DataTemplate>
+										<Grid Background="LightGray" Margin="0">
+											<TextBlock Text='{Binding Name}' Foreground="Black" Margin="30" Style="{StaticResource HeaderTextBlockStyle}"/>
+										</Grid>
+									</DataTemplate>
+								</GroupStyle.HeaderTemplate>
+							</GroupStyle>
+						</ListView.GroupStyle>-->
+    </ListView>
+
+    <ScrollViewer x:Name="sv1" RelativePanel.AlignBottomWithPanel="True" HorizontalScrollBarVisibility="Visible">
+      <StackPanel    Orientation="Horizontal" Background="#1000" HorizontalAlignment="Stretch" >
+        <AppBarButton  Icon="Audio"			Command="{x:Bind VM.F2Cmd}"			ToolTipService.ToolTip="Audio" />
+        <AppBarButton  Icon="Video"			Command="{x:Bind VM.F3Cmd}"			ToolTipService.ToolTip="Video" />
+
+        <AppBarButton  Icon="BlockContact"	Click="onGoToPrivPlcy"											ToolTipService.ToolTip="Privacy Policy" />
+
+        <TextBlock    Foreground="#00f" Text="{x:Bind VM.Info, Mode=OneWay}"	TextWrapping="Wrap"	MinWidth="80" MaxWidth="200" ToolTipService.ToolTip="{x:Bind VM.Info, Mode=OneWay }" VerticalAlignment="Center" />
+      </StackPanel>
+    </ScrollViewer>
+
+  </RelativePanel>
+</UserControl>

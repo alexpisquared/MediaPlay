@@ -1,0 +1,18 @@
+﻿<Page
+    x:Class="EF7UwpPoc.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EF7UwpPoc"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock  Text="Click the link to copy address:" Foreground="#888" />
+        <HyperlinkButton x:Name="h1" Content="C:\123" Click="h1_Click" />
+        <Button     x:Name="b1" Content="Add" Click="onAddOne"/>
+        <Button     x:Name="b2" Content="Get" Click="onGetAll"/>
+        <TextBlock  x:Name="t1" />
+        <TextBlock  x:Name="t2" />
+    </StackPanel>
+</Page>

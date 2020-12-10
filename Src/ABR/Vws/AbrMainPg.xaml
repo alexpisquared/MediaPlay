@@ -1,0 +1,48 @@
+﻿<Page xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+      xmlns:Vws="using:ABR.Vws"    
+      x:Class="ABR.AbrMainPg"    
+      >
+  <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <!--
+    too distracting:
+    <Image Source="{x:Bind _abrVM.SlctMru.Thumbnail, Mode=OneWay, FallbackValue='ms-appx:///Assets/Square150x150Logo.scale-200.png'}" HorizontalAlignment="Left" VerticalAlignment="Top" />-->
+
+    <Pivot SelectedIndex="{x:Bind _abrVM.SelectedTabIndex, Mode=TwoWay}">
+      <PivotItem Header="plyr">
+        <Vws:Pg1_PlrUC x:Name="pg1_PlrUC1"/>
+      </PivotItem>
+      <PivotItem Header="mru">
+        <Vws:Pg2_MruUC />
+      </PivotItem>
+      <!--<PivotItem Header="pl">
+        <Vws:Pg4_LstUC />
+      </PivotItem>-->
+      <PivotItem Header="lib">
+        <Vws:Pg3_LibUC />
+      </PivotItem>
+      <PivotItem Header="dtl">
+        <Vws:Pg4_CurDtl />
+      </PivotItem>
+      <PivotItem Header="dg" >
+        <Vws:Pg5_PocUC x:Name="pg5" />
+      </PivotItem>
+    </Pivot>
+
+    <TextBlock x:Name="t4" Text="" Foreground="#f88" VerticalAlignment="Top" HorizontalAlignment="Right" TextWrapping="Wrap" Margin="5 -3" FontSize="13" MaxWidth="400" />
+
+    <Image       x:Name="img2" Source="{x:Bind _abrVM.SlctMru.Thumbnail}" />
+
+    <AppBarButton Icon="Pin" ToolTipService.ToolTip="Pin to Start" VerticalAlignment="Top" HorizontalAlignment="Right" Click="onPinTile" IsCompact="True" x:Name="btnPinTile" Foreground="#f00" Background="#0f0" />
+
+    <AppBarButton Foreground="#fff" Icon="{x:Bind _abrVM.PlPsIcon, Mode=OneWay}" IsCompact="True"                              Command="{x:Bind _abrVM.PlayPaus}" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+    <!--
+    <AppBarButton Foreground="#0f0" Icon="{x:Bind _abrVM.PlPsIcon, Mode=OneWay}" Label="{x:Bind _abrVM.PlyPsCap, Mode=OneWay}" Command="{x:Bind _abrVM.PlayPaus}" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+    -->
+
+    <ProgressBar HorizontalAlignment="Stretch" VerticalAlignment="Bottom"  
+                   Value="{x:Bind _abrVM.SlctMru.PlayPosn.TotalSeconds, Mode=OneWay, FallbackValue=.3}" 
+                 Maximum="{x:Bind _abrVM.SlctMru.PlayLeng.Value.TotalSeconds, Mode=OneWay}"    />
+
+  </Grid>
+</Page>

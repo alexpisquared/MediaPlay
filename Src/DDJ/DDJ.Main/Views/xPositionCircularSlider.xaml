@@ -1,0 +1,18 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+				xmlns:ll="clr-namespace:DDJ.Main.Views" 
+				xmlns:kk="clr-namespace:Common.UI.Lib.Views;assembly=Common.UI.Lib" x:Class="DDJ.Main.Views.xPositionCircularSlider"
+				xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" 
+        Title="xPositionCircularSlider" Height="460" Width="740" Background="#aaa">
+	<Grid>
+
+		<MediaElement Volume="1" Source="D:\1\v\ABSWP81Part27_high.mp4" Name="me1" />
+
+		<ll:xUcPositionCircularSlider Margin="10" Height="300" Width="300" HorizontalAlignment="Left" />
+
+		<TextBlock Text="{Binding Posn,   FallbackValue=123, StringFormat={}{0:N1}}" FontSize="33" Foreground="#ff0"  VerticalAlignment="Top"/>
+
+		<kk:ucProgressArcTSp PrgDuration="0:10:00" PrgPosition="{Binding PosTs, Mode=TwoWay}" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Top"     x:Name="t1"/>
+		<kk:ucProgressArcSec PrgDuratSec="420"     PrgPositSec="{Binding PosnS, Mode=TwoWay}" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Bottom"  x:Name="s1"/>
+
+	</Grid>
+</Window>

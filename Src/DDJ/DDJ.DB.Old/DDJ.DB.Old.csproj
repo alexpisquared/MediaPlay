@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{12D9A8D7-AF13-46E2-B62C-F78D2952AE0F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DDJ.DB.Old</RootNamespace>
+    <AssemblyName>DDJ.DB.Old</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\c\ef\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>C:\c\ef\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\AudioPiece.cs" />
+    <Compile Include="Models\AudioPieces_Tombstone.cs" />
+    <Compile Include="Models\DDJContext.cs" />
+    <Compile Include="Models\dtproperty.cs" />
+    <Compile Include="Models\FileSysFile.cs" />
+    <Compile Include="Models\FileSysFiles_Tombstone.cs" />
+    <Compile Include="Models\LikedHated.cs" />
+    <Compile Include="Models\LikedHated_Tombstone.cs" />
+    <Compile Include="Models\lkuGenre.cs" />
+    <Compile Include="Models\lkuProximityState.cs" />
+    <Compile Include="Models\Mapping\AudioPieceMap.cs" />
+    <Compile Include="Models\Mapping\AudioPieces_TombstoneMap.cs" />
+    <Compile Include="Models\Mapping\dtpropertyMap.cs" />
+    <Compile Include="Models\Mapping\FileSysFileMap.cs" />
+    <Compile Include="Models\Mapping\FileSysFiles_TombstoneMap.cs" />
+    <Compile Include="Models\Mapping\LikedHatedMap.cs" />
+    <Compile Include="Models\Mapping\LikedHated_TombstoneMap.cs" />
+    <Compile Include="Models\Mapping\lkuGenreMap.cs" />
+    <Compile Include="Models\Mapping\lkuProximityStateMap.cs" />
+    <Compile Include="Models\Mapping\PrevTimeMap.cs" />
+    <Compile Include="Models\Mapping\PrevTimes_TombstoneMap.cs" />
+    <Compile Include="Models\Mapping\sysdiagramMap.cs" />
+    <Compile Include="Models\Mapping\View_AudioPiecesUsedTimesMap.cs" />
+    <Compile Include="Models\Mapping\View_Last33ListenedMap.cs" />
+    <Compile Include="Models\Mapping\View_UsageSortedUndeletedMap.cs" />
+    <Compile Include="Models\Mapping\xRef_MediaProximityUserMap.cs" />
+    <Compile Include="Models\Mapping\xRef_MediaProximityUser_TombstoneMap.cs" />
+    <Compile Include="Models\PrevTime.cs" />
+    <Compile Include="Models\PrevTimes_Tombstone.cs" />
+    <Compile Include="Models\sysdiagram.cs" />
+    <Compile Include="Models\View_AudioPiecesUsedTimes.cs" />
+    <Compile Include="Models\View_Last33Listened.cs" />
+    <Compile Include="Models\View_UsageSortedUndeleted.cs" />
+    <Compile Include="Models\xRef_MediaProximityUser.cs" />
+    <Compile Include="Models\xRef_MediaProximityUser_Tombstone.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

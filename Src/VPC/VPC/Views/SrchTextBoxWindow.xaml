@@ -1,0 +1,13 @@
+﻿<Window x:Class="VPC.Views.SrchTextBoxWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Rename" 
+				   Background="#c48c" AllowsTransparency="True" WindowStyle="None" ResizeMode="NoResize" x:Name="w1" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" >
+	<Viewbox    Width="300" >
+		<StackPanel Margin="6">
+			<TextBox  Margin="6" Width="100" x:Name="tbSrch0" VerticalAlignment="Top" Foreground="#279"
+								Text="{Binding Srch, ElementName=w1, Delay=333, UpdateSourceTrigger=PropertyChanged, FallbackValue=123}" 
+								/>
+			<CheckBox Margin="6" Content="_Subfolders" Foreground="#fff" 
+								IsChecked="{Binding InclSubDirs, ElementName=w1, UpdateSourceTrigger=PropertyChanged}" 
+								/>
+		</StackPanel>
+	</Viewbox>
+</Window>

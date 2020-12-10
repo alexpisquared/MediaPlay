@@ -1,0 +1,16 @@
+﻿<UserControl    x:Class="VideoPlayerBackground.Vws.LibItemUC"  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    xmlns:local="using:VideoPlayerBackground.Vws"    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"    mc:Ignorable="d"    
+             xmlns:asl="using:AsLink"
+             Width="344" Height="56"  >
+  <UserControl.Resources>
+    <asl:StringFormatConverter x:Key="StringFormatConverter"/>
+  </UserControl.Resources>
+
+  <Grid Margin="0 1" Background="#3888" >
+    
+    <Image       Source="{x:Bind Mid.Thumbnail}" HorizontalAlignment="Right" Margin="0"/>
+
+    <TextBlock Margin="6 0" HorizontalAlignment="Left"   VerticalAlignment="Top"    TextWrapping="Wrap" Text="{x:Bind Mid.FileOnly, FallbackValue='White Noise . com - Victoria Falls'}"	Style="{StaticResource BaseTextBlockStyle}"  />
+    <TextBlock Margin="3 2" HorizontalAlignment="Right"  VerticalAlignment="Bottom" TextWrapping="Wrap" Text="{x:Bind Mid.PathOnly, FallbackValue='C:\\temp'}"                            FontSize="11" Foreground="#eea" />
+
+  </Grid>
+</UserControl>

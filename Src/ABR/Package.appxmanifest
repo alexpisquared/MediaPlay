@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" IgnorableNamespaces="uap mp uap3">
+  <Identity Name="63354AlexPigida.WorstMediaPlayer" Publisher="CN=81F983B4-CDCE-4B1F-A675-58280664A119" Version="18.5.11.0" />
+  <mp:PhoneIdentity PhoneProductId="ee9d36d7-044f-4eb1-9ac4-027a210ae94c" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Properties>
+    <DisplayName>WorstMediaPlayer</DisplayName>
+    <PublisherDisplayName>Alex Pigida</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+  </Dependencies>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="ABR.App">
+      <uap:VisualElements DisplayName="WorstMediaPlayer" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="The worst media player ... This is what I have to deal with on a daily basis :) featuring upfront step navigation and playback speed controls, pick-up-where-you-left-off support (for the items in &quot;mru&quot; tab only) and the most convoluted UI ever. How it works: The app finds/loads all items from media library folders (upon selecting tab &quot;lib&quot;) and lets touch/select items into the playlist (tab &quot;mru&quot;)." BackgroundColor="transparent">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
+        </uap:DefaultTile>
+        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+      </uap:VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+    <uap3:Capability Name="backgroundMediaPlayback" />
+    <uap:Capability Name="musicLibrary" />
+    <uap:Capability Name="videosLibrary" />
+  </Capabilities>
+</Package>

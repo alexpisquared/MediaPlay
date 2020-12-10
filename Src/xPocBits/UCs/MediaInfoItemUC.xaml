@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="xPocBits.UCs.MediaInfoItemUC" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="using:xPocBits.UCs" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="200"
+             >
+
+  <Grid Background="#210" >
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto" MinWidth="3"/>
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <Rectangle  Grid.Row="0"	Grid.RowSpan="2" Grid.Column="0" Fill="#468" />
+    <Image      Grid.Row="0"	Grid.RowSpan="2" Grid.Column="0" Source="{Binding Thumbnail}" Margin="3" />
+    <StackPanel Grid.Row="0"	Grid.RowSpan="2" Grid.Column="1" VerticalAlignment="Center"   Margin="3" >
+      <TextBlock Text="{Binding FName, Mode=OneWay, FallbackValue='FName'}"	Foreground="#fc8" 				 />
+      <TextBlock Text="{Binding PathO, Mode=OneWay, FallbackValue='Path0'}"	Foreground="#8cf" 				FontSize="11" FontWeight="SemiLight" TextWrapping="Wrap" />
+    </StackPanel>
+    <!--<TextBlock Grid.Row="0"			Grid.Column="1" Foreground="#f00" Text="{x:Bind FName, Mode=OneWay}"					FontSize="12" FontWeight="SemiLight" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,3" />-->
+    <!--<TextBlock Grid.Row="1"			Grid.Column="1" Foreground="#080" Text="{Binding TotalSeconds, FallbackValue='33:', ConverterParameter=\{0:N0\}, Converter={StaticResource StringFormatConverter}}" FontWeight="SemiLight" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,3"/>-->
+  </Grid>
+</UserControl>

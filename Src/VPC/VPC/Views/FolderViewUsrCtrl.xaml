@@ -1,0 +1,162 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Models="clr-namespace:VPC.Models" xmlns:local="clr-namespace:VPC.Views" x:Class="VPC.Views.FolderViewUsrCtrl" mc:Ignorable="d" 
+						 xmlns:Views1="clr-namespace:Common.UI.Lib.Views;assembly=Common.UI.Lib" 
+						 d:DesignHeight="400" d:DesignWidth="800"  xmlns:lcl="clr-namespace:VPC.Views" x:Name="uc1">
+    <UserControl.Resources>
+        <lcl:EmptyOnZero x:Key="EmptyOnZero" />
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="#0ef" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontFamily" Value="Arial Narrow" />
+        </Style>
+        <Style TargetType="Label"    >
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="#fff" />
+            <Setter Property="FontSize" Value="8"  />
+            <Setter Property="HorizontalAlignment" Value="Right"  />
+            <Setter Property="FontFamily" Value="Arial Narrow" />
+        </Style>
+        <!--<CollectionViewSource x:Key="folderViewModelViewSource" d:DesignSource="{d:DesignInstance {x:Type Models:FolderViewModel}, CreateList=True}"/>
+		<CollectionViewSource x:Key="folderViewModelMediaUnitsViewSource" Source="{Binding MediaUnits, Source={StaticResource folderViewModelViewSource}}"/>-->
+
+        <!-- //TU:-->
+        <Style TargetType="DataGridColumnHeader" x:Key="DataGridColumnHeaderStyle">
+            <Setter Property="FontSize"   Value="16" />
+            <Setter Property="Foreground" Value="#aaa" />
+            <Setter Property="Background" Value="#444" />
+            <Setter Property="Padding"		Value="3" />
+        </Style>
+    </UserControl.Resources>
+    <Grid HorizontalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="1" Text="{Binding Srch}" x:Name="tbSrchUC" />
+
+        <DataGrid Grid.Row="2" 
+							ItemsSource="{Binding MUs, ElementName=uc1}"
+							x:Name="dgMUnits" AutoGenerateColumns="False" EnableRowVirtualization="True" Margin="6" GridLinesVisibility="None" 
+							Foreground="#f0f" Background="#4000" CanUserAddRows="False" CanUserDeleteRows="False" HeadersVisibility="Column" HorizontalAlignment="Left" SelectionMode="Single"
+							SelectionChanged="mediaUnitsDataGrid_SelectionChanged" MouseDoubleClick="mediaUnitsDataGrid_MouseDoubleClick_1" BorderThickness="0"
+							ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}" RowBackground="#8000" AlternatingRowBackground="#8333" >
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#b00"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#800"/>
+            </DataGrid.Resources>
+            <!--<DataGrid.RowBackground>
+				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+					<GradientStop Color="#8111" Offset="0"/>
+					<GradientStop Color="#8000" Offset="1"/>
+				</LinearGradientBrush>
+			</DataGrid.RowBackground>-->
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="°" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Views1:ucProgressArcMini  PrgDuration="{Binding Duration, FallbackValue='1:00:00'}" PrgPosition="{Binding Position, FallbackValue='0:00', Mode=TwoWay}" Height="22" Margin="2 -2"/>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Width="Auto" Foreground="#0ff" IsReadOnly="True" Binding="{Binding FileName}"                                                Header="Filename " />
+                <DataGridTextColumn Width="Auto" Foreground="#0ef" IsReadOnly="True" Binding="{Binding Position, StringFormat=\{0:h\\:mm\\:ss\}, Converter={StaticResource EmptyOnZero}}" Header="Posn  "  />
+                <DataGridTextColumn Width="Auto" Foreground="#0ef" IsReadOnly="True" Binding="{Binding Duration, StringFormat=\{0:h\\:mm\\:ss\}, Converter={StaticResource EmptyOnZero}}" Header="Leng  "  />
+                <DataGridTextColumn Width="Auto" Foreground="#0df" IsReadOnly="True" Binding="{Binding Auditions.Count, Converter={StaticResource EmptyOnZero}}" Header="Vw"       />
+                <DataGridTextColumn Width="Auto" Foreground="#0cf" IsReadOnly="True" Binding="{Binding Bookmarks.Count, Converter={StaticResource EmptyOnZero}}" Header="Bmk"       />
+                <DataGridTextColumn Width="Auto" Foreground="#0bf" IsReadOnly="True" Binding="{Binding LastPeekAt, StringFormat=\{0:yyyy-MM-dd\}}"               Header="  Last" />
+                <DataGridTextColumn Width="Auto" Foreground="#0af" IsReadOnly="True" Binding="{Binding LastPeekPC}"                                              Header="  PC" />
+                <DataGridTextColumn Width="Auto" Foreground="#09f" IsReadOnly="True" Binding="{Binding TmpMsg}"                                                  Header="  Exist"       />
+                <!--
+				<DataGridTextColumn Width="Auto" Foreground="#0af" IsReadOnly="True" Binding="{Binding PassedQA}"                                                Header="  QA"       />
+				<DataGridTextColumn Width="Auto" Foreground="#0ef" IsReadOnly="True" Binding="{Binding Position, StringFormat=\{0:h\\:mm\\:ss\}, Converter={StaticResource EmptyOnZero}}" Header="Position"  />
+				<DataGridTextColumn Binding="{Binding Duration, StringFormat=\{0:h\\:mm\\:ss\}}"  Header="Duration"  Width="Auto" Foreground="#0af" IsReadOnly="True" />
+				<DataGridTextColumn Binding="{Binding DeletedAt, StringFormat=\{0:yyyy-MM-dd\}}"  Header="Deleted"   Width="Auto" Foreground="#0af" IsReadOnly="True" />
+				<DataGridTextColumn Binding="{Binding Notes}"                                       Header="Notes"    />-->
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="2" Grid.Column="2" Background="#4000" x:Name="dg2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Path:"      Grid.Row="1"  />
+            <TextBlock  Grid.Column="1" Grid.Row="1"  Text="{Binding CurMu9.PathName, ElementName=uc1, FallbackValue=Abc1221313.mp3}" FontSize="16" />
+            <Label Content="File:"	    Grid.Row="2"  />
+            <TextBlock  Grid.Column="1" Grid.Row="2"  Text="{Binding CurMu9.FileName, ElementName=uc1, FallbackValue=Abc1221313.mp3}" FontSize="15" />
+            <Label Content="Org:"       Grid.Row="3"  />
+            <TextBlock  Grid.Column="1" Grid.Row="3"  Text="{Binding CurMu9.PathFileOrg, ElementName=uc1}" FontSize="12" />
+            <Label Content="Cur:"       Grid.Row="4"  />
+            <TextBlock  Grid.Column="1" Grid.Row="4"  Text="{Binding CurMu9.PathFileCur, ElementName=uc1}" FontSize="12" />
+            <Label Content="Lnk:"       Grid.Row="5"  />
+            <TextBlock  Grid.Column="1" Grid.Row="5"  >
+                <Hyperlink NavigateUri="{Binding CurMu9.OrgHttpLink, ElementName=uc1}" Command="{Binding DnldCastCmd}" >						
+                    <TextBlock    Text="{Binding CurMu9.OrgHttpLink, ElementName=uc1}" Foreground="#def" FontSize="14.5" />						
+                </Hyperlink>
+            </TextBlock>
+
+            <Label Content="Added At:"  Grid.Row="6"  />
+            <TextBlock  Grid.Column="1" Grid.Row="6"  Text="{Binding CurMu9.AddedAt, ElementName=uc1, StringFormat=\{0:yyyy-MM-dd\}, Converter={StaticResource EmptyOnZero}}" />
+            <Label Content="Last Peek:" Grid.Row="7"  />
+            <StackPanel Grid.Column="1" Grid.Row="7"  Orientation="Horizontal">
+                <TextBlock  Text="{Binding CurMu9.LastPeekAt, ElementName=uc1, StringFormat=\{0:yyyy-MM-dd h\\:mm\}, Converter={StaticResource EmptyOnZero}}" />
+                <Label   Content=" on PC:" />
+                <TextBlock  Text="{Binding CurMu9.LastPeekPC, ElementName=uc1}" />
+            </StackPanel>
+
+            <Label Content="Deleted At:"  Grid.Row="8"  />
+            <TextBlock  Grid.Column="1" Grid.Row="8"  Text="{Binding CurMu9.DeletedAt, ElementName=uc1, StringFormat=\{0:yyyy-MM-dd\}, Converter={StaticResource EmptyOnZero}}" />
+
+            <Label Content="File Length:"	Grid.Row="9"  />
+            <TextBlock  Grid.Column="1"	Grid.Row="9"  Text="{Binding CurMu9.FileLength, ElementName=uc1,  Converter={StaticResource EmptyOnZero}, StringFormat=\{0:N0\}}" />
+            <Label Content="Hash MD 5:"   Grid.Row="10" />
+            <TextBlock  Grid.Column="1" Grid.Row="10" Text="{Binding CurMu9.FileHashMD5, ElementName=uc1, Converter={StaticResource EmptyOnZero}}" />
+            <Label Content="Hash Qck:"    Grid.Row="11" />
+            <TextBlock  Grid.Column="1" Grid.Row="11" Text="{Binding CurMu9.FileHashQck, ElementName=uc1, Converter={StaticResource EmptyOnZero}}" />
+
+            <Label Content="QA Passed:"		Grid.Row="13" />
+            <CheckBox   Grid.Column="1" Grid.Row="13" IsChecked="{Binding CurMu9.PassedQA, ElementName=uc1}" />
+            <Label Content="Notes:"				Grid.Row="14" />
+            <TextBlock  Grid.Column="1" Grid.Row="14" Text="{Binding CurMu9.Notes, ElementName=uc1, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+            <Label Content="Tmp Msg:"     Grid.Row="15" />
+            <TextBlock  Grid.Column="1" Grid.Row="15" Text="{Binding CurMu9.TmpMsg, ElementName=uc1, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+
+            <Label Content="Lnk:"       Grid.Row="16"  />
+            <TextBlock  Grid.Column="1" Grid.Row="16" Text="{Binding CurMu9.OrgHttpLink, ElementName=uc1}" FontSize="12" Foreground="#08f" />
+
+        </Grid>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,16 @@
+﻿<Page x:Class="xPocBits.Views.FileMngr" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="using:xPocBits.Views" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+			xmlns:lcl="using:xPocBits"
+      xmlns:ucs="using:xPocBits.UCs"
+      >
+	<RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+		<TextBlock x:Name="tbVer" Foreground="#f0f" Margin="2 0" Text="Ver" FontSize="11" RelativePanel.AlignRightWithPanel="True" />
+
+		<ucs:MediaExplorerUC x:Name="me1" 
+              RelativePanel.Below="tbVer"
+              RelativePanel.AlignLeftWithPanel="True"
+              RelativePanel.AlignRightWithPanel="True"
+              RelativePanel.AlignBottomWithPanel="True"
+                         />
+	</RelativePanel>
+</Page>
