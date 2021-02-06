@@ -1,0 +1,14 @@
+﻿<Window x:Class="VPC.Views.RenameWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Rename" 
+				   Height="111" Width="1200" Background="#48c" AllowsTransparency="True" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" >
+	<Viewbox >
+		<Grid  Height="74" Width="800" >
+			<TextBox x:Name="tbFilename" VerticalAlignment="Top" Margin="12" Text="{Binding Filename}" />
+
+			<StackPanel Orientation="Horizontal"        Margin="6" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+				<Button Content="   Rename   " IsDefault="True" Margin="6" Click="onEnter"  x:Name="f1"/>
+				<Button Content="   Cancel   " IsCancel="True"  Margin="6" Click="onCancel" />
+			</StackPanel>
+
+		</Grid>
+	</Viewbox>
+</Window>

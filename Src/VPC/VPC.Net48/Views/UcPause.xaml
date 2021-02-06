@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="VPC.Views.UcPause" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignHeight="100" d:DesignWidth="100" x:Name="ucFlasher" >
+	<UserControl.Resources>
+		<Storyboard x:Key="sbFlashMeB">
+      <DoubleAnimation Storyboard.TargetProperty="Opacity" From=".0" To=".5" Duration="0:0:0.1" BeginTime="0:0:.0"  Storyboard.TargetName="ucFlasher"  />
+      <DoubleAnimation Storyboard.TargetProperty="Opacity" From=".5" To=".0" Duration="0:0:0.5" BeginTime="0:0:.1"	Storyboard.TargetName="ucFlasher" />
+    </Storyboard>
+	</UserControl.Resources>
+	<Viewbox>
+		<Grid  Height="100" Width="100" >
+			<Ellipse   Stroke="#999" StrokeThickness="3" Fill="{DynamicResource SphereShade1}" />
+			<Line			 Stroke="#00f" Fill="#00b" StrokeThickness="12" X1="38" X2="38" Y1="25" Y2="75" StrokeStartLineCap="Round" StrokeEndLineCap="Round" />
+			<Line			 Stroke="#00f" Fill="#00b" StrokeThickness="12" X1="62" X2="62" Y1="25" Y2="75" StrokeStartLineCap="Round" StrokeEndLineCap="Round" />
+		</Grid>
+	</Viewbox>
+</UserControl>

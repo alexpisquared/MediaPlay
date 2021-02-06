@@ -1,429 +1,146 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D676A70F-B596-4150-968E-3D11DDDE29C3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VPC</RootNamespace>
-    <AssemblyName>VPC</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <ExpressionBlendVersion>5.0.40218.0</ExpressionBlendVersion>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
-    <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <PublishUrl>\\shares\Onyx\2WeeksStore\AlexPi\VPC\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Unc</InstallFrom>
-    <UpdateEnabled>true</UpdateEnabled>
-    <UpdateMode>Background</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
-    <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>35</ApplicationRevision>
-    <ApplicationVersion>1.0.5.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <PublishWizardCompleted>true</PublishWizardCompleted>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>Assets\movies.ico</ApplicationIcon>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ManifestCertificateThumbprint>BC68B2D2DD94F1819D42A1D8F1EA6BF5E34B0ACF</ManifestCertificateThumbprint>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ManifestKeyFile>VPC_TemporaryKey.pfx</ManifestKeyFile>
-  </PropertyGroup>
-  <PropertyGroup>
-    <GenerateManifests>false</GenerateManifests>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignManifests>false</SignManifests>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>true</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>true</Prefer32Bit>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-  </PropertyGroup>
-  <PropertyGroup>
-    <TargetZone>LocalIntranet</TargetZone>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Accessibility" />
-    <Reference Include="Microsoft.Expression.Controls, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <None Remove="Assets\movie.ico" />
+    <None Remove="Assets\movies.ico" />
+    <None Remove="Assets\Video_Action.ico" />
+    <None Remove="Assets\ViewOn.ico" />
+    <None Remove="Assets\vpc.ico" />
+    <None Remove="ReadMe.md" />
+    <None Remove="Video.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\..\..\..\c\AsLink\DevOpStartup.Wpf.cs" Link="Common\DevOpStartup.Wpf.cs" />
+    <Compile Include="..\..\..\..\..\c\AsLink\Serializer.cs" Link="Common\Serializer.cs" />
+    <Compile Include="..\..\..\..\..\c\AsLink\Serializer.String.cs" Link="Common\Serializer.String.cs" />
+    <Compile Include="..\..\..\..\AAV.Shared\Src\AsLink\UWP\MediaHelper.cs" Link="Common\MediaHelper.cs" />
+    <Compile Include="..\..\DDJ\DDJ.Main\AsLink\AppSettingsBase.cs" Link="Common\AppSettingsBase.cs" />
+    <Compile Include="..\..\DDJ\DDJ.Main\AsLink\ConverterEx.cs" Link="Common\ConverterEx.cs" />
+    <Compile Include="..\..\DDJ\DDJ.Main\AsLink\Converters.cs" Link="Common\Converters.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ReadMe.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\AAV.Shared\Src\Net6.0\AAV.Mvvm\AAV.Mvvm.csproj" />
+    <ProjectReference Include="..\..\..\..\AAV.Shared\Src\Net6.0\AAV.Sys\AAV.Sys.csproj" />
+    <ProjectReference Include="..\..\..\..\AAV.Shared\Src\Net6.0\AAV.WPF\AAV.WPF.csproj" />
+    <ProjectReference Include="..\..\Cmn\Common.UI.Lib\Common.UI.Lib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Expression.Controls">
       <HintPath>..\..\..\..\..\Users\alexp\.nuget\packages\microsoft.sdk.expression.blend\1.0.0\lib\net45\Microsoft.Expression.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Microsoft.Expression.Drawing">
       <HintPath>..\..\..\..\..\Users\alexp\.nuget\packages\microsoft.sdk.expression.blend\1.0.0\lib\net45\Microsoft.Expression.Drawing.dll</HintPath>
     </Reference>
-    <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="ReachFramework" />
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Printing" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Speech" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    <Reference Include="System.Speech">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Speech.dll</HintPath>
     </Reference>
-    <Reference Include="UIAutomationProvider" />
-    <Reference Include="UIAutomationTypes" />
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
   </ItemGroup>
-  <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="..\..\..\..\AAV.Shared\Src\AsLink\UWP\MediaHelper.cs">
-      <Link>Common\MediaHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DDJ\DDJ.Main\AsLink\ConverterEx.cs">
-      <Link>Common\ConverterEx.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DDJ\DDJ.Main\AsLink\Converters.cs">
-      <Link>Common\Converters.cs</Link>
-    </Compile>
-    <Compile Include="C:\c\AsLink\DevOpStartup.Wpf.cs">
-      <Link>Common\DevOpStartup.Wpf.cs</Link>
-    </Compile>
-    <Compile Include="C:\c\AsLink\Serializer.String.cs">
-      <Link>Common\Serializer.String.cs</Link>
-    </Compile>
-    <Compile Include="C:\c\AsLink\Serializer.cs">
-      <Link>Common\Serializer.cs</Link>
-    </Compile>
-    <Compile Include="Common\AppSettings.cs" />
-    <Compile Include="Common\AppSettingsEx.cs" />
-    <Compile Include="Common\IsoStorage.cs" />
-    <Compile Include="Common\WindowPlace.cs" />
-    <Compile Include="Models\FileIO.cs" />
-    <Compile Include="Models\ViewTime.cs" />
-    <Compile Include="Models\XmlTimeSpan.cs" />
-    <Compile Include="SampleData\SampleDataSource\SampleDataSource.xaml.cs">
-      <DependentUpon>SampleDataSource.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\DailyViewTimeViewModel.cs" />
-    <Compile Include="ViewModels\FolderViewModel.cs" />
-    <Compile Include="Models\MediaUnit.cs" />
-    <Compile Include="Models\ModelBin.cs" />
-    <Compile Include="Models\VPModel.cs" />
-    <Compile Include="ViewModels\IVPViewModel.cs" />
-    <Compile Include="ViewModels\VPViewModel.cs" />
-    <Compile Include="Views\DailyViewTimePopup.xaml.cs">
-      <DependentUpon>DailyViewTimePopup.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DailyViewTimeUsrCtrl.xaml.cs">
-      <DependentUpon>DailyViewTimeUsrCtrl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\FolderViewUsrCtrl.xaml.cs">
-      <DependentUpon>FolderViewUsrCtrl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MediaUnitViewUsrCtrl.xaml.cs">
-      <DependentUpon>MediaUnitViewUsrCtrl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ProgressTextUserControl.xaml.cs">
-      <DependentUpon>ProgressTextUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\RenameWindow.xaml.cs">
-      <DependentUpon>RenameWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SrchTextBoxWindow.xaml.cs">
-      <DependentUpon>SrchTextBoxWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TimerDataPopup.xaml.cs">
-      <DependentUpon>TimerDataPopup.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UcPause.xaml.cs">
-      <DependentUpon>UcPause.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UcPlay.xaml.cs">
-      <DependentUpon>UcPlay.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UsedMediaChoicesWindow.xaml.cs">
-      <DependentUpon>UsedMediaChoicesWindow.xaml</DependentUpon>
-    </Compile>
-    <Page Include="SampleData\SampleDataSource\SampleDataSource.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\DailyViewTimePopup.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DailyViewTimeUsrCtrl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainPlayerWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Views\MainPlayerWindow.xaml.cs">
-      <DependentUpon>MainPlayerWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="Views\FolderViewUsrCtrl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MediaUnitViewUsrCtrl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ProgressTextUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\RenameWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SrchTextBoxWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\TimerDataPopup.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UcPause.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UcPlay.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UsedMediaChoicesWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <None Include="Properties\app.manifest" />
-    <None Include="Properties\DataSources\VPC.Models.FolderViewModel.datasource" />
-    <None Include="Properties\DataSources\VPC.Models.MediaUnit.datasource" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <AppDesigner Include="Properties\" />
-    <None Include="VPC_TemporaryKey.pfx" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\ViewOn.ico" />
-    <DesignTimeOnly Include="SampleData\SampleDataSource\SampleDataSource.xsd" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Video_Action.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <FileAssociation Include=".avi">
-      <Visible>False</Visible>
-      <Description>avi</Description>
-      <Progid>avi</Progid>
-      <DefaultIcon>Assets\movies.ico</DefaultIcon>
-    </FileAssociation>
-    <FileAssociation Include=".m2ts">
-      <Visible>False</Visible>
-      <Description>m2ts</Description>
-      <Progid>m2ts</Progid>
-      <DefaultIcon>Assets\movies.ico</DefaultIcon>
-    </FileAssociation>
-    <FileAssociation Include=".mp3">
-      <Visible>False</Visible>
-      <Description>mp3</Description>
-      <Progid>mp3</Progid>
-      <DefaultIcon>Assets\movies.ico</DefaultIcon>
-    </FileAssociation>
-    <FileAssociation Include=".mp4">
-      <Visible>False</Visible>
-      <Description>mp4</Description>
-      <Progid>vpcmp4</Progid>
-      <DefaultIcon>Assets\movies.ico</DefaultIcon>
-    </FileAssociation>
-    <FileAssociation Include=".mp5">
-      <Visible>False</Visible>
-      <Description>mp5</Description>
-      <Progid>vpcmp5</Progid>
-      <DefaultIcon>Assets\movies.ico</DefaultIcon>
-    </FileAssociation>
-    <FileAssociation Include=".VPC">
-      <Visible>False</Visible>
-      <Description>vpc</Description>
-      <Progid>vpc</Progid>
-      <DefaultIcon>Assets\movies.ico</DefaultIcon>
-    </FileAssociation>
-    <FileAssociation Include=".wav">
-      <Visible>False</Visible>
-      <Description>wav</Description>
-      <Progid>wav</Progid>
-      <DefaultIcon>Assets\movies.ico</DefaultIcon>
-    </FileAssociation>
-    <FileAssociation Include=".wmv">
-      <Visible>False</Visible>
-      <Description>wmv</Description>
-      <Progid>vpcwmv</Progid>
-      <DefaultIcon>Assets\movies.ico</DefaultIcon>
-    </FileAssociation>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\vpc.ico" />
-  </ItemGroup>
+
   <ItemGroup>
     <Resource Include="Assets\movie.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\movies.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\AAV.Shared\Src\Net4.8\AAV.Mvvm\AAV.Mvvm.csproj">
-      <Project>{aa5c34cf-6f6a-4b2c-b067-d9aabcac1b6b}</Project>
-      <Name>AAV.Mvvm</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\AAV.Shared\Src\Net4.8\AAV.WPF\AAV.WPF.4.8.csproj">
-      <Project>{df459a59-5c58-4930-ab44-9b3d6e36cd98}</Project>
-      <Name>AAV.WPF.4.8</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\AAV.Shared\Src\Net6.0\AAV.Sys\AAV.Sys.csproj">
-      <Project>{353f1af9-d2a4-4542-bbe1-00decc7027bf}</Project>
-      <Name>AAV.Sys</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Cmn\Common.UI.Lib\Common.UI.Lib.csproj">
-      <Project>{2d4e577e-cdc4-4319-9b90-cd2748a1b75c}</Project>
-      <Name>Common.UI.Lib</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="FodyWeavers.xml" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="Assets\Video_Action.ico" />
+    <Resource Include="Assets\ViewOn.ico" />
+    <Resource Include="Assets\vpc.ico" />
     <Resource Include="Video.ico" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\..\packages\Fody.2.2.0\build\net452\Fody.targets" Condition="Exists('..\..\packages\Fody.2.2.0\build\net452\Fody.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Fody.2.2.0\build\net452\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.2.2.0\build\net452\Fody.targets'))" />
-  </Target>
-  <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Release robocopy $(TargetDir) C:\Users\alexp\OneDrive\Public\bin\vpc  /FFT /R:1 /W:1 /XO  /XF *.deploy *.user *.suo *.manifest *.pdb *.vshost.exe* EntityFramework*.xml *.application /NJH /NJS  
-echo Root fodler only. Next line prevent non-zero exit codes of robocopy.
-exit 0</PostBuildEvent>
-  </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
+  <ItemGroup>
+    <Compile Update="SampleData\SampleDataSource\SampleDataSource.xaml.cs">
+      <DependentUpon>SampleDataSource.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\DailyViewTimePopup.xaml.cs">
+      <DependentUpon>DailyViewTimePopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\DailyViewTimeUsrCtrl.xaml.cs">
+      <DependentUpon>DailyViewTimeUsrCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\FolderViewUsrCtrl.xaml.cs">
+      <DependentUpon>FolderViewUsrCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MainPlayerWindow.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>MainPlayerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MediaUnitViewUsrCtrl.xaml.cs">
+      <DependentUpon>MediaUnitViewUsrCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ProgressTextUserControl.xaml.cs">
+      <DependentUpon>ProgressTextUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\RenameWindow.xaml.cs">
+      <DependentUpon>RenameWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\SrchTextBoxWindow.xaml.cs">
+      <DependentUpon>SrchTextBoxWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\TimerDataPopup.xaml.cs">
+      <DependentUpon>TimerDataPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\UcPause.xaml.cs">
+      <DependentUpon>UcPause.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\UcPlay.xaml.cs">
+      <DependentUpon>UcPlay.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\UsedMediaChoicesWindow.xaml.cs">
+      <DependentUpon>UsedMediaChoicesWindow.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="SampleData\SampleDataSource\SampleDataSource.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\DailyViewTimePopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\DailyViewTimeUsrCtrl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\FolderViewUsrCtrl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\MainPlayerWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\MediaUnitViewUsrCtrl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ProgressTextUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\RenameWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SrchTextBoxWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\TimerDataPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UcPause.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UcPlay.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UsedMediaChoicesWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>

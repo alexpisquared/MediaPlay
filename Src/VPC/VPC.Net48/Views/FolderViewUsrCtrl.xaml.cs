@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-//using System.Speech.Synthesis;
+using System.Speech.Synthesis;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -18,7 +18,7 @@ namespace VPC.Views
     public static readonly DependencyProperty CurMediaFile2Property = DependencyProperty.Register("CurMediaFile2", typeof(string), typeof(FolderViewUsrCtrl), new PropertyMetadata(null)); public string CurMediaFile2 { get { return (string)GetValue(CurMediaFile2Property); } set { SetValue(CurMediaFile2Property, value); } }
     public static readonly DependencyProperty SrchProperty = DependencyProperty.Register("Srch", typeof(string), typeof(FolderViewUsrCtrl), new PropertyMetadata(null)); public string Srch { get { return (string)GetValue(SrchProperty); } set { SetValue(SrchProperty, value); } }
     public static readonly DependencyProperty CurMu9Property = DependencyProperty.Register("CurMu9", typeof(MediaUnit), typeof(FolderViewUsrCtrl), new PropertyMetadata(null)); public MediaUnit CurMu9 { get { return (MediaUnit)GetValue(CurMu9Property); } set { SetValue(CurMu9Property, value); } }
-    //SpeechSynthesizer _synth; public SpeechSynthesizer Synth { get { if (_synth == null) _synth = new SpeechSynthesizer(); return _synth; } }
+    SpeechSynthesizer _synth; public SpeechSynthesizer Synth { get { if (_synth == null) _synth = new SpeechSynthesizer(); return _synth; } }
 
     bool _inclSubDirs = false;
     //ObservableCollection<MediaUnit> _flt;

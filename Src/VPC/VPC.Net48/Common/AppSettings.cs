@@ -1,7 +1,7 @@
 ﻿
-namespace AsLink
+namespace VPC.Common
 {
-	public partial class AppSettings
+  public class AppSettings
 	{
 		public int IValue { get; set; }
 		public double windowLeft = 200;
@@ -10,11 +10,5 @@ namespace AsLink
 		public double windowHeight = 540;
 
 		public int PlayerMargin { get; set; }
-
-
-		//todo: move to here
-		public string AppSetting { get; internal set; }
-		public string LastVideo { get; internal set; }
-
 	}
 }

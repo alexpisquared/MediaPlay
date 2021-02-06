@@ -4,25 +4,27 @@ using AsLink;
 using MVVM.Common;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Speech.Synthesis;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using VPC.Common;
 using VPC.Models;
+using VPC.Properties;
 using VPC.ViewModels;
 
 namespace VPC
 {
   public partial class App : Application
   {
-    //SpeechSynthesizer _ss; public SpeechSynthesizer Synth { get { if (_ss == null) { _ss = new SpeechSynthesizer(); _ss.SpeakAsyncCancelAll(); _ss.Rate = 6; _ss.Volume = 75; _ss.SelectVoiceByHints(gender: VoiceGender.Female); } return _ss; } }
+    SpeechSynthesizer _ss; public SpeechSynthesizer Synth { get { if (_ss == null) { _ss = new SpeechSynthesizer(); _ss.SpeakAsyncCancelAll(); _ss.Rate = 6; _ss.Volume = 75; _ss.SelectVoiceByHints(gender: VoiceGender.Female); } return _ss; } }
 
     VPViewModel _viewModel;
     MainPlayerWindow _view;
-    AppSettings _settings = AppSettings.Instance;
+    AppSettings _settings;
     readonly DateTime _daySsnStarted = DateTime.Today;
 
     protected override async void OnStartup(StartupEventArgs e)
@@ -46,8 +48,8 @@ namespace VPC
     protected override void OnExit(ExitEventArgs e)
     {
       Debug.Write($"{e}");
-      if (_viewModel.VPModel.CrntMU != null) _settings.LastVideo = _viewModel.VPModel.CrntMU.PathFileCur;
-      //Settings.Default.Save();
+      if (_viewModel.VPModel.CrntMU != null) Settings.Default.LastVideo = _viewModel.VPModel.CrntMU.PathFileCur;
+      Settings.Default.Save();
 
       _viewModel.LogSessionViewTime(_daySsnStarted);
     }
@@ -69,15 +71,15 @@ namespace VPC
       _viewModel.Fvc = vw.fuc;
       //closeEvent(window, _viewModel);
 
-      //if (!string.IsNullOrEmpty(Settings.Default.AppSetting))
-      //{
-      //  _settings = Serializer.LoadFromString<AppSettings>(Settings.Default.AppSetting) as AppSettings;
-      //  //vw.Left = _settings.windowLeft;
-      //  //vw.Top = _settings.windowTop;
-      //  //vw.Width = _settings.windowWidth;
-      //  //vw.Height = _settings.windowHeight;
-      //  _viewModel.PlayerMargin = _settings.PlayerMargin;
-      //}
+      if (!string.IsNullOrEmpty(Settings.Default.AppSettings))
+      {
+        _settings = Serializer.LoadFromString<AppSettings>(Settings.Default.AppSettings) as AppSettings;
+        //vw.Left = _settings.windowLeft;
+        //vw.Top = _settings.windowTop;
+        //vw.Width = _settings.windowWidth;
+        //vw.Height = _settings.windowHeight;
+        _viewModel.PlayerMargin = _settings.PlayerMargin;
+      }
 
       autoPlay(args, _viewModel);
 
@@ -97,8 +99,8 @@ namespace VPC
         stgs.windowWidth = window.Width;
         stgs.windowHeight = window.Height;
       }
-      //Settings.Default.AppSetting = Serializer.SaveToString(stgs);
-      //Settings.Default.Save();
+      Settings.Default.AppSettings = Serializer.SaveToString(stgs);
+      Settings.Default.Save();
     }
     static void autoPlay(StartupEventArgs e, IVPViewModel viewModel)
     {
@@ -134,3 +136,9 @@ namespace VPC
     }
   }
 }
+//SystemSounds.Beep.Play();
+//SystemSounds.Asterisk.Play();
+//SystemSounds.Hand.Play();
+//SystemSounds.Question.Play();
+//SystemSounds.Exclamation.Play();
+

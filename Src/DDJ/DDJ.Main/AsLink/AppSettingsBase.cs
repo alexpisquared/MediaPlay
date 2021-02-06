@@ -57,11 +57,11 @@ namespace AsLink
             if (_instance == null)
             {
               _instance = JsonFileSerializer.Load<AppSettings>(_pathfile) as AppSettings;
-              //_storMode == StorageMode.IsoProgDt ? JsonIsoFileSerializer.Load<AppSettings>() as AppSettings :
-              //_storMode == StorageMode.IsoUsrLcl ? JsonIsoFileSerializer.Load<AppSettings>(null, IsoConst.ULocA) as AppSettings :
-              //_storMode == StorageMode.IsoUsrRoa ? JsonIsoFileSerializer.Load<AppSettings>(null, IsoConst.URoaA) as AppSettings :
-              //_storMode == StorageMode.OneDriveU ? JsonFileSerializer.Load<AppSettings>(_pathfile) as AppSettings :
-              //_storMode == StorageMode.OneDrAlex ? JsonFileSerializer.Load<AppSettings>(_pathfile) as AppSettings : JsonIsoFileSerializer.Load<AppSettings>() as AppSettings;
+              //_storMode == StorageMode.IsoProgDt ? JsonIsoFileSerializer.Load<AppSetting>() as AppSetting :
+              //_storMode == StorageMode.IsoUsrLcl ? JsonIsoFileSerializer.Load<AppSetting>(null, IsoConst.ULocA) as AppSetting :
+              //_storMode == StorageMode.IsoUsrRoa ? JsonIsoFileSerializer.Load<AppSetting>(null, IsoConst.URoaA) as AppSetting :
+              //_storMode == StorageMode.OneDriveU ? JsonFileSerializer.Load<AppSetting>(_pathfile) as AppSetting :
+              //_storMode == StorageMode.OneDrAlex ? JsonFileSerializer.Load<AppSetting>(_pathfile) as AppSetting : JsonIsoFileSerializer.Load<AppSetting>() as AppSetting;
             }
 
             if (_instance == null)

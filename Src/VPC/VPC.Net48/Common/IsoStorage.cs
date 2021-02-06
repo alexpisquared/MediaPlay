@@ -70,8 +70,7 @@ namespace AsLink
     public static IsolatedStorageFile GetIsolatedStorageFile() => IsolatedStorageFile.GetUserStoreForAssembly();           //todo: GetUserStoreForApplication does not work
 #else
     public static IsolatedStorageFile GetIsolatedStorageFile()  //  C:\Users\Alex\AppData\Local\IsolatedStorage\brc4ml45.i4w\pl34ymp1.jar\Url.sh14zs21avtfwfzq03mf5xwzszxgrxid\AssemFiles
-      => 
-      (AppDomain.CurrentDomain.IsDefaultAppDomain()) ? //todo:  .ActivationContext == null) ?
+      => (AppDomain.CurrentDomain.ActivationContext == null) ?
         IsolatedStorageFile.GetMachineStoreForDomain() :        // C:\ProgramData\IsolatedStorage\...			http://stackoverflow.com/questions/72626/could-not-find-file-when-using-isolated-storage				//return IsolatedStorageFile.GetMachineStoreForAssembly(); 			
         IsolatedStorageFile.GetUserStoreForApplication();	      // C:\Users\Alex\AppData\Local\Apps\...		http://stackoverflow.com/questions/202013/clickonce-and-isolatedstorage/227218#227218
 #endif

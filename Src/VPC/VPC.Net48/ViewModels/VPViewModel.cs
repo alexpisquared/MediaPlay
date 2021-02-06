@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-//using System.Speech.Synthesis;
+using System.Speech.Synthesis;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -64,7 +64,7 @@ namespace VPC.ViewModels
     private readonly bool _isAutoNext = true;
     private bool _popMenuAtEnd = true;
     ViewTimeLog _ViewTimeLogCopy = ViewTimeLog.GetViewTimeLogSingleton();
-    //SpeechSynthesizer _synth; public SpeechSynthesizer Synth { get { if (_synth == null) _synth = new SpeechSynthesizer(); return _synth; } }
+    SpeechSynthesizer _synth; public SpeechSynthesizer Synth { get { if (_synth == null) _synth = new SpeechSynthesizer(); return _synth; } }
 
     int playerMargin = 0;
 
@@ -165,12 +165,12 @@ namespace VPC.ViewModels
 
     public Visibility ChromeVisibility { get => _ChromeVisibility; set => Set(ref _ChromeVisibility, value); }
 
-    //static Version getVersion()
-    //{
-    //  //DateTime buildDate = new FileInfo(Assembly.GetExecutingAssembly().Location).LastWriteTime;
-    //  try { return System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion; }
-    //  catch { return Assembly.GetExecutingAssembly().GetName().Version; }
-    //}
+    static Version getVersion()
+    {
+      //DateTime buildDate = new FileInfo(Assembly.GetExecutingAssembly().Location).LastWriteTime;
+      try { return System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion; }
+      catch { return Assembly.GetExecutingAssembly().GetName().Version; }
+    }
 
     public VPViewModel()
     {
@@ -184,7 +184,7 @@ namespace VPC.ViewModels
       if (_tillTime < DateTime.Now && await isPlayingAsync())
       {
         pauseCollectViewTimeAndUpdatePosnMuStatsAndSave();
-        //Synth.Speak(_EOTMsg);
+        Synth.Speak(_EOTMsg);
       }
 
       if (_vpcPlayer == null) return;
@@ -430,8 +430,8 @@ namespace VPC.ViewModels
           Process.Start(new ProcessStartInfo(dir));
           Bpr.BeepOk();
         }
-        //else
-        //  Synth.SpeakAsync("File is null or already exists.");
+        else
+          Synth.SpeakAsync("File is null or already exists.");
       }
       catch (Exception ex) { BotmCentrMsg = ex.Message; Debug.WriteLine(ex, ":>Error"); }
     }
@@ -470,9 +470,9 @@ namespace VPC.ViewModels
       {
         _vpModel.CrntMU.OrgHttpLink = VPModel.CrntMU.OrgHttpLink = Clipboard.GetText();
         _vpModel.CrntMU.SaveLink(VPModel.CrntMU.OrgHttpLink);
-        //Synth.SpeakAsync($"Link set to {Clipboard.GetText()}");
+        Synth.SpeakAsync($"Link set to {Clipboard.GetText()}");
       }
-      //else Synth.SpeakAsync("Clipboard is empty; no http link found.");
+      else Synth.SpeakAsync("Clipboard is empty; no http link found.");
     }
     void do_D3_(object o) => flashKeyInfo();
     void do_D4_(object o) => flashKeyInfo();

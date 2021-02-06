@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Common.UI.Lib.Views.ucProgressArcTSp" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:es="clr-namespace:Microsoft.Expression.Shapes;assembly=Microsoft.Expression.Drawing" xmlns:em="clr-namespace:Microsoft.Expression.Media;assembly=Microsoft.Expression.Drawing" 
+             xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" 
+             xmlns:ec="http://schemas.microsoft.com/expression/2010/controls" 
+             mc:Ignorable="d" d:DesignHeight="333" d:DesignWidth="333" x:Name="ProgressBar">
+	<Viewbox Stretch="Uniform">
+		<Grid Width="200" Height="200" >
+			<Grid Width="200" Height="200" x:Name="g1">
+				<Ellipse Fill="#2000" Margin="-1"/>
+				<Ellipse StrokeThickness="20" Stroke="#2ff0" />
+				<es:Arc     ArcThickness="20" ArcThicknessUnit="Pixel" EndAngle="{Binding ElementName=ProgressBar, Path=PrgsAngle, FallbackValue=300}" Fill="#ff0" Stretch="None" UseLayoutRounding="True" d:IsHidden="False" />
+
+				<TextBlock Name="lbLeft" Text="Left ◄|► Done"  Visibility="Hidden" />
+
+				<TextBlock Name="tbLeft" Text="8:22.22"  Visibility="Hidden" />
+				<TextBlock Name="tbDone" Text="1:22.22"  Visibility="Hidden" />
+
+				<TextBlock Foreground="#fe0" FontSize="15" Name="tbTot0" Text="Total"    VerticalAlignment="Bottom" HorizontalAlignment="Center" TextAlignment="Center" Margin="25" />
+				<TextBlock Foreground="#fe0" FontSize="35" Name="tbTotl" Text="1:22.22"  VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" Margin="49,118,41,36" RenderTransformOrigin="0.5,0.5" />
+
+				<ed:Arc x:Name="arc_Done" StartAngle="020" EndAngle="180" Stretch="None" Width="136" Height="136"  />
+				<ed:Arc x:Name="arc_Left" StartAngle="250" EndAngle="360" Stretch="None" Width="136" Height="136"  />
+				<ed:Arc x:Name="arclDone" StartAngle="020" EndAngle="180" Stretch="None" Width="090" Height="090"  />
+				<ed:Arc x:Name="arclLeft" StartAngle="292" EndAngle="460" Stretch="None" Width="090" Height="090"  />
+
+				<ec:PathListBox ItemsSource="{Binding ElementName=tbDone, Path=Text}" FontSize="32" Foreground="#0ec" >
+					<ec:PathListBox.LayoutPaths>
+						<ec:LayoutPath SourceElement="{Binding ElementName=arc_Done}" Orientation="OrientToPath" FillBehavior="NoOverlap" Padding="-25" Distribution="Padded" />
+					</ec:PathListBox.LayoutPaths>
+				</ec:PathListBox>
+				<ec:PathListBox ItemsSource="{Binding ElementName=tbLeft, Path=Text}" FontSize="32" Foreground="#0cf" >
+					<ec:PathListBox.LayoutPaths>
+						<ec:LayoutPath SourceElement="{Binding ElementName=arc_Left}" Orientation="OrientToPath" FillBehavior="FullSpan" Padding="-25" />
+					</ec:PathListBox.LayoutPaths>
+				</ec:PathListBox>
+
+				<ec:PathListBox ItemsSource="{Binding ElementName=lbLeft, Path=Text}" FontSize="15" Foreground="#eee" >
+					<ec:PathListBox.LayoutPaths>
+						<ec:LayoutPath SourceElement="{Binding ElementName=arclLeft}" Orientation="OrientToPath" FillBehavior="FullSpan" Padding="-11" />
+					</ec:PathListBox.LayoutPaths>
+				</ec:PathListBox>
+
+			</Grid>
+			<Line X1="100" Y1="100" X2="50" Y2="50" Stroke="#ff0" StrokeThickness="1" Visibility="Hidden" Name="ln" />
+		</Grid>
+	</Viewbox>
+</UserControl>

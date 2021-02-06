@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="VPC.Views.ProgressTextUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignHeight="150" d:DesignWidth="300">
+	<Grid>
+		<Grid.Resources>
+			<Style x:Key="Header1" TargetType="{x:Type TextBlock}">
+				<Setter Property="Foreground" Value="#f0f4" />
+				<Setter Property="Background" Value="#4000" />
+				<Setter Property="Padding" Value="8 0 8 4" />
+				<Setter Property="Margin" Value="6 8" />
+				<Setter Property="FontSize" Value="22" />
+			</Style>
+		</Grid.Resources>
+
+		<TextBlock Name="tbCurPosTtl" Foreground="#4df" Text="0:33.33 + 1:44.44 &#10;════════════════&#10;55.55"  Style="{StaticResource Header1}" HorizontalAlignment="Center" TextAlignment="Center" />
+
+	</Grid>
+</UserControl>
