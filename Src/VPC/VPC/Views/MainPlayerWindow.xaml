@@ -304,11 +304,10 @@
       <vws:DailyViewTimeUsrCtrl HeaderInfo="{Binding ViewTimeLogCopy2.TodayTotal3}"  TotalDayViewTimes="{Binding ViewTimeLogCopy.DayList}" HorizontalAlignment="Center" Margin="6" VerticalAlignment="Stretch"/>
     </Grid>-->
 
-    <MediaElement Volume="1" x:Name="wmp" Source="{Binding VPModel.CrntMU.PathFileCur, Mode=OneWay}" LoadedBehavior="Manual" UnloadedBehavior="Manual" Cursor="None" />
+    <MediaElement Volume="1" x:Name="wmp" Source="{Binding VPModel.CrntMU.PathFileCur, Mode=OneWay}" LoadedBehavior="Manual" UnloadedBehavior="Manual" Cursor="None" 
+                  MediaOpened="wmp_MediaOpened" />
 
-    <!--
-    <Grid Visibility="{Binding ChromeVisibility}" Style="{StaticResource FadeInOnMouseMove}" Background="#01000000">-->
-    <Grid Visibility="{Binding ChromeVisibility}" Style="{StaticResource FadeInOnMouseMove}" Background="Transparent">
+    <Grid x:Name="ChromeGird" Visibility="{Binding ChromeVisibility}" Style="{StaticResource FadeInOnMouseMove}" Background="Transparent">
       <Grid.RowDefinitions>
         <RowDefinition Height="1*"/>
         <RowDefinition Height="2*"/>
@@ -359,13 +358,9 @@
       </StackPanel>
 
     </Grid>
-
     <!-- Distracting! Oct 2018
     <vws:UcPause Width="222" Height="222" FlashOnFalse="{Binding IsPlaying, Mode=OneWay}" Visibility="Hidden" />
     <vws:UcPlay  Width="222" Height="222"  FlashOnTrue="{Binding IsPlaying, Mode=OneWay}" Visibility="Hidden" />
-
-    <Rectangle Height="{Binding TotalByNow.TotalMinutes, FallbackValue=180}"  Fill="#ff0" Width="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-    -->
-
+    <Rectangle Height="{Binding TotalByNow.TotalMinutes, FallbackValue=180}"  Fill="#ff0" Width="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" />    -->
   </Grid>
 </lnk:WindowBase>

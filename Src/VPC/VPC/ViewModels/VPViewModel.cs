@@ -176,7 +176,7 @@ namespace VPC.ViewModels
     {
       _timer.Tick += onTick;
       _timer.Start();
-      TopRightTiny = VerHelper.CurVerStr(".NET 4.8");
+      TopRightTiny = VerHelper.CurVerStr(".Net5");
     }
 
     async void onTick(object s, EventArgs e)
@@ -503,7 +503,11 @@ namespace VPC.ViewModels
     }
     void do_C_(object o) => flashKeyInfo();
     void do_D_(object o) { flashKeyInfo(); _vpcPlayer.Position = _vpcPlayer.NaturalDuration.HasTimeSpan ? _vpcPlayer.NaturalDuration.TimeSpan.Subtract(TimeSpan.FromMilliseconds(150)) : TimeSpan.FromSeconds(0); }
-    void do_E_(object o) { flashKeyInfo(); Process.Start(new ProcessStartInfo(Path.GetDirectoryName(_vpcPlayer.Source.LocalPath))); }
+    void do_E_(object o)
+    {
+      flashKeyInfo();
+      try { Process.Start(new ProcessStartInfo("Explorer", Path.GetDirectoryName(_vpcPlayer.Source.LocalPath))); } catch (Exception ex) { ex.Log(); }
+    }
     void do_F_(object fvc)
     {
       var fv = ((FolderViewUsrCtrl)fvc) ?? _fvc;
