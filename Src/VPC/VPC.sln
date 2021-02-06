@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AAV.WPF.4.8", "..\..\..\AAV
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AAV.Mvvm", "..\..\..\AAV.Shared\Src\Net4.8\AAV.Mvvm\AAV.Mvvm.csproj", "{AA5C34CF-6F6A-4B2C-B067-D9AABCAC1B6B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "48", "48", "{66326038-3694-4447-BA6E-8B6185B82F98}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "50", "50", "{BB64AF01-2416-4698-81FE-F3D618CFDE9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -110,8 +114,14 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D676A70F-B596-4150-968E-3D11DDDE29C3} = {66326038-3694-4447-BA6E-8B6185B82F98}
+		{2D4E577E-CDC4-4319-9B90-CD2748A1B75C} = {66326038-3694-4447-BA6E-8B6185B82F98}
+		{DF459A59-5C58-4930-AB44-9B3D6E36CD98} = {66326038-3694-4447-BA6E-8B6185B82F98}
+		{AA5C34CF-6F6A-4B2C-B067-D9AABCAC1B6B} = {66326038-3694-4447-BA6E-8B6185B82F98}
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A39142B0-CEA4-4FF1-877B-6FBBA3174401}
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35;packages\Unity.Interception.2.1.505.2\lib\NET35
+		SolutionGuid = {A39142B0-CEA4-4FF1-877B-6FBBA3174401}
 	EndGlobalSection
 EndGlobal
