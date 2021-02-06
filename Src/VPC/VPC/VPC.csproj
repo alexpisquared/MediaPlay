@@ -107,7 +107,7 @@
       <HintPath>..\..\packages\Unity.5.1.2\lib\net47\CommonServiceLocator.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Controls">
-      <HintPath>..\..\..\Lgc\ScrSvrs\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\Microsoft.Expression.Controls.dll</HintPath>
+      <HintPath>..\..\..\..\..\Users\alex.pigida\OneDrive\Public\bin\Microsoft.Expression.Controls.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />

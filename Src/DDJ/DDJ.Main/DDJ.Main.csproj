@@ -72,10 +72,10 @@
       <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Controls">
-      <HintPath>..\..\..\..\..\Users\alexp\OneDrive\Public\bin\Microsoft.Expression.Controls.dll</HintPath>
+      <HintPath>..\..\..\..\..\Users\alex.pigida\OneDrive\Public\bin\Microsoft.Expression.Controls.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Drawing">
-      <HintPath>..\..\..\..\..\Users\alexp\OneDrive\Public\bin\Microsoft.Expression.Drawing.dll</HintPath>
+      <HintPath>..\..\..\..\..\Users\alex.pigida\OneDrive\Public\bin\Microsoft.Expression.Drawing.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged, Version=2.1.4.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\..\packages\PropertyChanged.Fody.2.1.4\lib\netstandard1.0\PropertyChanged.dll</HintPath>

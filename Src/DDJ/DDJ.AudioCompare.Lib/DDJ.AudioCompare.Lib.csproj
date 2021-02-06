@@ -96,9 +96,6 @@
     <Compile Include="..\..\..\..\AAV.Shared\Src\AsLink\Ext.DbContext.cs">
       <Link>AsLink\DB\Ext.DbContext.cs</Link>
     </Compile>
-    <Compile Include="C:\c\AsLink\BMO\ToDo.cs">
-      <Link>AsLink\ToDo.cs</Link>
-    </Compile>
     <Compile Include="C:\c\AsLink\DB\DbSaveMsgBox.cs">
       <Link>AsLink\DB\DbSaveMsgBox.cs</Link>
     </Compile>
