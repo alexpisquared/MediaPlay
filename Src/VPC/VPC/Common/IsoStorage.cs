@@ -66,7 +66,7 @@ namespace AsLink
     }
 
     //  C:\Users\Alex\AppData\Local\IsolatedStorage\brc4ml45.i4w\pl34ymp1.jar\Url.sh14zs21avtfwfzq03mf5xwzszxgrxid\AssemFiles
-#if DEBUG
+#if _DEBUG
     public static IsolatedStorageFile GetIsolatedStorageFile() => IsolatedStorageFile.GetUserStoreForAssembly();           //todo: GetUserStoreForApplication does not work
 #else
     public static IsolatedStorageFile GetIsolatedStorageFile()  //  C:\Users\Alex\AppData\Local\IsolatedStorage\brc4ml45.i4w\pl34ymp1.jar\Url.sh14zs21avtfwfzq03mf5xwzszxgrxid\AssemFiles

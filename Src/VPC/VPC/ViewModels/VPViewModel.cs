@@ -1,6 +1,5 @@
 ﻿using AAV.Sys.Ext;
 using AAV.Sys.Helpers;
-using AsLink;
 using Common.UI.Lib.Model;
 using Microsoft.Win32;
 using MVVM.Common;
@@ -326,8 +325,8 @@ namespace VPC.ViewModels
     ICommand _GoSlowerCommand; public ICommand GoSlowerCommand => _GoSlowerCommand ?? (_GoSlowerCommand = new RelayCommand(x => doGoSlower(x)) { GestureKey = Key.OemMinus });
 
 
-    void doGoSlower(object o) { flashKeyInfo(); if ((VPModel?.CrntMU?.SpeedIdx ?? 1) > 0)                   /**/ --VPModel.CrntMU.SpeedIdx; setSpeed(); _vpcPlayer.Position -= TimeSpan.FromSeconds(.5); } // seems to reset the playback ratio to 1.
-    void doGoFaster(object o) { flashKeyInfo(); if ((VPModel?.CrntMU?.SpeedIdx ?? 1) < _speeds.Length - 1)  /**/ ++VPModel.CrntMU.SpeedIdx; setSpeed(); _vpcPlayer.Position -= TimeSpan.FromSeconds(.5); }
+    void doGoSlower(object o) { flashKeyInfo(); if ((VPModel?.CrntMU?.SpeedIdx ?? 1) > 0)                   /**/ --VPModel.CrntMU.SpeedIdx; setSpeed(); } // seems to reset the playback ratio to 1.
+    void doGoFaster(object o) { flashKeyInfo(); if ((VPModel?.CrntMU?.SpeedIdx ?? 1) < _speeds.Length - 1)  /**/ ++VPModel.CrntMU.SpeedIdx; setSpeed(); }
 
     void doTglStrcS(object o) { flashKeyInfo(); _vpcPlayer.Stretch = _vpcPlayer.Stretch == Stretch.Fill ? _vpcPlayer.Stretch = Stretch.UniformToFill : Stretch.Fill; }
     bool doAsk_CanNext(object player)
@@ -463,7 +462,7 @@ namespace VPC.ViewModels
 
 
     void do_D0_(object o) { flashKeyInfo(); VPModel.CrntMU.SpeedIdx = _v1x; setSpeed(); }
-    void do_D1_(object o) { flashKeyInfo();                             /**/ setSpeed(); }
+    void do_D1_(object o) { flashKeyInfo();                            /**/ setSpeed(); }
     void do_D2_(object o)
     {
       flashKeyInfo(); if (!string.IsNullOrEmpty(Clipboard.GetText()))
@@ -673,7 +672,7 @@ namespace VPC.ViewModels
     void moveRghtC(object x) => _vpcPlayer.Position += TimeSpan.FromMinutes(1);
     void moveLeftA(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromMinutes(5); ((VPModel)o).MoveLeft(); }
     void moveRghtA(object x) => _vpcPlayer.Position += TimeSpan.FromMinutes(5);
-    void moveLeftS(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromSeconds(.5); ((VPModel)o).MoveLeft(); }
+    void moveLeftS(object o) { flashKeyInfo(); ((VPModel)o).MoveLeft(); }
     void moveRghtS(object x) => _vpcPlayer.Position += TimeSpan.FromSeconds(.5);
 
     public bool canTglPlyPs => true;
@@ -723,19 +722,22 @@ namespace VPC.ViewModels
       _lastPlayStartAt = DateTime.Now;
 
       setSpeed();
+      _isLooping = VPModel.CrntMU.IsLooping;
     }
 
     void setSpeed() // needed setting to some other speed before it will comply with the new speed value (~2018)
     {
       int delayMs = 200, pauseMs = 25;
-      double x = 2.5, y = _speeds[VPModel.CrntMU.SpeedIdx];
+      double tmpSpeed = 2.5, newSpeed = _speeds[VPModel.CrntMU.SpeedIdx];
 
-      if (_vpcPlayer.SpeedRatio == y)        return; // avoid this terrible pause. Aug`20
+      if (_vpcPlayer.SpeedRatio == newSpeed) return; // avoid this terrible pause. Aug`20
 
       Trace.WriteLine($"\n** 0) dPos: {(_vpcPlayer.Position - VPModel.CrntMU.Position.Value).TotalMilliseconds:N0}ms,  dSpeed: {_vpcPlayer.SpeedRatio - _speeds[VPModel.CrntMU.SpeedIdx]} (==0 always!!!)"); //Jan 2018: 2018 Sep: uncom-d:             if (_vpcPlayer.SpeedRatio != _speeds[VPModel.CrntMU.SpeedIdx]) _vpcPlayer.SpeedRatio  = _speeds[VPModel.CrntMU.SpeedIdx];
 
-      Task.Run    /**/(async () => await Task.Delay(delayMs)).ContinueWith(_ => _vpcPlayer.SpeedRatio = x, TaskScheduler.FromCurrentSynchronizationContext()).ContinueWith(_ => Trace.WriteLine($"** 1)                      {_vpcPlayer.SpeedRatio} <= {x}?"))
-          .ContinueWith(async _ => await Task.Delay(pauseMs)).ContinueWith(_ => _vpcPlayer.SpeedRatio = y, TaskScheduler.FromCurrentSynchronizationContext()).ContinueWith(_ => Trace.WriteLine($"** 2)                      {_vpcPlayer.SpeedRatio} <= {y}?"));
+      Task.Run    /**/(async () => await Task.Delay(delayMs)).ContinueWith(_ => _vpcPlayer.SpeedRatio = tmpSpeed, TaskScheduler.FromCurrentSynchronizationContext()).ContinueWith(_ => Trace.WriteLine($"** 1)                      {_vpcPlayer.SpeedRatio} <= {tmpSpeed}?"))
+          .ContinueWith(async _ => await Task.Delay(pauseMs)).ContinueWith(_ => _vpcPlayer.SpeedRatio = newSpeed, TaskScheduler.FromCurrentSynchronizationContext()).ContinueWith(_ => Trace.WriteLine($"** 2)                      {_vpcPlayer.SpeedRatio} <= {newSpeed}?"))
+          //try it if ti helps: .ContinueWith(async _ => await Task.Delay(pauseMs)).ContinueWith(_ => _vpcPlayer.Position -= TimeSpan.FromSeconds(.5)).ContinueWith(_ => Trace.WriteLine($"** 2)                      {_vpcPlayer.SpeedRatio} <= {newSpeed}?"))
+          ;
     }
 
     void pauseCollectViewTimeAndUpdatePosnMuStatsAndSave()
@@ -797,34 +799,34 @@ namespace VPC.ViewModels
             Thread.Sleep(333);//..Trace.WriteLine(">>>>>>>> Waiting ...");
                               //..Trace.WriteLine(">>>>>>>> Waiting ... DONE!");
 
-                }).ContinueWith(_ =>
-                {
-                  var externalPlayerViewTime = stopwatch.Elapsed.Add(TimeSpan.FromSeconds(-5));
-                  if (exe == mpc)
-                  {
-                    for (var i = 0; i < 30; i++)
-                    {
-                      Trace.WriteLine($">>>>>>>> GetLastCurPosInSec ... {i} out of 30.");
-                      var fn0 = (string)Registry.GetValue(MediaUnit._key, "File Name 0", "");
-                      if (string.Compare(fn0, _vpcPlayer.Source.LocalPath, true) == 0)
-                        break;
-                      Thread.Sleep(100);
-                    }
-                    var extPos = TimeSpan.FromTicks(Convert.ToInt64(Registry.GetValue(MediaUnit._key, "File ts 0", 0L)));
-                    externalPlayerViewTime = extPos.Subtract(prevPos);
-                    Debug.WriteLine(">>>>>>>> old-new pos {0} - {1} = {2} ", prevPos, extPos, externalPlayerViewTime);
-                  }
-                  else if (exe == wmp) { }
-                  else { }
+        }).ContinueWith(_ =>
+        {
+          var externalPlayerViewTime = stopwatch.Elapsed.Add(TimeSpan.FromSeconds(-5));
+          if (exe == mpc)
+          {
+            for (var i = 0; i < 30; i++)
+            {
+              Trace.WriteLine($">>>>>>>> GetLastCurPosInSec ... {i} out of 30.");
+              var fn0 = (string)Registry.GetValue(MediaUnit._key, "File Name 0", "");
+              if (string.Compare(fn0, _vpcPlayer.Source.LocalPath, true) == 0)
+                break;
+              Thread.Sleep(100);
+            }
+            var extPos = TimeSpan.FromTicks(Convert.ToInt64(Registry.GetValue(MediaUnit._key, "File ts 0", 0L)));
+            externalPlayerViewTime = extPos.Subtract(prevPos);
+            Debug.WriteLine(">>>>>>>> old-new pos {0} - {1} = {2} ", prevPos, extPos, externalPlayerViewTime);
+          }
+          else if (exe == wmp) { }
+          else { }
 
-                  if (5 < externalPlayerViewTime.TotalSeconds && externalPlayerViewTime.TotalSeconds < 7200)
-                  {
-                    _viewTime = _viewTime.Add(externalPlayerViewTime);
-                    _vpcPlayer.Position = _vpcPlayer.Position.Add(externalPlayerViewTime);
-                  }
+          if (5 < externalPlayerViewTime.TotalSeconds && externalPlayerViewTime.TotalSeconds < 7200)
+          {
+            _viewTime = _viewTime.Add(externalPlayerViewTime);
+            _vpcPlayer.Position = _vpcPlayer.Position.Add(externalPlayerViewTime);
+          }
 
-                  playAndStartCounters();
-                }, TaskScheduler.FromCurrentSynchronizationContext());
+          playAndStartCounters();
+        }, TaskScheduler.FromCurrentSynchronizationContext());
       }
     }
     void removeNearBookmarksInRangeOf(int sec)
