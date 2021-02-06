@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AAV.WPF", "..\..\AAV\AAV.WP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AAV.Sys", "..\..\AavCore\AAV.Sys\AAV.Sys.csproj", "{F9CC3168-1FAC-4318-A693-A5EC46CC678D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LocalLib", "LocalLib", "{A8AB04CB-B096-427E-BC5F-DA0BDC725FF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -110,29 +112,13 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A39142B0-CEA4-4FF1-877B-6FBBA3174401}
-		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35;packages\Unity.Interception.2.1.505.2\lib\NET35
+	GlobalSection(NestedProjects) = preSolution
+		{4E1334F8-B843-41DD-96A8-64A41F528CFF} = {A8AB04CB-B096-427E-BC5F-DA0BDC725FF4}
+		{1CE2C02F-5FA8-41CA-AC2E-BA91AB283A02} = {A8AB04CB-B096-427E-BC5F-DA0BDC725FF4}
+		{F9CC3168-1FAC-4318-A693-A5EC46CC678D} = {A8AB04CB-B096-427E-BC5F-DA0BDC725FF4}
 	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://dev.azure.com/alexpi
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = VPC\\VPC.csproj
-		SccProjectName1 = VPC
-		SccLocalPath1 = VPC
-		SccProjectUniqueName2 = ..\\..\\Common\\AAV.Mvvm\\AAV.Mvvm.csproj
-		SccProjectName2 = ../../Common/AAV.Mvvm
-		SccLocalPath2 = ..\\..\\Common\\AAV.Mvvm
-		SccProjectUniqueName3 = ..\\Cmn\\Common.UI.Lib\\Common.UI.Lib.csproj
-		SccProjectName3 = ../Cmn/Common.UI.Lib
-		SccLocalPath3 = ..\\Cmn\\Common.UI.Lib
-		SccProjectUniqueName4 = ..\\..\\AAV\\AAV.WPF\\AAV.WPF.csproj
-		SccProjectName4 = ../../AAV/AAV.WPF
-		SccLocalPath4 = ..\\..\\AAV\\AAV.WPF
-		SccProjectUniqueName5 = ..\\..\\AavCore\\AAV.Sys\\AAV.Sys.csproj
-		SccProjectName5 = ../../AavCore/AAV.Sys
-		SccLocalPath5 = ..\\..\\AavCore\\AAV.Sys
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35;packages\Unity.Interception.2.1.505.2\lib\NET35
+		SolutionGuid = {A39142B0-CEA4-4FF1-877B-6FBBA3174401}
 	EndGlobalSection
 EndGlobal
