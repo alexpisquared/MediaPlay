@@ -1,4 +1,8 @@
-﻿using AsLink;
+﻿using AAV.Sys.Helpers;
+using AsLink;
+using Common.UI.Lib.Model;
+using Microsoft.Win32;
+using MVVM.Common;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -6,10 +10,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-using Microsoft.Win32;
-using MVVM.Common;
-using Common.UI.Lib.Model;
-using AAV.Sys.Helpers;
 
 namespace VPC.Models
 {
@@ -130,57 +130,54 @@ namespace VPC.Models
 
       return mdfn;
     }
-    static string metadataFilenameDeleted(string file)
-    {
-      return metadataFilename(file, @"Deleted\");
-    }
+    static string metadataFilenameDeleted(string file) => metadataFilename(file, @"Deleted\");
 
 
     //ObservableCollection<TimeSpan> _TSBookmarks = new ObservableCollection<TimeSpan>(); public ObservableCollection<TimeSpan> TSBookmarks { get { return _TSBookmarks; } set { Set(ref this._TSBookmarks, value); } }
-    ObservableCollection<MuBookmark> _Bookmarks = new ObservableCollection<MuBookmark>(); public ObservableCollection<MuBookmark> Bookmarks { get { return _Bookmarks; } set { Set(ref this._Bookmarks, value); } }
-    ObservableCollection<MuAudition> _Auditions = new ObservableCollection<MuAudition>(); public ObservableCollection<MuAudition> Auditions { get { return _Auditions; } set { Set(ref this._Auditions, value); } }
+    ObservableCollection<MuBookmark> _Bookmarks = new ObservableCollection<MuBookmark>(); public ObservableCollection<MuBookmark> Bookmarks { get => _Bookmarks; set => Set(ref _Bookmarks, value); }
+    ObservableCollection<MuAudition> _Auditions = new ObservableCollection<MuAudition>(); public ObservableCollection<MuAudition> Auditions { get => _Auditions; set => Set(ref _Auditions, value); }
 
     //[Key]
-    int _ID; public int ID { get { return _ID; } set { Set(ref this._ID, value); } }
-    string _PathFileCur; public string PathFileCur { get { return _PathFileCur; } set { Set(ref this._PathFileCur, value); FileName = Path.GetFileName(value); PathName = Path.GetDirectoryName(value); } }
-    string _OrgHttpLink; public string OrgHttpLink { get { return _OrgHttpLink; } set { Set(ref this._OrgHttpLink, value); } }
-    string _PathFileOrg; public string PathFileOrg { get { return _PathFileOrg; } set { Set(ref this._PathFileOrg, value); } }
-    string _PathName; public string PathName { get { return _PathName; } set { Set(ref this._PathName, value); } }
-    string _FileName; public string FileName { get { return _FileName; } set { Set(ref this._FileName, value); } }
-    long _FileHashMD5; public long FileHashMD5 { get { return _FileHashMD5; } set { Set(ref this._FileHashMD5, value); } }
-    long _FileHashQck; public long FileHashQck { get { return _FileHashQck; } set { Set(ref this._FileHashQck, value); } }
-    long _FileLength; public long FileLength { get { return _FileLength; } set { Set(ref this._FileLength, value); } }
-    int _VideoHeight; public int VideoHeight { get { return _VideoHeight; } set { Set(ref this._VideoHeight, value); } }
-    int _VideoWidth; public int VideoWidth { get { return _VideoWidth; } set { Set(ref this._VideoWidth, value); } }
-    int _SpeedIdx = 10; public int SpeedIdx { get { return _SpeedIdx; } set { Set(ref this._SpeedIdx, value); } }
+    int _ID; public int ID { get => _ID; set => Set(ref _ID, value); }
+    string _PathFileCur; public string PathFileCur { get => _PathFileCur; set { Set(ref _PathFileCur, value); FileName = Path.GetFileName(value); PathName = Path.GetDirectoryName(value); } }
+    string _OrgHttpLink; public string OrgHttpLink { get => _OrgHttpLink; set => Set(ref _OrgHttpLink, value); }
+    string _PathFileOrg; public string PathFileOrg { get => _PathFileOrg; set => Set(ref _PathFileOrg, value); }
+    string _PathName; public string PathName { get => _PathName; set => Set(ref _PathName, value); }
+    string _FileName; public string FileName { get => _FileName; set => Set(ref _FileName, value); }
+    long _FileHashMD5; public long FileHashMD5 { get => _FileHashMD5; set => Set(ref _FileHashMD5, value); }
+    long _FileHashQck; public long FileHashQck { get => _FileHashQck; set => Set(ref _FileHashQck, value); }
+    long _FileLength; public long FileLength { get => _FileLength; set => Set(ref _FileLength, value); }
+    int _VideoHeight; public int VideoHeight { get => _VideoHeight; set => Set(ref _VideoHeight, value); }
+    int _VideoWidth; public int VideoWidth { get => _VideoWidth; set => Set(ref _VideoWidth, value); }
+    int _SpeedIdx = 10; public int SpeedIdx { get => _SpeedIdx; set => Set(ref _SpeedIdx, value); }
 
     [XmlIgnore]
-    public TimeSpan? Duration { get { return _Duration; } set { if (Set(ref this._Duration, value)) DurationSec = value.Value.TotalSeconds; } }
+    public TimeSpan? Duration { get => _Duration; set { if (Set(ref _Duration, value)) DurationSec = value.Value.TotalSeconds; } }
     TimeSpan? _Duration;
     [XmlIgnore]
-    public TimeSpan? Position { get { return _Position; } set { if (Set(ref this._Position, value)) PositionSec = value.Value.TotalSeconds; } }
+    public TimeSpan? Position { get => _Position; set { if (Set(ref _Position, value)) PositionSec = value.Value.TotalSeconds; } }
     TimeSpan? _Position;
     [XmlIgnore]
-    public TimeSpan? EventTime { get { return _EventTime; } set { Set(ref this._EventTime, value); } }
+    public TimeSpan? EventTime { get => _EventTime; set => Set(ref _EventTime, value); }
     TimeSpan? _EventTime;
 
     public double DurationSec { get; set; } // { return _DurationSec; } set { Set(ref this._DurationSec, value); } }
     public double PositionSec { get; set; } // { return _PositionSec; } set { Set(ref this._PositionSec, value); } }
 
-    public LkuGenre Genre { get { return _Genre; } set { Set(ref this._Genre, value); } }
+    public LkuGenre Genre { get => _Genre; set => Set(ref _Genre, value); }
     LkuGenre _Genre;
-    public string Notes { get { return _Notes; } set { Set(ref this._Notes, value); } }
+    public string Notes { get => _Notes; set => Set(ref _Notes, value); }
     string _Notes;
-    public string TmpMsg { get { return _TmpMsg; } set { Set(ref this._TmpMsg, value); } }
+    public string TmpMsg { get => _TmpMsg; set => Set(ref _TmpMsg, value); }
     string _TmpMsg;
-    public DateTime AddedAt { get { return _AddedAt; } set { Set(ref this._AddedAt, value); } }
+    public DateTime AddedAt { get => _AddedAt; set => Set(ref _AddedAt, value); }
     DateTime _AddedAt;
-    public DateTime? DeletedAt { get { return _DeletedAt; } set { Set(ref this._DeletedAt, value); } }
+    public DateTime? DeletedAt { get => _DeletedAt; set => Set(ref _DeletedAt, value); }
     DateTime? _DeletedAt;
-    public DateTime? LastPeekAt { get { return _LastPeekAt; } set { Set(ref this._LastPeekAt, value); } }
-    public string LastPeekPC { get { return _LastPeekPC; } set { Set(ref this._LastPeekPC, value); } }
+    public DateTime? LastPeekAt { get => _LastPeekAt; set => Set(ref _LastPeekAt, value); }
+    public string LastPeekPC { get => _LastPeekPC; set => Set(ref _LastPeekPC, value); }
     DateTime? _LastPeekAt; //last time of partial viewing (potentially different from the file's LastWriteTime).
-    public bool? PassedQA { get { return _PassedQA; } set { Set(ref this._PassedQA, value); } }
+    public bool? PassedQA { get => _PassedQA; set => Set(ref _PassedQA, value); }
     bool? _PassedQA = null; string _LastPeekPC; //last time of partial viewing (potentially different from the file's LastWriteTime).
 
     internal void DeleteFileFixMetaFile(string file)
@@ -275,14 +272,14 @@ namespace VPC.Models
       //SaveMetaData(this);
     }
 
-    static bool isMetadata(string f) { return f != null && f.EndsWith(_vpc, StringComparison.InvariantCultureIgnoreCase); }
+    static bool isMetadata(string f) => f != null && f.EndsWith(_vpc, StringComparison.InvariantCultureIgnoreCase);
 
     public const string _key = @"HKEY_CURRENT_USER\Software\Gabest\Media Player Classic\Settings";
 
     static double getMediaPlayerCalssicPositionInSec(string fn)
     {
       long mkSec = 0;
-      for (int i = 0; i < 10; i++)
+      for (var i = 0; i < 10; i++)
       {
         var s = (string)Registry.GetValue(_key, $"File Name {i}", null);
         if (s == null) break;
@@ -302,7 +299,7 @@ namespace VPC.Models
     static void setMediaPlayerCalssicPositionInSec(string fn, double posInSeconds)
     {
       long mkSec = 0;
-      for (int i = 0; i < 10; i++)
+      for (var i = 0; i < 10; i++)
       {
         var s = (string)Registry.GetValue(_key, $"File Name {i}", null);
         if (s == null) break;
@@ -324,7 +321,7 @@ namespace VPC.Models
     {
       var tmp = Bookmarks.OrderBy(r => r.PositionSec).ToArray();
 
-      for (int i = 1; i < tmp.Length; i++)
+      for (var i = 1; i < tmp.Length; i++)
       {
         tmp[i].DeltaSec = tmp[i].PositionSec - tmp[i - 1].PositionSec;
         EventTime = TimeSpan.FromSeconds(tmp[i].PositionSec - tmp[0].PositionSec);
