@@ -331,7 +331,7 @@
       <!--<TextBlock Style="{StaticResource Header1}" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{Binding VPModel.CrntMU.PathFileCur, Mode=OneWay, FallbackValue=XAML}" />-->
 
       <!--
-            <cul:ucProgressArc          PrgDuratSec="{Binding VPModel.CrntMU.Duration.TotalSeconds}" PrgPositSec="{Binding VPModel.CrntMU.Position.TotalSeconds}" BookMarks="{Binding VPModel.CrntMU.Bookmarks}" VerticalAlignment="Bottom" HorizontalAlignment="Left"  Width="200" Margin="11" />-->
+      <cul:ucProgressArc          PrgDuratSec="{Binding VPModel.CrntMU.Duration.TotalSeconds}" PrgPositSec="{Binding VPModel.CrntMU.Position.TotalSeconds}" BookMarks="{Binding VPModel.CrntMU.Bookmarks}" VerticalAlignment="Bottom" HorizontalAlignment="Left"  Width="200" Margin="11" />-->
       <cul:ucProgressArcTSp       PrgDuration="{Binding VPModel.CrntMU.Duration, FallbackValue='5:00:00'}" PrgPosition="{Binding VMPosn, Mode=TwoWay, FallbackValue='2:33:44'}" BookMarks="{Binding VPModel.CrntMU.Bookmarks}" VerticalAlignment="Bottom" HorizontalAlignment="Right" 
                                   MaxWidth="200" Margin="10" 
                                   Grid.Column="1" Grid.Row="1" MaxHeight="200" />

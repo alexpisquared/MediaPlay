@@ -56,11 +56,13 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Expression.Controls">
-      <HintPath>..\..\..\..\..\Users\alex.pigida\OneDrive\Public\bin\Microsoft.Expression.Controls.dll</HintPath>
+    <Reference Include="Microsoft.Expression.Controls, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Users\alexp\.nuget\packages\microsoft.sdk.expression.blend\1.0.0\lib\net45\Microsoft.Expression.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Expression.Drawing">
-      <HintPath>..\..\..\..\..\Users\alex.pigida\OneDrive\Public\bin\Microsoft.Expression.Drawing.dll</HintPath>
+    <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Users\alexp\.nuget\packages\microsoft.sdk.expression.blend\1.0.0\lib\net45\Microsoft.Expression.Drawing.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -138,6 +140,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

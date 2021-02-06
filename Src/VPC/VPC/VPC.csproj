@@ -103,10 +103,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
-    <Reference Include="Microsoft.Expression.Controls">
-      <HintPath>..\..\..\..\..\Users\alex.pigida\OneDrive\Public\bin\Microsoft.Expression.Controls.dll</HintPath>
+    <Reference Include="Microsoft.Expression.Controls, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Users\alexp\.nuget\packages\microsoft.sdk.expression.blend\1.0.0\lib\net45\Microsoft.Expression.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Users\alexp\.nuget\packages\microsoft.sdk.expression.blend\1.0.0\lib\net45\Microsoft.Expression.Drawing.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="ReachFramework" />
     <Reference Include="System" />
@@ -380,15 +384,15 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\AAV.Shared\Src\Net4.8\AAV.Mvvm\AAV.Mvvm.csproj">
-      <Project>{4e1334f8-b843-41dd-96a8-64a41f528cff}</Project>
+      <Project>{aa5c34cf-6f6a-4b2c-b067-d9aabcac1b6b}</Project>
       <Name>AAV.Mvvm</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\AAV.Shared\Src\Net4.8\AAV.WPF\AAV.WPF.4.8.csproj">
-      <Project>{1ce2c02f-5fa8-41ca-ac2e-ba91ab283a02}</Project>
+      <Project>{df459a59-5c58-4930-ab44-9b3d6e36cd98}</Project>
       <Name>AAV.WPF.4.8</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\AAV.Shared\Src\Net6.0\AAV.Sys\AAV.Sys.csproj">
-      <Project>{40f87211-3fda-47ba-a613-a0fe942839b1}</Project>
+      <Project>{353f1af9-d2a4-4542-bbe1-00decc7027bf}</Project>
       <Name>AAV.Sys</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Cmn\Common.UI.Lib\Common.UI.Lib.csproj">

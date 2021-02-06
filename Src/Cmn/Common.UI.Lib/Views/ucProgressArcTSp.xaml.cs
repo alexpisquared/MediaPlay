@@ -83,7 +83,7 @@ namespace Common.UI.Lib.Views
             var pa = d as ucProgressArcTSp;
             //Debug.WriteLine("::UC> {0} ==> {1}", pa.PrgPosition , (TimeSpan)e.NewValue);
             pa.PrgPosition = (TimeSpan)e.NewValue;
-            pa.arcAngle = (pa.PrgDuration.TotalSeconds <= 0) ? 0 : 360 * (pa.PrgPosition == null ? 0 : pa.PrgPosition.TotalSeconds) / pa.PrgDuration.TotalSeconds;
+            pa.PrgsAngle = (pa.PrgDuration.TotalSeconds <= 0) ? 0 : 360 * (pa.PrgPosition == null ? 0 : pa.PrgPosition.TotalSeconds) / pa.PrgDuration.TotalSeconds;
 
             pa.ReplaceInlines();
             pa.DrawBookmarks();
@@ -128,8 +128,8 @@ namespace Common.UI.Lib.Views
             catch (Exception ex) { Trace.WriteLine(ex, System.Reflection.MethodInfo.GetCurrentMethod().ToString()); }
         }
 
-        double arcAngle { get { return (double)GetValue(AngleProperty); } set { SetValue(AngleProperty, value); } }
-        public static readonly DependencyProperty AngleProperty = DependencyProperty.Register("PrgsAngle", typeof(double), typeof(ucProgressArcTSp), new PropertyMetadata(270.0));
+        double PrgsAngle { get { return (double)GetValue(PrgsAngleProperty); } set { SetValue(PrgsAngleProperty, value); } }
+        public static readonly DependencyProperty PrgsAngleProperty = DependencyProperty.Register("PrgsAngle", typeof(double), typeof(ucProgressArcTSp), new PropertyMetadata(270.0));
 
         public TimeSpan PrgDuration { get { return (TimeSpan)GetValue(DurationProperty); } set { SetValue(DurationProperty, value); } }
         public static readonly DependencyProperty DurationProperty = DependencyProperty.Register("PrgDuration", typeof(TimeSpan), typeof(ucProgressArcTSp), new PropertyMetadata(TimeSpan.Zero));
