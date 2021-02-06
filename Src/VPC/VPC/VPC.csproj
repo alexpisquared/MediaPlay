@@ -180,8 +180,10 @@
     <Compile Include="C:\c\AsLink\Serializer.cs">
       <Link>Common\Serializer.cs</Link>
     </Compile>
+    <Compile Include="Common\AppSettings.cs" />
+    <Compile Include="Common\AppSettingsEx.cs" />
     <Compile Include="Common\IsoStorage.cs" />
-    <Compile Include="Common\Settings.cs" />
+    <Compile Include="Common\WindowPlace.cs" />
     <Compile Include="Models\FileIO.cs" />
     <Compile Include="Models\ViewTime.cs" />
     <Compile Include="Models\XmlTimeSpan.cs" />

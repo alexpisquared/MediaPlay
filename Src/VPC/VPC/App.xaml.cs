@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Media;
 using System.Speech.Synthesis;
 using System.Threading.Tasks;
 using System.Windows;
@@ -130,21 +129,10 @@ namespace VPC
         if (File.Exists(mu.PathFileCur))
           return mu.PathFileCur;
         else
-          Debug.WriteLine($"::>>!exists: {mu.PathFileCur}");
+          Debug.WriteLine($"::>> !exists: {mu.PathFileCur,-64}  Next..");
       }
 
       return @"C:\1\v\13.mpv";
-    }
-    static void dbIni()
-    {
-      try
-      {
-        //DBInitializer.DropCreateDB();
-        //var db = new MediaQADB();
-        //db.MediaInfos.Load();
-        ////foreach (var mi in db.MediaInfos.Local) Console.WriteLine(mi); 
-      }
-      catch (Exception ex) { SystemSounds.Exclamation.Play(); Console.WriteLine(ex); }
     }
   }
 }
