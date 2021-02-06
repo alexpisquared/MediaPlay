@@ -13,7 +13,7 @@ using AAV.Sys.Helpers;
 
 namespace VPC.Models
 {
-  [PropertyChanged.AddINotifyPropertyChangedInterfaceAttribute] // [PropertyChanged.ImplementPropertyChanged] //fody
+  //[PropertyChanged.AddINotifyPropertyChangedInterfaceAttribute] // [PropertyChanged.ImplementPropertyChanged] //fody  removed on 2021-02-06
   public class MediaUnit : BindableBase
   {
     const string _vpc = ".vpC";
