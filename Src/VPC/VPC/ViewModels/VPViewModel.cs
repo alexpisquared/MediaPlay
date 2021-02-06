@@ -194,6 +194,7 @@ namespace VPC.ViewModels
       {
         _ignorePlayerPosnMove = true;
         VPModel.CrntMU.PositionSec = (VPModel.CrntMU.Position = VMPosn = _vpcPlayer.Position).Value.TotalSeconds;
+        VPModel.CrntMU.IsLooping = _isLooping;
         _ignorePlayerPosnMove = false;
         views = $"{VPModel.CrntMU.Auditions.Count}vws";
       }

@@ -414,6 +414,11 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\Fody.2.2.0\build\net452\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.2.2.0\build\net452\Fody.targets'))" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>if $(ConfigurationName) == Release robocopy $(TargetDir) C:\Users\alexp\OneDrive\Public\bin\vpc  /FFT /R:1 /W:1 /XO  /XF *.deploy *.user *.suo *.manifest *.pdb *.vshost.exe* EntityFramework*.xml *.application /NJH /NJS  
+echo Root fodler only. Next line prevent non-zero exit codes of robocopy.
+exit 0</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
