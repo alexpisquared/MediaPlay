@@ -4,7 +4,7 @@
     xmlns:vws="clr-namespace:VPC.Views" 				
     xmlns:lnk="clr-namespace:AAV.WPF.Base;assembly=AAV.WPF" 				
     Title="{Binding Window_Title}" Height="540" Width="960" MinHeight="108" MinWidth="192" AllowsTransparency="True" WindowStyle="None" ResizeMode="CanResize" 
-        Background="#000" 
+        Background="#321" 
     WindowStartupLocation="Manual" WindowState="Normal" x:Name="win" AllowDrop="True" Drop="wdw_Drop_1" Icon="/VPC;component/Assets/movies.ico"  >
   <WindowChrome.WindowChrome>
     <WindowChrome CaptionHeight="0" ResizeBorderThickness="12" GlassFrameThickness="0" NonClientFrameEdges="None" />
@@ -307,7 +307,7 @@
     <MediaElement Volume="1" x:Name="wmp" Source="{Binding VPModel.CrntMU.PathFileCur, Mode=OneWay}" LoadedBehavior="Manual" UnloadedBehavior="Manual" Cursor="None" 
                   MediaOpened="wmp_MediaOpened" />
 
-    <Grid x:Name="ChromeGird" Visibility="{Binding ChromeVisibility}" Style="{StaticResource FadeInOnMouseMove}" Background="Transparent">
+    <Grid x:Name="ChromeGird" Visibility="{Binding ChromeVisibility}" Style="{StaticResource FadeInOnMouseMove}" >
       <Grid.RowDefinitions>
         <RowDefinition Height="1*"/>
         <RowDefinition Height="2*"/>
