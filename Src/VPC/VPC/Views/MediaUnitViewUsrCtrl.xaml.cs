@@ -15,7 +15,7 @@ namespace VPC.Views
 			DataContext = getTestMU();
 		}
 
-		private static MediaUnit getTestMU()
+		static MediaUnit getTestMU()
 		{
 			var mu = new MediaUnit()
 			{
@@ -46,7 +46,7 @@ namespace VPC.Views
 			return mu;
 		}
 
-		private void UserControl_Loaded(object sender, RoutedEventArgs e)
+		void UserControl_Loaded(object sender, RoutedEventArgs e)
 		{
 
 			// Do not load your data at design time.

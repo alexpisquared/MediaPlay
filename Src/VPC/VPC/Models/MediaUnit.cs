@@ -151,6 +151,7 @@ namespace VPC.Models
     int _VideoWidth; public int VideoWidth { get => _VideoWidth; set => Set(ref _VideoWidth, value); }
     int _SpeedIdx = 10; public int SpeedIdx { get => _SpeedIdx; set => Set(ref _SpeedIdx, value); }
     bool _IsLooping = false; public bool IsLooping { get => _IsLooping; set => Set(ref _IsLooping, value); }
+    double _AuVolume = 1.00; public double AuVolume { get => _AuVolume; set => Set(ref _AuVolume, value); }
 
     [XmlIgnore]
     public TimeSpan? Duration { get => _Duration; set { if (Set(ref _Duration, value)) DurationSec = value.Value.TotalSeconds; } }

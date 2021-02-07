@@ -24,15 +24,21 @@ namespace VPC.ViewModels
 {
   public class VPViewModel : BindableBaseViewModel, IVPViewModel
   {
+    //const double _speedMultr = 1.18920712;//=2^(1 / 4);  1.14869835;//2^(1 / 5); 1.18920712;//=2^(1 / 4);  1.25992105;//=2^(1 / 3);   1.41421356//=2^(1 / 2) ;
     MediaElement _vpcPlayer = null;
     FolderViewUsrCtrl _fvc;
+    readonly bool _isAutoNext = true;
     readonly DispatcherTimer _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(0.14) };
-    DateTime _lastPlayStartAt = DateTime.MaxValue, _tillTime = DateTime.MaxValue;
     readonly DateTime _daySsnStarted = DateTime.Today;
+    DateTime _lastPlayStartAt = DateTime.MaxValue, _tillTime = DateTime.MaxValue;
     TimeSpan _lastStartPosn, _viewTime = TimeSpan.FromSeconds(0), _posA, _durnToB, _TodayTotal;
     TimeSpan? _isJumpingTo = null;
-    const double _speedMultr = 1.18920712;//=2^(1 / 4);  1.14869835;//2^(1 / 5); 1.18920712;//=2^(1 / 4);  1.25992105;//=2^(1 / 3);   1.41421356//=2^(1 / 2) ;
-    #region
+    string _Top_CentrMsg, _BotmCentrMsg, _BotmRghtInfo, _TopRightInfo, _TopRightTiny, _BotmLeftInfo, _HelpMessage_, _Window_Title = "...", _EOTMsg = "Zoe, that is enough. Its time to go to bed?";
+    int cntr = 0, _intervalPlay = 0, playerMargin = 0;
+    Visibility _ChromeVisibility = Visibility.Visible;
+    bool _isLooping = false, _popMenuAtEnd = true;
+    ViewTimeLog _viewTimeLogCopy = ViewTimeLog.GetViewTimeLogSingleton();
+    #region _speeds
     readonly int _v1x = 8, _v2x = 11;
     readonly double[] _speeds = {
             .0001,    //  0
@@ -57,16 +63,6 @@ namespace VPC.ViewModels
             100       // 19
         };
     #endregion
-    string _Top_CentrMsg, _BotmCentrMsg, _BotmRghtInfo, _TopRightInfo, _TopRightTiny, _BotmLeftInfo, _HelpMessage_, _Window_Title = "...", _EOTMsg = "Zoe, that is enough. Its time to go to bed?";
-    int cntr = 0, _intervalPlay = 0;
-    Visibility _ChromeVisibility = Visibility.Visible;
-    private bool _isLooping = false;
-    private readonly bool _isAutoNext = true;
-    private bool _popMenuAtEnd = true;
-    ViewTimeLog _ViewTimeLogCopy = ViewTimeLog.GetViewTimeLogSingleton();
-    //SpeechSynthesizer _synth; public SpeechSynthesizer Synth { get { if (_synth == null) _synth = new SpeechSynthesizer(); return _synth; } }
-
-    int playerMargin = 0;
 
     public int PlayerMargin
     {
@@ -74,8 +70,7 @@ namespace VPC.ViewModels
       set { playerMargin = value; _vpcPlayer.Margin = new Thickness(0, playerMargin, 0, playerMargin); }
     }
 
-    Panel _LayoutRoot;
-    public Panel LayoutRoot
+    Panel _LayoutRoot; public Panel LayoutRoot
     {
       get => _LayoutRoot;
       set
@@ -133,16 +128,13 @@ namespace VPC.ViewModels
       }
     }
 
-
     VPModel _vpModel = new VPModel(); public VPModel VPModel { get => _vpModel; set => _vpModel = value; }
     public MediaElement Player { set => initPlayer(value); }
     public FolderViewUsrCtrl Fvc { set => _fvc = value; }
-    public ViewTimeLog ViewTimeLogCopy { get => _ViewTimeLogCopy; set => Set(ref _ViewTimeLogCopy, value); }
+    public ViewTimeLog ViewTimeLogCopy { get => _viewTimeLogCopy; set => Set(ref _viewTimeLogCopy, value); }
 
-    public double MUProgressPerc { get => _MUProgressPerc; set => Set(ref _MUProgressPerc, value); }
-    double _MUProgressPerc;
-    public TaskbarItemProgressState MUProgressState { get => _MUProgressState; set => Set(ref _MUProgressState, value); }
-    TaskbarItemProgressState _MUProgressState = TaskbarItemProgressState.Normal;
+    double _MUProgressPerc; public double MUProgressPerc { get => _MUProgressPerc; set => Set(ref _MUProgressPerc, value); }
+    TaskbarItemProgressState _MUProgressState = TaskbarItemProgressState.Normal; public TaskbarItemProgressState MUProgressState { get => _MUProgressState; set => Set(ref _MUProgressState, value); }
     public string BotmRghtInfo { get => _BotmRghtInfo; set => Set(ref _BotmRghtInfo, value); }
     public string TopRightInfo { get => _TopRightInfo; set => Set(ref _TopRightInfo, value); }
     public string TopRightTiny { get => _TopRightTiny; set => Set(ref _TopRightTiny, value); }
@@ -195,6 +187,7 @@ namespace VPC.ViewModels
         _ignorePlayerPosnMove = true;
         VPModel.CrntMU.PositionSec = (VPModel.CrntMU.Position = VMPosn = _vpcPlayer.Position).Value.TotalSeconds;
         VPModel.CrntMU.IsLooping = _isLooping;
+        VPModel.CrntMU.AuVolume = _vpcPlayer.Volume;
         _ignorePlayerPosnMove = false;
         views = $"{VPModel.CrntMU.Auditions.Count}vws";
       }
@@ -241,45 +234,45 @@ namespace VPC.ViewModels
 
     //<< Commands
 
-    ICommand movUpDirCommand; public ICommand MovUpDirCommand => movUpDirCommand ?? (movUpDirCommand = new RelayCommand(x => movUpDir(x), x => canMovUpDir) { GestureKey = Key.Up, GestureModifier = ModifierKeys.Alt });
+    ICommand movUpDirCommand; public ICommand MovUpDirCommand => movUpDirCommand ??= new RelayCommand(x => movUpDir(x), x => canMovUpDir) { GestureKey = Key.Up, GestureModifier = ModifierKeys.Alt };
 
-    ICommand moveNextCommand; public ICommand MoveNextCommand => moveNextCommand ?? (moveNextCommand = new RelayCommand(x => moveNext(x), x => canMoveNext) { GestureKey = Key.Down });
-    ICommand movePrevCommand; public ICommand MovePrevCommand => movePrevCommand ?? (movePrevCommand = new RelayCommand(x => movePrev(x), x => canMovePrev) { GestureKey = Key.Up });
-    ICommand meetNextCommand; public ICommand MeetNextCommand => meetNextCommand ?? (meetNextCommand = new RelayCommand(x => meetNext(x), x => canMoveNext) { GestureKey = Key.Down, GestureModifier = ModifierKeys.Shift });
-    ICommand meetPrevCommand; public ICommand MeetPrevCommand => meetPrevCommand ?? (meetPrevCommand = new RelayCommand(x => meetPrev(x), x => canMovePrev) { GestureKey = Key.Up, GestureModifier = ModifierKeys.Shift });
+    ICommand moveNextCommand; public ICommand MoveNextCommand => moveNextCommand ??= new RelayCommand(x => moveNext(x), x => canMoveNext) { GestureKey = Key.Down };
+    ICommand movePrevCommand; public ICommand MovePrevCommand => movePrevCommand ??= new RelayCommand(x => movePrev(x), x => canMovePrev) { GestureKey = Key.Up };
+    ICommand meetNextCommand; public ICommand MeetNextCommand => meetNextCommand ??= new RelayCommand(x => meetNext(x), x => canMoveNext) { GestureKey = Key.Down, GestureModifier = ModifierKeys.Shift };
+    ICommand meetPrevCommand; public ICommand MeetPrevCommand => meetPrevCommand ??= new RelayCommand(x => meetPrev(x), x => canMovePrev) { GestureKey = Key.Up, GestureModifier = ModifierKeys.Shift };
 
-    ICommand moveLefNCommand; public ICommand MoveLefNCommand => moveLefNCommand ?? (moveLefNCommand = new RelayCommand(x => moveLeftN(x), x => canMoveLeftN) { GestureKey = Key.Left });
-    ICommand moveRghNCommand; public ICommand MoveRghNCommand => moveRghNCommand ?? (moveRghNCommand = new RelayCommand(x => moveRghtN(x), x => canMoveRghtN) { GestureKey = Key.Right });
-    ICommand moveLefCCommand; public ICommand MoveLefCCommand => moveLefCCommand ?? (moveLefCCommand = new RelayCommand(x => moveLeftC(x), x => canMoveLeftC) { GestureKey = Key.Left, GestureModifier = ModifierKeys.Control });
-    ICommand moveRghCCommand; public ICommand MoveRghCCommand => moveRghCCommand ?? (moveRghCCommand = new RelayCommand(x => moveRghtC(x), x => canMoveRghtC) { GestureKey = Key.Right, GestureModifier = ModifierKeys.Control });
-    ICommand moveLefACommand; public ICommand MoveLefACommand => moveLefACommand ?? (moveLefACommand = new RelayCommand(x => moveLeftA(x), x => canMoveLeftA) { GestureKey = Key.Left, GestureModifier = ModifierKeys.Alt });
-    ICommand moveRghACommand; public ICommand MoveRghACommand => moveRghACommand ?? (moveRghACommand = new RelayCommand(x => moveRghtA(x), x => canMoveRghtA) { GestureKey = Key.Right, GestureModifier = ModifierKeys.Alt });
-    ICommand moveLefSCommand; public ICommand MoveLefSCommand => moveLefSCommand ?? (moveLefSCommand = new RelayCommand(x => moveLeftS(x), x => canMoveLeftS) { GestureKey = Key.Left, GestureModifier = ModifierKeys.Shift });
-    ICommand moveRghSCommand; public ICommand MoveRghSCommand => moveRghSCommand ?? (moveRghSCommand = new RelayCommand(x => moveRghtS(x), x => canMoveRghtS) { GestureKey = Key.Right, GestureModifier = ModifierKeys.Shift });
+    ICommand moveLefNCommand; public ICommand MoveLefNCommand => moveLefNCommand ??= new RelayCommand(x => moveLeftN(x), x => canMoveLeftN) { GestureKey = Key.Left };
+    ICommand moveRghNCommand; public ICommand MoveRghNCommand => moveRghNCommand ??= new RelayCommand(x => moveRghtN(x), x => canMoveRghtN) { GestureKey = Key.Right };
+    ICommand moveLefCCommand; public ICommand MoveLefCCommand => moveLefCCommand ??= new RelayCommand(x => moveLeftC(x), x => canMoveLeftC) { GestureKey = Key.Left, GestureModifier = ModifierKeys.Control };
+    ICommand moveRghCCommand; public ICommand MoveRghCCommand => moveRghCCommand ??= new RelayCommand(x => moveRghtC(x), x => canMoveRghtC) { GestureKey = Key.Right, GestureModifier = ModifierKeys.Control };
+    ICommand moveLefACommand; public ICommand MoveLefACommand => moveLefACommand ??= new RelayCommand(x => moveLeftA(x), x => canMoveLeftA) { GestureKey = Key.Left, GestureModifier = ModifierKeys.Alt };
+    ICommand moveRghACommand; public ICommand MoveRghACommand => moveRghACommand ??= new RelayCommand(x => moveRghtA(x), x => canMoveRghtA) { GestureKey = Key.Right, GestureModifier = ModifierKeys.Alt };
+    ICommand moveLefSCommand; public ICommand MoveLefSCommand => moveLefSCommand ??= new RelayCommand(x => moveLeftS(x), x => canMoveLeftS) { GestureKey = Key.Left, GestureModifier = ModifierKeys.Shift };
+    ICommand moveRghSCommand; public ICommand MoveRghSCommand => moveRghSCommand ??= new RelayCommand(x => moveRghtS(x), x => canMoveRghtS) { GestureKey = Key.Right, GestureModifier = ModifierKeys.Shift };
 
-    ICommand _TglPlyPsCommand; public ICommand TglPlyPsCommand => _TglPlyPsCommand ?? (_TglPlyPsCommand = new RelayCommand(x => doTglPlyPs(x)) { GestureKey = Key.Space });
+    ICommand _TglPlyPsCommand; public ICommand TglPlyPsCommand => _TglPlyPsCommand ??= new RelayCommand(x => doTglPlyPs(x)) { GestureKey = Key.Space };
 
-    ICommand _TglStrcSCommand; public ICommand TglStrcSCommand => _TglStrcSCommand ?? (_TglStrcSCommand = new RelayCommand(x => doTglStrcS(x)) { GestureKey = Key.S, GestureModifier = ModifierKeys.Shift });
-    ICommand _DeleteMUCommand; public ICommand DeleteMUCommand => _DeleteMUCommand ?? (_DeleteMUCommand = new RelayCommand(x => doAsk_CanNext(x)) { GestureKey = Key.Delete });
+    ICommand _TglStrcSCommand; public ICommand TglStrcSCommand => _TglStrcSCommand ??= new RelayCommand(x => doTglStrcS(x)) { GestureKey = Key.S, GestureModifier = ModifierKeys.Shift };
+    ICommand _DeleteMUCommand; public ICommand DeleteMUCommand => _DeleteMUCommand ??= new RelayCommand(x => doAsk_CanNext(x)) { GestureKey = Key.Delete };
 
-    ICommand _HomeCommand; public ICommand HomeCommand => _HomeCommand ?? (_HomeCommand = new RelayCommand(x => doHome(x)) { GestureKey = Key.Home });
-    ICommand _End_Command; public ICommand End_Command => _End_Command ?? (_End_Command = new RelayCommand(x => doEnd_(x)) { GestureKey = Key.End });
+    ICommand _HomeCommand; public ICommand HomeCommand => _HomeCommand ??= new RelayCommand(x => doHome(x)) { GestureKey = Key.Home };
+    ICommand _End_Command; public ICommand End_Command => _End_Command ??= new RelayCommand(x => doEnd_(x)) { GestureKey = Key.End };
 
-    ICommand _PrevBmkCmd; public ICommand PrevBmkCmd => _PrevBmkCmd ?? (_PrevBmkCmd = new RelayCommand(x => do_PrevBmkCmd(x), x => canPrevBmkCmd) { GestureKey = Key.Oem4, GestureModifier = ModifierKeys.None });
-    ICommand _NextBmkCmd; public ICommand NextBmkCmd => _NextBmkCmd ?? (_NextBmkCmd = new RelayCommand(x => do_NextBmkCmd(x), x => canNextBmkCmd) { GestureKey = Key.Oem6, GestureModifier = ModifierKeys.None });
+    ICommand _PrevBmkCmd; public ICommand PrevBmkCmd => _PrevBmkCmd ??= new RelayCommand(x => do_PrevBmkCmd(x), x => canPrevBmkCmd) { GestureKey = Key.Oem4, GestureModifier = ModifierKeys.None };
+    ICommand _NextBmkCmd; public ICommand NextBmkCmd => _NextBmkCmd ??= new RelayCommand(x => do_NextBmkCmd(x), x => canNextBmkCmd) { GestureKey = Key.Oem6, GestureModifier = ModifierKeys.None };
 
-    ICommand _F1_Command; public ICommand F1_Command => _F1_Command ?? (_F1_Command = new RelayCommand(x => do_F1_(x), x => can_Yes) { GestureKey = Key.F1, GestureModifier = ModifierKeys.None });
-    ICommand _F2_Command; public ICommand F2_Command => _F2_Command ?? (_F2_Command = new RelayCommand(x => do_F2_(x), x => can_F2_) { GestureKey = Key.F2, GestureModifier = ModifierKeys.None });
-    ICommand _F3_Command; public ICommand F3_Command => _F3_Command ?? (_F3_Command = new RelayCommand(x => do_F3_(x), x => can_Yes) { GestureKey = Key.F3, GestureModifier = ModifierKeys.None });
-    ICommand _F4_Command; public ICommand F4_Command => _F4_Command ?? (_F4_Command = new RelayCommand(x => do_F4_(x), x => can_Yes) { GestureKey = Key.F4, GestureModifier = ModifierKeys.None });
-    ICommand _F5_Command; public ICommand F5_Command => _F5_Command ?? (_F5_Command = new RelayCommand(x => do_F5_(x), x => can_Yes) { GestureKey = Key.F5, GestureModifier = ModifierKeys.None });
-    ICommand _F6_Command; public ICommand F6_Command => _F6_Command ?? (_F6_Command = new RelayCommand(x => do_F6_(x), x => can_Yes) { GestureKey = Key.F6, GestureModifier = ModifierKeys.None });
-    ICommand _F7_Command; public ICommand F7_Command => _F7_Command ?? (_F7_Command = new RelayCommand(x => do_F7_(x), x => can_Yes) { GestureKey = Key.F7, GestureModifier = ModifierKeys.None });
-    ICommand _F8_Command; public ICommand F8_Command => _F8_Command ?? (_F8_Command = new RelayCommand(x => do_F8_(x), x => can_Yes) { GestureKey = Key.F8, GestureModifier = ModifierKeys.None });
-    ICommand _F9_Command; public ICommand F9_Command => _F9_Command ?? (_F9_Command = new RelayCommand(x => do_F9_(x), x => can_Yes) { GestureKey = Key.F9, GestureModifier = ModifierKeys.None });
-    ICommand _F10_Command; public ICommand F10_Command => _F10_Command ?? (_F10_Command = new RelayCommand(x => do_F10_(x), x => can_Yes) { GestureKey = Key.F10, GestureModifier = ModifierKeys.None });
-    ICommand _F11_Command; public ICommand F11_Command => _F11_Command ?? (_F11_Command = new RelayCommand(x => do_F11_(x), x => can_Yes) { GestureKey = Key.F11, GestureModifier = ModifierKeys.None });
-    ICommand _F12_Command; public ICommand F12_Command => _F12_Command ?? (_F12_Command = new RelayCommand(x => do_F12_(x), x => can_Yes) { GestureKey = Key.F12, GestureModifier = ModifierKeys.None });
+    ICommand _F1_Command; public ICommand F1_Command => _F1_Command ??= new RelayCommand(x => do_F1_(x), x => can_Yes) { GestureKey = Key.F1, GestureModifier = ModifierKeys.None };
+    ICommand _F2_Command; public ICommand F2_Command => _F2_Command ??= new RelayCommand(x => do_F2_(x), x => can_F2_) { GestureKey = Key.F2, GestureModifier = ModifierKeys.None };
+    ICommand _F3_Command; public ICommand F3_Command => _F3_Command ??= new RelayCommand(x => do_F3_(x), x => can_Yes) { GestureKey = Key.F3, GestureModifier = ModifierKeys.None };
+    ICommand _F4_Command; public ICommand F4_Command => _F4_Command ??= new RelayCommand(x => do_F4_(x), x => can_Yes) { GestureKey = Key.F4, GestureModifier = ModifierKeys.None };
+    ICommand _F5_Command; public ICommand F5_Command => _F5_Command ??= new RelayCommand(x => do_F5_(x), x => can_Yes) { GestureKey = Key.F5, GestureModifier = ModifierKeys.None };
+    ICommand _f6_Command; public ICommand F6_Command => _f6_Command ??= new RelayCommand(x => do_F6_(x), x => can_Yes) { GestureKey = Key.F6, GestureModifier = ModifierKeys.None };
+    ICommand _F7_Command; public ICommand F7_Command => _F7_Command ??= new RelayCommand(x => do_F7_(x), x => can_Yes) { GestureKey = Key.F7, GestureModifier = ModifierKeys.None };
+    ICommand _F8_Command; public ICommand F8_Command => _F8_Command ??= new RelayCommand(x => do_F8_(x), x => can_Yes) { GestureKey = Key.F8, GestureModifier = ModifierKeys.None };
+    ICommand _F9_Command; public ICommand F9_Command => _F9_Command ??= new RelayCommand(x => do_F9_(x), x => can_Yes) { GestureKey = Key.F9, GestureModifier = ModifierKeys.None };
+    ICommand _F10_Command; public ICommand F10_Command => _F10_Command ??= new RelayCommand(x => do_F10_(x), x => can_Yes) { GestureKey = Key.F10, GestureModifier = ModifierKeys.None };
+    ICommand _F11_Command; public ICommand F11_Command => _F11_Command ??= new RelayCommand(x => do_F11_(x), x => can_Yes) { GestureKey = Key.F11, GestureModifier = ModifierKeys.None };
+    ICommand _F12_Command; public ICommand F12_Command => _F12_Command ??= new RelayCommand(x => do_F12_(x), x => can_Yes) { GestureKey = Key.F12, GestureModifier = ModifierKeys.None };
 
     ICommand _D0_Command; public ICommand D0_Command => _D0_Command ?? (_D0_Command = new RelayCommand(x => do_D0_(x), x => can_Yes) { GestureKey = Key.D0, GestureModifier = ModifierKeys.None });
     ICommand _D1_Command; public ICommand D1_Command => _D1_Command ?? (_D1_Command = new RelayCommand(x => do_D1_(x), x => can_Yes) { GestureKey = Key.D1, GestureModifier = ModifierKeys.None });
@@ -684,7 +677,6 @@ namespace VPC.ViewModels
     public bool canGoFaster => true;
     public bool canGoSlower => true;
     public bool canTglStrch => true;
-
     public bool canMovUpDir => true;  //todo:
     public bool canMoveNext => _vpcPlayer.Source != null && File.Exists(_vpcPlayer.Source.LocalPath);
     public bool canMovePrev => _vpcPlayer.Source != null && File.Exists(_vpcPlayer.Source.LocalPath);
@@ -728,6 +720,7 @@ namespace VPC.ViewModels
 
       setSpeed();
       _isLooping = VPModel.CrntMU.IsLooping;
+      _vpcPlayer.Volume = VPModel.CrntMU.AuVolume;
     }
 
     void setSpeed() // needed setting to some other speed before it will comply with the new speed value (~2018)

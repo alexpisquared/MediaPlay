@@ -36,7 +36,7 @@ namespace Expression.Blend.SampleData.SampleDataSource
       }
     }
 
-    private readonly ItemCollection _Collection = new ItemCollection();
+    readonly ItemCollection _Collection = new ItemCollection();
 
     public ItemCollection Collection => _Collection;
   }
@@ -53,7 +53,7 @@ namespace Expression.Blend.SampleData.SampleDataSource
       }
     }
 
-    private string _Property1 = string.Empty;
+    string _Property1 = string.Empty;
 
     public string Property1
     {
@@ -69,7 +69,7 @@ namespace Expression.Blend.SampleData.SampleDataSource
       }
     }
 
-    private bool _Property2 = false;
+    bool _Property2 = false;
 
     public bool Property2
     {

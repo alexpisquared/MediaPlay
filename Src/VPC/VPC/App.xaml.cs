@@ -22,7 +22,7 @@ namespace VPC
 
     VPViewModel _viewModel;
     MainPlayerWindow _view;
-    AppSettings _settings = AppSettings.Instance;
+    readonly AppSettings _settings = AppSettings.Instance;
     readonly DateTime _daySsnStarted = DateTime.Today;
 
     protected override async void OnStartup(StartupEventArgs e)
