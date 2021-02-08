@@ -307,7 +307,8 @@
     <MediaElement Volume="1" x:Name="wmp" Source="{Binding VPModel.CrntMU.PathFileCur, Mode=OneWay}" LoadedBehavior="Manual" UnloadedBehavior="Manual" Cursor="None" 
                   MediaOpened="wmp_MediaOpened" />
 
-    <Grid x:Name="ChromeGird" Visibility="{Binding ChromeVisibility}" Style="{StaticResource FadeInOnMouseMove}" >
+    <!--<Grid x:Name="ChromeGird" Visibility="{Binding ChromeVisibility}" Style="{StaticResource FadeInOnMouseMove}" >-->
+    <Grid x:Name="ChromeGird" >
       <Grid.RowDefinitions>
         <RowDefinition Height="1*"/>
         <RowDefinition Height="2*"/>

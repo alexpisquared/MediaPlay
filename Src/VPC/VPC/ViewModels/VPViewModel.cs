@@ -35,7 +35,6 @@ namespace VPC.ViewModels
     TimeSpan? _isJumpingTo = null;
     string _Top_CentrMsg, _BotmCentrMsg, _BotmRghtInfo, _TopRightInfo, _TopRightTiny, _BotmLeftInfo, _HelpMessage_, _Window_Title = "...", _EOTMsg = "Zoe, that is enough. Its time to go to bed?";
     int cntr = 0, _intervalPlay = 0, playerMargin = 0;
-    Visibility _ChromeVisibility = Visibility.Visible;
     bool _isLooping = false, _popMenuAtEnd = true;
     ViewTimeLog _viewTimeLogCopy = ViewTimeLog.GetViewTimeLogSingleton();
     #region _speeds
@@ -155,7 +154,7 @@ namespace VPC.ViewModels
     public bool IsPlaying { get => _IsBusy; set { Set(ref _IsBusy, value); MUProgressState = value ? TaskbarItemProgressState.Normal : TaskbarItemProgressState.Paused; } }
     bool _IsBusy = false;
 
-    public Visibility ChromeVisibility { get => _ChromeVisibility; set => Set(ref _ChromeVisibility, value); }
+    Visibility _ChromeVisibility = Visibility.Visible; public Visibility ChromeVisibility { get => _ChromeVisibility; set => Set(ref _ChromeVisibility, value); }
 
     //static Version getVersion()
     //{
@@ -512,9 +511,7 @@ namespace VPC.ViewModels
       else
       {
         Bpr.Beep1of2();
-        if (ChromeVisibility != Visibility.Visible)
-          ChromeVisibility = Visibility.Visible;
-        fv.Visibility = Visibility.Visible;
+        fv.Visibility = ChromeVisibility = Visibility.Visible;
         fv.CurMediaFile2 = VPModel.CrntMU?.PathFileCur ?? _vpcPlayer.Source.LocalPath;
         fv.LoadCurFolder(false);
         Bpr.Beep2of2();
@@ -597,9 +594,20 @@ namespace VPC.ViewModels
     }
     void do_Y_(object fvc)
     {
-      Bpr.Beep1of2(); var fv = ((FolderViewUsrCtrl)fvc) ?? _fvc;
-      fv.CurMediaFile2 = VPModel.CrntMU?.PathFileCur ?? _vpcPlayer.Source.LocalPath;
-      fv.LoadOneDrCash(false); fv.Visibility = Visibility.Visible; Bpr.Beep2of2();
+      var fv = ((FolderViewUsrCtrl)fvc) ?? _fvc;
+      if (fv.Visibility == Visibility.Visible)
+      {
+        fv.Visibility = Visibility.Hidden;
+        Bpr.BeepOk();
+      }
+      else
+      {
+        Bpr.Beep1of2();
+        fv.Visibility = ChromeVisibility = Visibility.Visible;
+        fv.CurMediaFile2 = VPModel.CrntMU?.PathFileCur ?? _vpcPlayer.Source.LocalPath;
+        fv.LoadOneDrCash(false);
+        Bpr.Beep2of2();
+      }
     }
     void do_Z_(object win) { if (win != null && win is Window) { IsTopmost = (win as Window).Topmost = !(win as Window).Topmost; } if (IsTopmost) Bpr.Beep1of2(); else Bpr.Beep2of2(); }
 
