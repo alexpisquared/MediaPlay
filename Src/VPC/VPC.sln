@@ -160,8 +160,8 @@ Global
 		{01A0CE1F-5564-4B73-897B-0633B42EECBD}.Debug|x86.Build.0 = Debug|Any CPU
 		{01A0CE1F-5564-4B73-897B-0633B42EECBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01A0CE1F-5564-4B73-897B-0633B42EECBD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{01A0CE1F-5564-4B73-897B-0633B42EECBD}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{01A0CE1F-5564-4B73-897B-0633B42EECBD}.Release|Mixed Platforms.Build.0 = Release|x86
+		{01A0CE1F-5564-4B73-897B-0633B42EECBD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{01A0CE1F-5564-4B73-897B-0633B42EECBD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{01A0CE1F-5564-4B73-897B-0633B42EECBD}.Release|x64.ActiveCfg = Release|x64
 		{01A0CE1F-5564-4B73-897B-0633B42EECBD}.Release|x64.Build.0 = Release|x64
 		{01A0CE1F-5564-4B73-897B-0633B42EECBD}.Release|x86.ActiveCfg = Release|x86
@@ -197,7 +197,7 @@ Global
 		{6F104FAF-73BE-4AA9-AAFC-7149F9CDEA75} = {BB64AF01-2416-4698-81FE-F3D618CFDE9B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35;packages\Unity.Interception.2.1.505.2\lib\NET35
 		SolutionGuid = {A39142B0-CEA4-4FF1-877B-6FBBA3174401}
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35;packages\Unity.Interception.2.1.505.2\lib\NET35
 	EndGlobalSection
 EndGlobal
