@@ -27,7 +27,7 @@
           <BeginStoryboard>
             <Storyboard >
               <DoubleAnimation                Duration="0:0:0.2" To="1"  Storyboard.TargetProperty="Opacity" />
-              <DoubleAnimation                Duration="0:0:9.9" To="0"  Storyboard.TargetProperty="Opacity" />
+              <DoubleAnimation                Duration="0:1:0.2" To="0"  Storyboard.TargetProperty="Opacity" />
               <!--<ObjectAnimationUsingKeyFrames  Duration="0:0:2.0"                    Storyboard.TargetProperty="Visibility"   >
                 <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}" />
               </ObjectAnimationUsingKeyFrames>-->
