@@ -1,0 +1,131 @@
+﻿<Window x:Class="DDJ.Main.Views.MediaTunerPopup" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{Binding Window_Title}" Height="750" Width="800" x:Name="mainWin" Left="1" Top="1080">
+	<Window.InputBindings>
+		<KeyBinding   Command="{Binding LoadListCmd}"			CommandParameter="{Binding ElementName=mainWin}" Key="{Binding LoadListCmd.GestureKey}" Modifiers="{Binding LoadListCmd.GestureModifier}" />
+		<KeyBinding   Command="{Binding TglPlayPauseCmd}" CommandParameter="{Binding ElementName=mainWin}" Key="{Binding TglPlayPauseCmd.GestureKey}" Modifiers="{Binding TglPlayPauseCmd.GestureModifier}" />
+		<KeyBinding   Command="{Binding MoveNextCmd}"			CommandParameter="{Binding ElementName=mainWin}" Key="{Binding MoveNextCmd.GestureKey}" Modifiers="{Binding MoveNextCmd.GestureModifier}" />
+		<KeyBinding   Command="{Binding MovePrevCmd}"			CommandParameter="{Binding ElementName=mainWin}" Key="{Binding MovePrevCmd.GestureKey}" Modifiers="{Binding MovePrevCmd.GestureModifier}" />
+		<KeyBinding   Command="{Binding JumpNextCmd}"			CommandParameter="{Binding ElementName=mainWin}" Key="{Binding JumpNextCmd.GestureKey}" Modifiers="{Binding JumpNextCmd.GestureModifier}" />
+		<KeyBinding   Command="{Binding JumpPrevCmd}"			CommandParameter="{Binding ElementName=mainWin}" Key="{Binding JumpPrevCmd.GestureKey}" Modifiers="{Binding JumpPrevCmd.GestureModifier}" />
+		<KeyBinding   Command="{Binding FsToDbCmd}"				CommandParameter="{Binding ElementName=mainWin}" Key="{Binding FsToDbCmd.GestureKey}" Modifiers="{Binding FsToDbCmd.GestureModifier}" />
+	</Window.InputBindings>
+
+	<Window.Resources>
+
+		<DataTemplate x:Key="centralTile">
+			<Grid>
+				<StackPanel Height="130" Width="110">
+					<Image Width="90" Height="90" Source="{Binding File}" Margin="3 0" ToolTipService.ShowDuration="29000" >
+						<Image.ToolTip>
+							<Image Source="{Binding File}" />
+						</Image.ToolTip>
+					</Image>
+					<TextBlock Foreground="#ff0" FontSize="10" Text="{Binding Time, StringFormat=\{0:dd MMMyyyy \}}" HorizontalAlignment="Center" />
+					<TextBlock Foreground="#ff0" FontSize="10" Text="{Binding Time, StringFormat=\{0:HH:mm\}}" HorizontalAlignment="Center" />
+					<TextBlock Foreground="#ff0" FontSize="8"  Text="{Binding File}" HorizontalAlignment="Center" />
+				</StackPanel>
+				<TextBlock Foreground="#f00" FontSize="11"  Text="{Binding Eval}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+			</Grid>
+		</DataTemplate>
+
+		<DataTemplate x:Key="iconTemplate">
+			<DockPanel Height="33" Width="150">
+				<Image Source="{Binding File}" Margin="2"/>
+				<TextBlock DockPanel.Dock="Top" Text="{Binding File}" FontSize="13" HorizontalAlignment="Left" Margin="0,0,0,1" />
+			</DockPanel>
+		</DataTemplate>
+
+		<DataTemplate x:Key="checkbox">
+			<CheckBox IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}" Margin="0,1,1,1" />
+		</DataTemplate>
+		<DataTemplate x:Key="DisplayImage">
+			<StackPanel Width="50">
+				<Image Source="{Binding File}"/>
+			</StackPanel>
+		</DataTemplate>
+		<GridView x:Key="gridView">
+			<GridViewColumn CellTemplate="{StaticResource checkbox}"/>
+			<GridViewColumn Header="File" DisplayMemberBinding="{Binding File}"/>
+			<GridViewColumn Header="Time" DisplayMemberBinding="{Binding Time, StringFormat=\{0:dd/MMM/yyyy\}}"/>
+			<GridViewColumn Header="Image" CellTemplate="{StaticResource DisplayImage}"/>
+		</GridView>
+
+		<Style x:Key="Header1" TargetType="{x:Type TextBlock}">
+			<Setter Property="Foreground" Value="#f0f4" />
+			<Setter Property="Background" Value="#4000" />
+			<Setter Property="Padding" Value="8 0 8 4" />
+			<Setter Property="Margin" Value="6 8" />
+			<Setter Property="FontSize" Value="16" />
+		</Style>
+		<Style TargetType="{x:Type Label}">
+			<!--<Setter Property="Foreground" Value="#fff8" />-->
+			<!--<Setter Property="Padding" Value="8 0 8 4" />-->
+			<!--<Setter Property="Margin" Value="0 20" />-->
+			<!--<Setter Property="FontSize" Value="22" />-->
+		</Style>
+	</Window.Resources>
+
+	<Grid Margin="3">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="257*"/>
+			<ColumnDefinition Width="5" />
+		</Grid.ColumnDefinitions>
+
+
+		<WrapPanel Grid.Row="1" Grid.RowSpan="2" Margin="3" Background="#def">
+			<Button Content="_Load"					Command="{Binding LoadListCmd}" CommandParameter="{Binding ElementName=mainWin}"    IsDefault="True"  />
+			<Button Content="_Exit"					Command="{Binding CloseAppCmd}" CommandParameter="{Binding ElementName=mainWin}"    IsCancel="True"  />
+			<DataGrid x:Name="mediaUnitDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="5" ItemsSource="{Binding PlayList}" SelectedItem="{Binding CurMediaUnit}"
+							EnableRowVirtualization="True" AutoGenerateColumns="False" Grid.RowSpan="2" CanUserAddRows="False">
+				<DataGrid.Columns>
+					<DataGridTextColumn Width="*" Header="Path File Ext Org" Binding="{Binding PathFileExtOrg}" />
+					<!--
+				<DataGridTextColumn Width="SizeToHeader" Header="Path Name" Binding="{Binding PathName}"/>
+				<DataGridTemplateColumn Width="SizeToHeader" Header="Added At">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding AddedAt}"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				<DataGridTextColumn Width="SizeToHeader" Header="Cur Position Sec" Binding="{Binding CurPositionSec}"/>
+				<DataGridTextColumn Width="SizeToHeader" Header="Duration Sec" Binding="{Binding DurationSec}"/>
+				<DataGridTextColumn Width="SizeToHeader" Header="File Hash MD 5" Binding="{Binding FileHashMD5}"/>
+				<DataGridTextColumn Width="SizeToHeader" Header="File Hash Qck" Binding="{Binding FileHashQck}"/>
+				<DataGridTextColumn Width="SizeToHeader" Header="File Length" Binding="{Binding FileLength}"/>
+				<DataGridTextColumn Width="SizeToHeader" Header="File Name" Binding="{Binding FileName}"/>
+				<DataGridTextColumn Width="SizeToHeader" Header="Genre ID" Binding="{Binding GenreID}"/>
+				<DataGridTextColumn Width="SizeToHeader" Header="ID" Binding="{Binding ID}"/>
+				<DataGridTextColumn Width="SizeToHeader" Header="Notes" Binding="{Binding Notes}"/>
+				-->
+				</DataGrid.Columns>
+			</DataGrid>
+		</WrapPanel>
+
+
+
+		<MediaElement Volume="1" Grid.Row="3" x:Name="wmp" Source="{Binding CurMediaUnit.PathFileExtOrg, Mode=OneWay}" LoadedBehavior="Manual" UnloadedBehavior="Manual" Margin="3"/>
+
+		<TextBlock Text="{Binding TopRightTiny, FallbackValue=XAML}" FontSize="8" Background="Transparent" Margin="0,5,0,0"   Style="{StaticResource Header1}" VerticalAlignment="Top"    HorizontalAlignment="Right" Height="15" Width="37"       />
+
+		<Grid Grid.Row="0" Grid.ColumnSpan="2" Visibility="{Binding ChromeVisibility}" Margin="3" >
+			<TextBlock Text="{Binding TopRightInfo, FallbackValue=XAML}"            ToolTip="{Binding CurMediaUnit}"		Style="{StaticResource Header1}" VerticalAlignment="Top"    HorizontalAlignment="Right" Foreground="#00f"  	/>
+			<TextBlock Text="{Binding CurMediaUnit.FileName, FallbackValue=XAML}"		ToolTip="{Binding CurMediaUnit}"		Style="{StaticResource Header1}" VerticalAlignment="Top"    HorizontalAlignment="Left"  Foreground="#00f"  		/>
+		</Grid>
+
+		<Grid Grid.Row="3" Grid.ColumnSpan="2" Visibility="{Binding ChromeVisibility}" Margin="3" >
+			<TextBlock Text="{Binding CurMedUnInfo, FallbackValue=XAML}"						ToolTip="{Binding CurMediaUnit}"		Style="{StaticResource Header1}" VerticalAlignment="Bottom" HorizontalAlignment="Left"  Foreground="#00f"  	 />
+			<TextBlock Text="{Binding BotmRghtInfo, FallbackValue=XAML}"						ToolTip="{Binding CurMediaUnit}"		Style="{StaticResource Header1}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="#00f"  	 />
+
+			<TextBlock Text="{Binding BotmCentrMsg, FallbackValue=Err}" Foreground="#fc8" ToolTip="{Binding CurMediaUnit}"    Style="{StaticResource Header1}" VerticalAlignment="Bottom" HorizontalAlignment="Center"  FontSize="10" TextWrapping="Wrap"  />
+		</Grid>
+
+
+	</Grid>
+</Window>

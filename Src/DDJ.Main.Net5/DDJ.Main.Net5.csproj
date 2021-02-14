@@ -1,0 +1,70 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>DDJ</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\AAV.Shared\Src\Net6.0\AAV.Sys\AAV.Sys.csproj" />
+    <ProjectReference Include="..\..\..\AAV.Shared\Src\Net6.0\AAV.WPF\AAV.WPF.csproj" />
+    <ProjectReference Include="..\Cmn\Common.UI.Lib\Common.UI.Lib.csproj" />
+    <ProjectReference Include="..\DDJ.AudioCompare.Lib.Net5\DDJ.AudioCompare.Lib.Net5.csproj" />
+    <ProjectReference Include="..\DDJ.DB.Net5\DDJ.DB.Net5.csproj" />
+    <ProjectReference Include="..\DDJ\DDJ.AudioCompare.App.Net5\DDJ.AudioCompare.App.Net5.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Expression.Controls">
+      <HintPath>..\..\..\..\Users\alexp\OneDrive\Public\bin\ScrSvr\Microsoft.Expression.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Drawing">
+      <HintPath>..\..\..\..\Users\alexp\OneDrive\Public\bin\ScrSvr\Microsoft.Expression.Drawing.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\KeyViewer.xaml.cs">
+      <DependentUpon>KeyViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MainPlayerView.xaml.cs">
+      <DependentUpon>MainPlayerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MainPlayerViewDev.xaml.cs">
+      <DependentUpon>MainPlayerViewDev.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MediaTunerPopup.xaml.cs">
+      <DependentUpon>MediaTunerPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\xPositionCircularSlider.xaml.cs">
+      <DependentUpon>xPositionCircularSlider.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\xUcPositionCircularSlider.xaml.cs">
+      <DependentUpon>xUcPositionCircularSlider.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\KeyViewer.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\MainPlayerView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\MainPlayerViewDev.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\MediaTunerPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\xPositionCircularSlider.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\xUcPositionCircularSlider.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,75 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\..\..\c\AsLink\DB\DbSaveMsgBox.cs" Link="AsLink\DbSaveMsgBox.cs" />
+    <Compile Include="..\..\..\AAV.Shared\Src\AsLink\Ext.DbContext.cs" Link="AsLink\Ext.DbContext.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="AudioCompareMain.xaml.cs">
+      <DependentUpon>AudioCompareMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="MediaPlayerInfoUserControl.xaml.cs">
+      <DependentUpon>MediaPlayerInfoUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="RenameDialog.xaml.cs">
+      <DependentUpon>RenameDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="UserControl1.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Window2.xaml.cs">
+      <DependentUpon>Window2.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="zTestWindow2.xaml.cs">
+      <DependentUpon>zTestWindow2.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="AudioCompareMain.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MediaPlayerInfoUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="RenameDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControl1.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Window1.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Window2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="zTestWindow2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="AsLink\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\AAV.Shared\Src\Net6.0\AAV.Sys\AAV.Sys.csproj" />
+    <ProjectReference Include="..\DDJ.DB.Net5\DDJ.DB.Net5.csproj" />
+  </ItemGroup>
+
+</Project>

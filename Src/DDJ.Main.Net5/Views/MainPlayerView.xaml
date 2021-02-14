@@ -1,0 +1,462 @@
+﻿<Window x:Class="DDJ.Main.Views.MainPlayerView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Views="clr-namespace:Common.UI.Lib.Views;assembly=Common.UI.Lib" 
+        Title="{Binding Window_Title}" Height="360" Width="840" x:Name="mainWin" Left="10" Top="680"
+				Background="Transparent" AllowsTransparency="True" WindowStyle="None" ResizeMode="CanResizeWithGrip"
+				xmlns:AsLink="clr-namespace:AsLink" >
+  <Window.TaskbarItemInfo>
+    <TaskbarItemInfo ProgressValue="{Binding MUProgressPerc}" ProgressState="{Binding MUProgressState, FallbackValue=None}" />
+  </Window.TaskbarItemInfo>
+  <Window.InputBindings>
+    <KeyBinding   Command="{Binding CloseAppCmd}"			CommandParameter="{Binding ElementName=mainWin}" Key="{Binding CloseAppCmd.GestureKey}" Modifiers="{Binding CloseAppCmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding LoadListCmd}"			CommandParameter="{Binding ElementName=mainWin}" Key="{Binding LoadListCmd.GestureKey}" Modifiers="{Binding LoadListCmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding TglPlayPauseCmd}" CommandParameter="{Binding ElementName=mainWin}" Key="{Binding TglPlayPauseCmd.GestureKey}" Modifiers="{Binding TglPlayPauseCmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding TglPlayPausACmd}" CommandParameter="{Binding ElementName=mainWin}" Key="{Binding TglPlayPausACmd.GestureKey}" Modifiers="{Binding TglPlayPausACmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding TglPlayPausCCmd}" CommandParameter="{Binding ElementName=mainWin}" Key="{Binding TglPlayPausCCmd.GestureKey}" Modifiers="{Binding TglPlayPausCCmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding TglPlayPausBCmd}" CommandParameter="{Binding ElementName=mainWin}" Key="{Binding TglPlayPausBCmd.GestureKey}" Modifiers="{Binding TglPlayPausBCmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding MoveNextCmd}"			CommandParameter="{Binding ElementName=mainWin}" Key="{Binding MoveNextCmd.GestureKey}" Modifiers="{Binding MoveNextCmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding MovePrevCmd}"			CommandParameter="{Binding ElementName=mainWin}" Key="{Binding MovePrevCmd.GestureKey}" Modifiers="{Binding MovePrevCmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding JumpNextCmd}"			CommandParameter="{Binding ElementName=mainWin}" Key="{Binding JumpNextCmd.GestureKey}" Modifiers="{Binding JumpNextCmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding JumpPrevCmd}"			CommandParameter="{Binding ElementName=mainWin}" Key="{Binding JumpPrevCmd.GestureKey}" Modifiers="{Binding JumpPrevCmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding FsToDbCmd}"				CommandParameter="{Binding ElementName=mainWin}" Key="{Binding FsToDbCmd.GestureKey}" Modifiers="{Binding FsToDbCmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding MoveToEndCmd}"		CommandParameter="{Binding ElementName=mainWin}" Key="{Binding MoveToEndCmd.GestureKey}" Modifiers="{Binding MoveToEndCmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding MoveToStartCmd}"	CommandParameter="{Binding ElementName=mainWin}" Key="{Binding MoveToStartCmd.GestureKey}" Modifiers="{Binding MoveToStartCmd.GestureModifier}" />
+
+    <KeyBinding   Command="{Binding BackToStartPosnCmd}" CommandParameter="{Binding ElementName=mainWin}" Key="{Binding BackToStartPosnCmd.GestureKey}" Modifiers="{Binding BackToStartPosnCmd.GestureModifier}" />
+
+    <KeyBinding   Command="{Binding MoveLefNCommand}" CommandParameter="{Binding ElementName=mainWin}" Key="{Binding MoveLefNCommand.GestureKey}" Modifiers="{Binding MoveLefNCommand.GestureModifier}" />
+    <KeyBinding   Command="{Binding MoveRghNCommand}" CommandParameter="{Binding ElementName=mainWin}" Key="{Binding MoveRghNCommand.GestureKey}" Modifiers="{Binding MoveRghNCommand.GestureModifier}" />
+    <KeyBinding   Command="{Binding MoveLefCCommand}" CommandParameter="{Binding ElementName=mainWin}" Key="{Binding MoveLefCCommand.GestureKey}" Modifiers="{Binding MoveLefCCommand.GestureModifier}" />
+    <KeyBinding   Command="{Binding MoveRghCCommand}" CommandParameter="{Binding ElementName=mainWin}" Key="{Binding MoveRghCCommand.GestureKey}" Modifiers="{Binding MoveRghCCommand.GestureModifier}" />
+    <KeyBinding   Command="{Binding MoveLefACommand}" CommandParameter="{Binding ElementName=mainWin}" Key="{Binding MoveLefACommand.GestureKey}" Modifiers="{Binding MoveLefACommand.GestureModifier}" />
+    <KeyBinding   Command="{Binding MoveRghACommand}" CommandParameter="{Binding ElementName=mainWin}" Key="{Binding MoveRghACommand.GestureKey}" Modifiers="{Binding MoveRghACommand.GestureModifier}" />
+    <KeyBinding   Command="{Binding MoveLefSCommand}" CommandParameter="{Binding ElementName=mainWin}" Key="{Binding MoveLefSCommand.GestureKey}" Modifiers="{Binding MoveLefSCommand.GestureModifier}" />
+    <KeyBinding   Command="{Binding MoveRghSCommand}" CommandParameter="{Binding ElementName=mainWin}" Key="{Binding MoveRghSCommand.GestureKey}" Modifiers="{Binding MoveRghSCommand.GestureModifier}" />
+
+    <KeyBinding   Command="{Binding AddHateCmd}"			CommandParameter="{Binding ElementName=mainWin}" Key="{Binding AddHateCmd.GestureKey}" Modifiers="{Binding AddHateCmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding AddLikeCmd}"			CommandParameter="{Binding ElementName=mainWin}" Key="{Binding AddLikeCmd.GestureKey}" Modifiers="{Binding AddLikeCmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding Delete0Cmd}"			CommandParameter="{Binding ElementName=mainWin}" Key="{Binding Delete0Cmd.GestureKey}" Modifiers="{Binding Delete0Cmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding VolumeTglCmd}"		CommandParameter="{Binding ElementName=mainWin}" Key="{Binding VolumeTglCmd.GestureKey}" Modifiers="{Binding VolumeTglCmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding SeeDupesCmd}"		CommandParameter="{Binding ElementName=mainWin}" Key="{Binding SeeDupesCmd.GestureKey}" Modifiers="{Binding SeeDupesCmd.GestureModifier}" />
+
+    <KeyBinding   Command="{Binding TglGenre1Cmd}" CommandParameter="1" Key="{Binding TglGenre1Cmd.GestureKey}" Modifiers="{Binding TglGenre1Cmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding TglGenre2Cmd}" CommandParameter="2" Key="{Binding TglGenre2Cmd.GestureKey}" Modifiers="{Binding TglGenre2Cmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding TglGenre3Cmd}" CommandParameter="3" Key="{Binding TglGenre3Cmd.GestureKey}" Modifiers="{Binding TglGenre3Cmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding TglGenre4Cmd}" CommandParameter="4" Key="{Binding TglGenre4Cmd.GestureKey}" Modifiers="{Binding TglGenre4Cmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding TglGenre5Cmd}" CommandParameter="5" Key="{Binding TglGenre5Cmd.GestureKey}" Modifiers="{Binding TglGenre5Cmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding TglGenre6Cmd}" CommandParameter="6" Key="{Binding TglGenre6Cmd.GestureKey}" Modifiers="{Binding TglGenre6Cmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding TglGenre7Cmd}" CommandParameter="7" Key="{Binding TglGenre7Cmd.GestureKey}" Modifiers="{Binding TglGenre7Cmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding TglGenre8Cmd}" CommandParameter="8" Key="{Binding TglGenre8Cmd.GestureKey}" Modifiers="{Binding TglGenre8Cmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding TglGenre9Cmd}" CommandParameter="9" Key="{Binding TglGenre9Cmd.GestureKey}" Modifiers="{Binding TglGenre9Cmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding TglGenreACmd}" CommandParameter="10" Key="{Binding TglGenreACmd.GestureKey}" Modifiers="{Binding TglGenreACmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding TglGenreBCmd}" CommandParameter="11" Key="{Binding TglGenreBCmd.GestureKey}" Modifiers="{Binding TglGenreBCmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding TglGenreCCmd}" CommandParameter="12" Key="{Binding TglGenreCCmd.GestureKey}" Modifiers="{Binding TglGenreCCmd.GestureModifier}" />
+
+    <KeyBinding   Command="{Binding SetGenre1Cmd}" CommandParameter="1" Key="{Binding SetGenre1Cmd.GestureKey}" Modifiers="{Binding SetGenre1Cmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding SetGenre2Cmd}" CommandParameter="2" Key="{Binding SetGenre2Cmd.GestureKey}" Modifiers="{Binding SetGenre2Cmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding SetGenre3Cmd}" CommandParameter="3" Key="{Binding SetGenre3Cmd.GestureKey}" Modifiers="{Binding SetGenre3Cmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding SetGenre4Cmd}" CommandParameter="4" Key="{Binding SetGenre4Cmd.GestureKey}" Modifiers="{Binding SetGenre4Cmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding SetGenre5Cmd}" CommandParameter="5" Key="{Binding SetGenre5Cmd.GestureKey}" Modifiers="{Binding SetGenre5Cmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding SetGenre6Cmd}" CommandParameter="6" Key="{Binding SetGenre6Cmd.GestureKey}" Modifiers="{Binding SetGenre6Cmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding SetGenre7Cmd}" CommandParameter="7" Key="{Binding SetGenre7Cmd.GestureKey}" Modifiers="{Binding SetGenre7Cmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding SetGenre8Cmd}" CommandParameter="8" Key="{Binding SetGenre8Cmd.GestureKey}" Modifiers="{Binding SetGenre8Cmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding SetGenre9Cmd}" CommandParameter="9" Key="{Binding SetGenre9Cmd.GestureKey}" Modifiers="{Binding SetGenre9Cmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding SetGenreACmd}" CommandParameter="10" Key="{Binding SetGenreACmd.GestureKey}" Modifiers="{Binding SetGenreACmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding SetGenreBCmd}" CommandParameter="11" Key="{Binding SetGenreBCmd.GestureKey}" Modifiers="{Binding SetGenreBCmd.GestureModifier}" />
+    <KeyBinding   Command="{Binding SetGenreCCmd}" CommandParameter="12" Key="{Binding SetGenreCCmd.GestureKey}" Modifiers="{Binding SetGenreCCmd.GestureModifier}" />
+  </Window.InputBindings>
+  <Window.Resources>
+
+    <DataTemplate x:Key="centralTile">
+      <Grid>
+        <StackPanel Height="130" Width="110">
+          <Image Width="90" Height="90" Source="{Binding File}" Margin="3 0" ToolTipService.ShowDuration="29000" >
+            <Image.ToolTip>
+              <Image Source="{Binding File}" />
+            </Image.ToolTip>
+          </Image>
+          <TextBlock Foreground="#ff0" FontSize="10" Text="{Binding Time, StringFormat=\{0:dd MMMyyyy \}}" HorizontalAlignment="Center" />
+          <TextBlock Foreground="#ff0" FontSize="10" Text="{Binding Time, StringFormat=\{0:HH:mm\}}" HorizontalAlignment="Center" />
+          <TextBlock Foreground="#ff0" FontSize="8"  Text="{Binding File}" HorizontalAlignment="Center" />
+        </StackPanel>
+        <TextBlock Foreground="#f00" FontSize="11"  Text="{Binding Eval}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+      </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="iconTemplate">
+      <DockPanel Height="33" Width="150">
+        <Image Source="{Binding File}" Margin="2"/>
+        <TextBlock DockPanel.Dock="Top" Text="{Binding File}" FontSize="13" HorizontalAlignment="Left" Margin="0,0,0,1" />
+      </DockPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="checkbox">
+      <CheckBox IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}" Margin="0,1,1,1" />
+    </DataTemplate>
+    <DataTemplate x:Key="DisplayImage">
+      <StackPanel Width="50">
+        <Image Source="{Binding File}"/>
+      </StackPanel>
+    </DataTemplate>
+    <GridView x:Key="gridView">
+      <GridViewColumn CellTemplate="{StaticResource checkbox}"/>
+      <GridViewColumn Header="File" DisplayMemberBinding="{Binding File}"/>
+      <GridViewColumn Header="Time" DisplayMemberBinding="{Binding Time, StringFormat=\{0:dd/MMM/yyyy\}}"/>
+      <GridViewColumn Header="Image" CellTemplate="{StaticResource DisplayImage}"/>
+    </GridView>
+
+    <Style x:Key="CornerInfoStyle" TargetType="{x:Type TextBlock}">
+      <Setter Property="Foreground"       Value="#0af" />
+      <Setter Property="Padding"          Value="8 0 8 0" />
+      <Setter Property="Margin"           Value="4" />
+      <Setter Property="FontSize"         Value="24" />
+      <Setter Property="Grid.ColumnSpan"  Value="2" />
+    </Style>
+    <Style x:Key="Tbk" TargetType="{x:Type TextBlock}">
+      <Setter Property="Foreground" Value="#F80" />
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="Margin" Value="9 6" />
+    </Style>
+    <Style TargetType="{x:Type TextBlock}">
+      <Setter Property="Foreground" Value="#0af" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+      <!--<Setter Property="Background" Value="#ccc" /><Setter Property="Padding" Value="8 0 8 0" />			<Setter Property="Margin" Value="0" />
+			-->
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="FontWeight" Value="Medium" />
+    </Style>
+    <Style TargetType="{x:Type Label}">
+      <Setter Property="HorizontalAlignment" Value="Right" />
+      <Setter Property="Foreground" Value="#777" />
+      <!--<Setter Property="Padding" Value="8 0 8 4" />-->
+      <Setter Property="Margin" Value="20 0 0 0" />
+      <!--<Setter Property="FontSize" Value="22" />-->
+    </Style>
+    <Style TargetType="{x:Type Button}">
+      <Setter Property="Margin" Value="6 0 0 0" />
+      <Setter Property="Width" Value="55" />
+    </Style>
+    <Style TargetType="CheckBox">
+      <Setter Property="Background" Value="#aaa" />
+      <Setter Property="Foreground" Value="Orange" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+      <Setter Property="Margin" Value="12 3 3 3" />
+    </Style>
+    <Style TargetType="TextBox">
+      <Setter Property="Foreground" Value="#fff" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <!--http://msdn.microsoft.com/en-us/library/vstudio/ms752289(v=vs.90).aspx-->
+    <Style TargetType="Separator">
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type Separator}">
+            <Border Width="2" Height="12" Margin="4" Background="Gray"/>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style TargetType="ListBox">
+      <Setter Property="ItemsPanel">
+        <Setter.Value>
+          <ItemsPanelTemplate>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+          </ItemsPanelTemplate>
+        </Setter.Value>
+      </Setter>
+      <Setter Property="Foreground" Value="#0af" />
+    </Style>
+
+    <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
+      <Setter Property="VerticalAlignment" Value="Center" />
+      <Setter Property="Foreground"		Value="Orange" />
+      <Setter Property="Background"		Value="#444" />
+      <Setter Property="BorderBrush"	Value="#333" />
+    </Style>
+
+    <Style x:Key="CenterAlignStyle" TargetType="{x:Type TextBlock}">
+      <Setter Property="TextAlignment" Value="Center" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+    <Style x:Key="RightAlignStyle" TargetType="{x:Type TextBlock}">
+      <Setter Property="TextAlignment" Value="Right"  />
+      <Setter Property="Margin" Value="6 0"  />
+    </Style>
+
+  </Window.Resources>
+  <Border CornerRadius="11 11 2 11" BorderThickness="8" BorderBrush="#4000" >
+    <Grid Margin="-3">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+
+      <Border Grid.Row="0" CornerRadius="6" BorderThickness="1" BorderBrush="#555" Background="#111" Margin="3" >
+        <Grid Margin="0" VerticalAlignment="Top" >
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="111"/>
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+          </Grid.RowDefinitions>
+
+          <TextBlock Text="{Binding CurMediaUnit.FileName, FallbackValue='File Name.MP4'}" Style="{StaticResource CornerInfoStyle}" />
+          <TextBlock Text="{Binding CurMedUnInfo,          FallbackValue=22:22}"	         Style="{StaticResource CornerInfoStyle}" HorizontalAlignment="Right" Foreground="Orange" />
+
+          <StackPanel Orientation="Horizontal" Margin="0,8,100,7" HorizontalAlignment="Right" Grid.ColumnSpan="1" >
+            <Label Content="_U:" Target="{Binding ElementName=cb5}" />
+            <ComboBox MinWidth="40" Background="Transparent" BorderBrush="#333" ItemsSource="{Binding TrgFolders, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding TrgFolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"	x:Name="cb5"/>
+            <TextBox  MinWidth="40" Background="Transparent" BorderBrush="#333" Text="{Binding TrgFolder, UpdateSourceTrigger=PropertyChanged}"					/>
+          </StackPanel>
+
+          <Grid   Grid.Row="2" DataContext="{Binding CurMediaUnit}" >
+            <TextBlock											Text="{Binding PathName, FallbackValue='M:\\RP\\Alla\\'}"  Width="324" Margin="10 0" HorizontalAlignment="Left" FontSize="14"/>
+            <WrapPanel   Grid.Row="2" HorizontalAlignment="Right">
+              <TextBlock											Text="{Binding FileLength, StringFormat='{}{0:N2}', FallbackValue='2.45', Converter={AsLink:MultiplierConverter MultiplyBy=0.000001}}" />
+              <Label Content="Mb       Added"  Margin="0"					/>
+              <TextBlock											Text="{Binding AddedAt, StringFormat={}{0:yyyy-MM-dd}, FallbackValue=2100-12-31}" />
+
+              <!--<Label Content="Posn/Duration (s)" />
+						<TextBlock											Text="{Binding CurPositionSec, StringFormat={}{0:N0}}" />
+						<TextBlock											Text=" / " 			/>
+						<TextBlock											Text="{Binding DurationSec, StringFormat={}{0:N0}}" />-->
+
+              <!--<Label Content="Hash MD5/Qck" />
+						<TextBlock											Text="{Binding FileHashMD5}" />
+						<TextBlock											Text=" / " 			/>
+						<TextBlock											Text="{Binding FileHashQck}" />-->
+            </WrapPanel>
+          </Grid>
+
+
+          <Grid Grid.Row="3" >
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label Content="_Notes" Target="{Binding ElementName=cbN}" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top" Margin="-10,29,0,0" HorizontalAlignment="Left" >
+              <Label.RenderTransform>
+                <TransformGroup>
+                  <ScaleTransform/>
+                  <SkewTransform/>
+                  <RotateTransform Angle="-90"/>
+                  <TranslateTransform/>
+                </TransformGroup>
+              </Label.RenderTransform>
+            </Label>
+
+            <TextBox x:Name="cbN" Text="{Binding CurMediaUnit.Notes, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Background="#2000" BorderBrush="#333" TextWrapping="Wrap" Margin="21,0,0,5" />
+            <TextBlock            Text="{Binding IniPosn, StringFormat={}{0:N1}, FallbackValue=11.1}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="6" Foreground="#8cf" />
+
+            <StackPanel Margin="21,0,0,0" Background="#2ff0" Visibility="Collapsed">
+            </StackPanel>
+
+            <WrapPanel Grid.Column="1" Orientation="Horizontal" Width="175" HorizontalAlignment="Right" >
+
+              <Label Content="Genre" 	Target="{Binding ElementName=cbg}" VerticalAlignment="Center" Margin="0 -2"/>
+              <TextBlock Text="{Binding CurMediaUnit.GenreID, FallbackValue=5}"						Style="{StaticResource CornerInfoStyle}" VerticalAlignment="Center" Width="30" />
+              <ComboBox ItemsSource="{Binding Genres}" Width="100" x:Name="cbg" DisplayMemberPath="Name" SelectedValue="{Binding Path=CurMediaUnit.GenreID}" SelectedValuePath="ID" VerticalAlignment="Top" Margin="0 8" />
+
+              <Label Width="61" Margin="0 0 0 0" Content="Listeners:" />
+              <CheckBox IsChecked="{Binding UserA}" Content="Al_x" Width="40" />
+              <CheckBox IsChecked="{Binding UserM}" Content="_Mei" Width="40" />
+              <Label Width="61" Margin="0 26 0 0" />
+              <CheckBox IsChecked="{Binding UserN}" Content="_Ndn" Width="40" />
+              <CheckBox IsChecked="{Binding UserZ}" Content="_Zoe" Width="40" />
+
+              <!--				<Label Content="PathFileExt:"		Grid.Column="0" Grid.Row="1" />				<TextBlock											Grid.Column="1" Grid.Row="1" Text="{Binding PathFileExtOrg, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />				<Label Content="ID:"						Grid.Column="0" Grid.Row="8" />				<TextBlock											Grid.Column="1" Grid.Row="8" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />			-->
+            </WrapPanel>
+          </Grid>
+
+          <Views:ucProgressArcSec Grid.ColumnSpan="2" Grid.RowSpan="4" Height="200" Width="200" Margin="0 -10 0 -20"
+																	PrgDuratSec="{Binding CurMediaUnit.DurationSec, FallbackValue=180}" 
+																	PrgPositSec="{Binding VMPosn, Mode=TwoWay, FallbackValue=125}" />
+
+          <TextBlock Text="{Binding BotmRghtInfo}"						Style="{StaticResource CornerInfoStyle}" HorizontalAlignment="Right"  	Grid.Row="3" VerticalAlignment="Bottom" />
+
+          <DataGrid AutoGenerateColumns="False" Grid.Column="1" Grid.Row="2" Grid.RowSpan="4" EnableRowVirtualization="True" ItemsSource="{Binding CurMediaUnit.MuAuditions}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5 1 3 1" 
+								CanUserAddRows="False" CanUserDeleteRows="False" GridLinesVisibility="None" Foreground="#aaa" Background="#141414" HeadersVisibility="None" SelectionMode="Single" BorderThickness="1 0 0 0" BorderBrush="#444" RowBackground="#121212" 
+										AlternatingRowBackground="#101010" MinHeight="102">
+            <DataGrid.Columns>
+              <DataGridTextColumn Binding="{Binding DoneAt, StringFormat={}{0:yyyy-MM-dd}}" Header="At" />
+              <DataGridTextColumn Binding="{Binding DoneBy}" Header="By" Width="*"/>
+              <!--				<DataGridTextColumn Binding="{Binding PartyMode}" Header="IsParty" />				<DataGridTextColumn Binding="{Binding ID}" Header="ID" Width="SizeToHeader"/>				<DataGridTextColumn Binding="{Binding MediaUnitID}" Header="Media Unit ID" Width="SizeToHeader"/>-->
+            </DataGrid.Columns>
+          </DataGrid>
+
+        </Grid>
+      </Border>
+
+      <ProgressBar Grid.Row="1" Maximum="{Binding CurMediaUnit.DurationSec}" Value="{Binding VMPosn, FallbackValue=33}" Minimum="0" Height="6" Margin="7 -3" BorderThickness="0" Background="#1555" />
+
+      <Border Grid.Row="2" CornerRadius="6 6 2 6" BorderThickness="1" BorderBrush="#555" Background="#111" Margin="3">
+        <Grid Margin="0" VerticalAlignment="Top" >
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+          </Grid.RowDefinitions>
+
+          <MediaElement Volume="1"   Source="{Binding CurMediaUnit.PathFileExtOrg}" Grid.RowSpan="3" x:Name="wmp" LoadedBehavior="Manual" UnloadedBehavior="Manual" Margin="22" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+
+          <WrapPanel Margin="3" >
+            <CheckBox IsChecked="{Binding AutoStart}" Content="_Auto" ToolTip="Auto start on Loaded" />
+            <CheckBox IsChecked="{Binding LastPiece}" Content="_Last" ToolTip="Stop playing at the end"/>
+
+            <Label Content="_F:" Target="{Binding ElementName=tbf}" ToolTip="Filter"/>
+            <TextBox  Text="{Binding StringFilter, UpdateSourceTrigger=PropertyChanged}" MinWidth="44" x:Name="tbf" Background="#222" BorderBrush="#333" Foreground="#eee" />
+
+            <Label Content="_Rnd:" Target="{Binding ElementName=cbr}" ToolTip="Randomisation in days" />
+            <ComboBox Text="{Binding AddRandomDay}"  x:Name="cbr" IsEditable="True" IsReadOnly="True"  >
+              <ComboBoxItem >0</ComboBoxItem>
+              <ComboBoxItem >100</ComboBoxItem>
+              <ComboBoxItem >10000</ComboBoxItem>
+              <ComboBoxItem >999111</ComboBoxItem>
+            </ComboBox>
+
+            <Label Content="_PL:"   Target="{Binding ElementName=cbl}"  ToolTip="Playlist length"/>
+            <ComboBox Text="{Binding PlaylilstLen}" x:Name="cbl" IsEditable="True" IsReadOnly="True"  >
+              <ComboBoxItem >4</ComboBoxItem>
+              <ComboBoxItem >8</ComboBoxItem>
+              <ComboBoxItem >16</ComboBoxItem>
+              <ComboBoxItem >64</ComboBoxItem>
+              <ComboBoxItem >256</ComboBoxItem>
+              <ComboBox.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#555" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#999" />
+              </ComboBox.Resources>
+            </ComboBox>
+
+            <Label Content="Genre:"  Target="{Binding ElementName=cbG}" />
+            <ListBox	ItemsSource="{Binding GenreFilter}" x:Name="cbG"  DisplayMemberPath="Name" SelectedValue="{Binding Path=CurGenre}" ToolTip="{Binding Path=CurGenre.Desc}" BorderThickness="1" Background="#222" />
+          </WrapPanel>
+          <Rectangle HorizontalAlignment="Stretch" Fill="#555" Height="2" Grid.Row="1" />
+          <DataGrid Margin="0 3" ItemsSource="{Binding PlayList}" SelectedItem="{Binding CurMediaUnit}" Grid.Row="2"  MinHeight="44"
+										EnableRowVirtualization="True" AutoGenerateColumns="False" Grid.RowSpan="2" 
+										Foreground="#aaa" RowBackground="#2000" Background="Transparent" 
+										AlternatingRowBackground="#1000" CanUserAddRows="False" CanUserDeleteRows="False" GridLinesVisibility="None" 
+										HeadersVisibility="Column" SelectionMode="Single" BorderThickness="0" >
+            <DataGrid.Columns>
+              <DataGridTextColumn Header="Pos"  Binding="{Binding PositionTS, StringFormat='{}{0:h\\:mm\\:ss}'}"		IsReadOnly="True" ElementStyle="{StaticResource RightAlignStyle}" Foreground="#880" />
+              <DataGridTextColumn Header="Dur"  Binding="{Binding DurationTS,	StringFormat='{}{0:h\\:mm\\:ss}'}"		IsReadOnly="True" ElementStyle="{StaticResource RightAlignStyle}" />
+              <DataGridTextColumn Header="File" Binding="{Binding PathFileExtOrg}" Width="*"									IsReadOnly="True" />
+              <DataGridTextColumn Header="Del"  Binding="{Binding DeletedAt,	StringFormat='{}{0:yyyy-MM}'}"	IsReadOnly="True" ElementStyle="{StaticResource RightAlignStyle}" />
+              <DataGridTextColumn Header="Aud"	Binding="{Binding MuAuditions.Count}"													IsReadOnly="True" />
+              <!--				<DataGridTextColumn Header="Path Name" Binding="{Binding PathName}"/>				<DataGridTemplateColumn Header="Added At">					<DataGridTemplateColumn.CellTemplate>						<DataTemplate>							<TextBlock Text="{Binding AddedAt}"/>						</DataTemplate>					</DataGridTemplateColumn.CellTemplate>				</DataGridTemplateColumn>				<DataGridTextColumn Header="Cur Position Sec" Binding="{Binding CurPositionSec}"/>				<DataGridTextColumn Header="Duration Sec" Binding="{Binding DurationSec}"/>				<DataGridTextColumn Header="File Hash MD 5" Binding="{Binding FileHashMD5}"/>				<DataGridTextColumn Header="File Hash Qck" Binding="{Binding FileHashQck}"/>				<DataGridTextColumn Header="File Length" Binding="{Binding FileLength}"/>				<DataGridTextColumn Header="File Name" Binding="{Binding FileName}"/>				<DataGridTextColumn Header="Genre ID" Binding="{Binding GenreID}"/>				<DataGridTextColumn Header="ID" Binding="{Binding ID}"/>				-->
+            </DataGrid.Columns>
+          </DataGrid>
+
+          <!--<TextBlock Text="Loading..." FontSize="55" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" />-->
+        </Grid>
+      </Border>
+
+      <StackPanel Grid.Row="2" Margin="0,12, 9,0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" >
+        <Button Content="_Keys"		Click="onClick1" ToolTip="Key viewer popup" />
+        <Button Content="_/Arc"		Click="onClick2" ToolTip="xPositionCircularSlider" Name="bFcs"/>
+        <Button Content="F_ocus"	Click="onClick3" ToolTip="Where is focus?" />
+        <Button Content="Load"	Command="{Binding LoadListCmd}" CommandParameter="{Binding ElementName=mainWin}"    IsDefault="True" />
+        <Button Content="_Dupe"	Command="{Binding SeeDupesCmd}" CommandParameter="{Binding ElementName=mainWin}"    ToolTip="Process duplicates in a separatre window"/>
+      </StackPanel>
+
+      <TextBlock Text="{Binding TopRightTiny, FallbackValue=XAML}" FontSize="9" Style="{StaticResource CornerInfoStyle}" VerticalAlignment="Top"    HorizontalAlignment="Right" Margin="0,-7,82,0" Foreground="#06f" FontWeight="Bold" />
+
+
+      <Grid Grid.Row="2" Margin="3" />
+
+      <!--<GridSplitter Grid.Column="0" Grid.RowSpan="6" Background="Transparent" Width="12" Margin="0,0,24,0"  />
+			<GridSplitter Grid.Row="1" Background="Transparent" Margin="0,0,0,13" Grid.RowSpan="2" Width="0" />-->
+
+
+      <TextBlock Text="{Binding TopLefttInfo, FallbackValue=TopLefttInfo}"	HorizontalAlignment="Left" VerticalAlignment="Bottom"  Grid.Row="2" Style="{StaticResource Tbk}" />
+      <TextBlock Text="{Binding ExceptionMsg, FallbackValue=ExceptionMsg}"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2" Style="{StaticResource Tbk}" />
+
+      <Menu VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,-7,0,0" Background="#8000" Foreground="#ccc">
+        <Menu.Resources>
+          <Style TargetType="MenuItem">
+            <Setter Property="Foreground" Value="#00f" />
+          </Style>
+        </Menu.Resources>
+        <MenuItem Header="_Command" Foreground="#ccc" >
+          <MenuItem Header="_Play / Pause  " Command="{Binding TglPlayPauseCmd}"	InputGestureText="Ctrl+Space" CommandParameter="{Binding ElementName=mainWin}" />
+          <MenuItem Header="_Re-Load       " Command="{Binding LoadListCmd}"			InputGestureText="Ctrl+L"			CommandParameter="{Binding ElementName=mainWin}" />
+          <Separator/>
+          <MenuItem Header="_Tgl Volume    " Command="{Binding VolumeTglCmd}"			InputGestureText="Alt+Q"			CommandParameter="{Binding ElementName=mainWin}" IsCheckable="True" />
+          <MenuItem Header="_Show Dupes    " Command="{Binding SeeDupesCmd}"			InputGestureText="Alt+D"			CommandParameter="{Binding ElementName=mainWin}" />
+          <Separator/>
+          <MenuItem Header="Move to End    " Command="{Binding MoveToEndCmd}"			InputGestureText="End" 				CommandParameter="{Binding ElementName=mainWin}" />
+          <MenuItem Header="Move to Start  " Command="{Binding MoveToStartCmd}"		InputGestureText="Start" 			CommandParameter="{Binding ElementName=mainWin}" />
+
+          <MenuItem Command="{Binding BackToStartPosnCmd}" CommandParameter="{Binding ElementName=mainWin}"  Header="_Back to Start Position" InputGestureText="Ctrl+A"			/>
+
+          <MenuItem Header="_Audible Reports" IsCheckable="True" IsChecked="{Binding AudioRprtg}" />
+
+          <MenuItem Header="_Jump">
+            <MenuItem Command="{Binding MoveLefNCommand}" CommandParameter="{Binding ElementName=mainWin}"  Header="_LefN"/>
+            <MenuItem Command="{Binding MoveRghNCommand}" CommandParameter="{Binding ElementName=mainWin}"  Header="_RghN"/>
+            <MenuItem Command="{Binding MoveLefCCommand}" CommandParameter="{Binding ElementName=mainWin}"  Header="_LefC"/>
+            <MenuItem Command="{Binding MoveRghCCommand}" CommandParameter="{Binding ElementName=mainWin}"  Header="_RghC"/>
+            <MenuItem Command="{Binding MoveLefACommand}" CommandParameter="{Binding ElementName=mainWin}"  Header="_LefA"/>
+            <MenuItem Command="{Binding MoveRghACommand}" CommandParameter="{Binding ElementName=mainWin}"  Header="_RghA"/>
+            <MenuItem Command="{Binding MoveLefSCommand}" CommandParameter="{Binding ElementName=mainWin}"  Header="_LefS"/>
+            <MenuItem Command="{Binding MoveRghSCommand}" CommandParameter="{Binding ElementName=mainWin}"  Header="_RghS"/>
+          </MenuItem>
+
+          <Separator/>
+          <MenuItem Header="_Liked         " Command="{Binding AddLikeCmd}"				InputGestureText="+"					CommandParameter="{Binding ElementName=mainWin}" />
+          <MenuItem Header="_Hated         " Command="{Binding AddHateCmd}"				InputGestureText="-"					CommandParameter="{Binding ElementName=mainWin}" />
+          <MenuItem Header="_Delete        " Command="{Binding Delete0Cmd}"				InputGestureText="Delete"			CommandParameter="{Binding ElementName=mainWin}" />
+          <Separator/>
+          <MenuItem Header="_FS to DB      " Command="{Binding FsToDbCmd}"				InputGestureText="Alt+Ctrl+S"	CommandParameter="{Binding ElementName=mainWin}" />
+          <Separator/>
+          <MenuItem Header="_MoveNextCmd   " Command="{Binding MoveNextCmd}"			CommandParameter="{Binding ElementName=mainWin}" />
+          <MenuItem Header="_MovePrevCmd   " Command="{Binding MovePrevCmd}"			CommandParameter="{Binding ElementName=mainWin}" />
+          <MenuItem Header="_JumpNextCmd   " Command="{Binding JumpNextCmd}"			CommandParameter="{Binding ElementName=mainWin}" />
+          <MenuItem Header="_JumpPrevCmd   " Command="{Binding JumpPrevCmd}"			CommandParameter="{Binding ElementName=mainWin}" />
+          <Separator/>
+          <MenuItem Header="Close App _x   " Command="{Binding CloseAppCmd}"			CommandParameter="{Binding ElementName=mainWin}" InputGestureText="Ctrl+X" />
+        </MenuItem>
+        <MenuItem Header="_Select Genre" Foreground="#ccc">
+          <MenuItem Header="New				" Command="{Binding TglGenre1Cmd}"			CommandParameter="1" IsCheckable="True" InputGestureText="F1" />
+          <MenuItem Header="All				" Command="{Binding TglGenre2Cmd}"			CommandParameter="2" IsCheckable="True" InputGestureText="F2" />
+          <MenuItem Header="Night			" Command="{Binding TglGenre3Cmd}"			CommandParameter="3" IsCheckable="True" InputGestureText="F3" />
+          <MenuItem Header="Evening   " Command="{Binding TglGenre4Cmd}"			CommandParameter="4" IsCheckable="True" InputGestureText="F4" />
+          <MenuItem Header="Day				" Command="{Binding TglGenre5Cmd}"			CommandParameter="5" IsCheckable="True" InputGestureText="F5" />
+          <MenuItem Header="Crazy			" Command="{Binding TglGenre6Cmd}"			CommandParameter="6" IsCheckable="True" InputGestureText="F6" />
+          <MenuItem Header="Ambient   " Command="{Binding TglGenre7Cmd}"			CommandParameter="7" IsCheckable="True" InputGestureText="F7" />
+          <MenuItem Header="AudioBook " Command="{Binding TglGenre8Cmd}"			CommandParameter="8" IsCheckable="True" InputGestureText="F8" />
+          <MenuItem Header="Podcast   " Command="{Binding TglGenre9Cmd}"			CommandParameter="9" IsCheckable="True" InputGestureText="F9" />
+          <MenuItem Header="Meeting   " Command="{Binding TglGenreACmd}"			CommandParameter="10" IsCheckable="True" InputGestureText="F10" />
+          <MenuItem Header="Full Album" Command="{Binding TglGenreBCmd}"			CommandParameter="11" IsCheckable="True" InputGestureText="F11" />
+          <MenuItem Header="---       " Command="{Binding TglGenreCCmd}"			CommandParameter="12" IsCheckable="True" InputGestureText="F12" />
+          <Separator/>
+        </MenuItem>
+        <MenuItem Header="C_hange Genre" Foreground="#ccc">
+          <MenuItem Header="Set New				 " Command="{Binding SetGenre1Cmd}"			CommandParameter="1" InputGestureText="Ctrl+F1" />
+          <MenuItem Header="Set All				 " Command="{Binding SetGenre2Cmd}"			CommandParameter="2" InputGestureText="Ctrl+F2" />
+          <MenuItem Header="Set Night			 " Command="{Binding SetGenre3Cmd}"			CommandParameter="3" InputGestureText="Ctrl+F3" />
+          <MenuItem Header="Set Evening    " Command="{Binding SetGenre4Cmd}"			CommandParameter="4" InputGestureText="Ctrl+F4" />
+          <MenuItem Header="Set Day				 " Command="{Binding SetGenre5Cmd}"			CommandParameter="5" InputGestureText="Ctrl+F5" />
+          <MenuItem Header="Set Crazy			 " Command="{Binding SetGenre6Cmd}"			CommandParameter="6" InputGestureText="Ctrl+F6" />
+          <MenuItem Header="Set Ambient    " Command="{Binding SetGenre7Cmd}"			CommandParameter="7" InputGestureText="Ctrl+F7" />
+          <MenuItem Header="Set AudioBook  " Command="{Binding SetGenre8Cmd}"			CommandParameter="8" InputGestureText="Ctrl+F8" />
+          <MenuItem Header="Set Podcast    " Command="{Binding SetGenre9Cmd}"			CommandParameter="9" InputGestureText="Ctrl+F9" />
+          <MenuItem Header="Set Meeting    " Command="{Binding SetGenreACmd}"			CommandParameter="10" InputGestureText="Ctrl+F10" />
+          <MenuItem Header="Set Full Album " Command="{Binding SetGenreBCmd}"			CommandParameter="11" InputGestureText="Ctrl+F11" />
+          <MenuItem Header="Set ---        " Command="{Binding SetGenreCCmd}"			CommandParameter="12" InputGestureText="Ctrl+F12" />
+          <Separator/>
+          <MenuItem Command="ApplicationCommands.Copy"/>
+          <MenuItem Command="ApplicationCommands.Cut"/>
+          <MenuItem Command="ApplicationCommands.Paste"/>
+        </MenuItem>
+      </Menu>
+    </Grid>
+  </Border>
+</Window>

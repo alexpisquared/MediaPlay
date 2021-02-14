@@ -1,0 +1,214 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Views="clr-namespace:Common.UI.Lib.Views;assembly=Common.UI.Lib" xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" x:Class="DDJ.Main.Views.MainPlayerViewDev"
+        Title="{Binding Window_Title}" Height="750" Width="1600" x:Name="mainWin" Left="1" Top="1080">
+
+	<Window.Resources>
+
+		<DataTemplate x:Key="centralTile">
+			<Grid>
+				<StackPanel Height="130" Width="110">
+					<Image Width="90" Height="90" Source="{Binding File}" Margin="3 0" ToolTipService.ShowDuration="29000" >
+						<Image.ToolTip>
+							<Image Source="{Binding File}" />
+						</Image.ToolTip>
+					</Image>
+					<TextBlock Foreground="#ff0" FontSize="10" Text="{Binding Time, StringFormat=\{0:dd MMMyyyy \}}" HorizontalAlignment="Center" />
+					<TextBlock Foreground="#ff0" FontSize="10" Text="{Binding Time, StringFormat=\{0:HH:mm\}}" HorizontalAlignment="Center" />
+					<TextBlock Foreground="#ff0" FontSize="8"  Text="{Binding File}" HorizontalAlignment="Center" />
+				</StackPanel>
+				<TextBlock Foreground="#f00" FontSize="11"  Text="{Binding Eval}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+			</Grid>
+		</DataTemplate>
+
+		<DataTemplate x:Key="iconTemplate">
+			<DockPanel Height="33" Width="150">
+				<Image Source="{Binding File}" Margin="2"/>
+				<TextBlock DockPanel.Dock="Top" Text="{Binding File}" FontSize="13" HorizontalAlignment="Left" Margin="0,0,0,1" />
+			</DockPanel>
+		</DataTemplate>
+
+		<DataTemplate x:Key="checkbox">
+			<CheckBox IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}" Margin="0,1,1,1" />
+		</DataTemplate>
+		<DataTemplate x:Key="DisplayImage">
+			<StackPanel Width="50">
+				<Image Source="{Binding File}"/>
+			</StackPanel>
+		</DataTemplate>
+		<GridView x:Key="gridView">
+			<GridViewColumn CellTemplate="{StaticResource checkbox}"/>
+			<GridViewColumn Header="File" DisplayMemberBinding="{Binding File}"/>
+			<GridViewColumn Header="Time" DisplayMemberBinding="{Binding Time, StringFormat=\{0:dd/MMM/yyyy\}}"/>
+			<GridViewColumn Header="Image" CellTemplate="{StaticResource DisplayImage}"/>
+		</GridView>
+
+		<Style x:Key="Header1" TargetType="{x:Type TextBlock}">
+			<Setter Property="Foreground" Value="#f0f4" />
+			<Setter Property="Background" Value="#4000" />
+			<Setter Property="Padding" Value="8 0 8 4" />
+			<Setter Property="Margin" Value="6 8" />
+			<Setter Property="FontSize" Value="16" />
+		</Style>
+		<Style TargetType="{x:Type Label}">
+			<!--<Setter Property="Foreground" Value="#fff8" />-->
+			<!--<Setter Property="Padding" Value="8 0 8 4" />-->
+			<!--<Setter Property="Margin" Value="0 20" />-->
+			<!--<Setter Property="FontSize" Value="22" />-->
+		</Style>
+	</Window.Resources>
+
+	<Window.InputBindings>
+		<KeyBinding   Command="{Binding LoadListCmd}"			 CommandParameter="{Binding ElementName=mainWin}" Key="{Binding LoadListCmd.GestureKey}" Modifiers="{Binding LoadListCmd.GestureModifier}" />
+		<KeyBinding   Command="{Binding TglPlayPauseCmd}"  CommandParameter="{Binding ElementName=mainWin}" Key="{Binding TglPlayPauseCmd.GestureKey}" Modifiers="{Binding TglPlayPauseCmd.GestureModifier}" />
+		<KeyBinding   Command="{Binding MoveNextCmd}"			 CommandParameter="{Binding ElementName=mainWin}" Key="{Binding MoveNextCmd.GestureKey}" Modifiers="{Binding MoveNextCmd.GestureModifier}" />
+		<KeyBinding   Command="{Binding MovePrevCmd}"			 CommandParameter="{Binding ElementName=mainWin}" Key="{Binding MovePrevCmd.GestureKey}" Modifiers="{Binding MovePrevCmd.GestureModifier}" />
+		<KeyBinding   Command="{Binding JumpNextCmd}"			 CommandParameter="{Binding ElementName=mainWin}" Key="{Binding JumpNextCmd.GestureKey}" Modifiers="{Binding JumpNextCmd.GestureModifier}" />
+		<KeyBinding   Command="{Binding JumpPrevCmd}"			 CommandParameter="{Binding ElementName=mainWin}" Key="{Binding JumpPrevCmd.GestureKey}" Modifiers="{Binding JumpPrevCmd.GestureModifier}" />
+		<KeyBinding   Command="{Binding FsToDbCmd}"				 CommandParameter="{Binding ElementName=mainWin}" Key="{Binding FsToDbCmd.GestureKey}" Modifiers="{Binding FsToDbCmd.GestureModifier}" />
+		<KeyBinding   Command="{Binding MoveToEndCmd}" CommandParameter="{Binding ElementName=mainWin}" Key="{Binding MoveToEndCmd.GestureKey}" Modifiers="{Binding MoveToEndCmd.GestureModifier}" />
+	</Window.InputBindings>
+
+	<Grid Margin="3">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="240"/>
+		</Grid.ColumnDefinitions>
+
+		<WrapPanel Grid.Row="1" Grid.RowSpan="2" Margin="3" Background="#def">
+			<CheckBox IsChecked="{Binding AutoStart}" Content="AutoStart  " VerticalAlignment="Center" />
+			<TextBox  Text="{Binding StringFilter, UpdateSourceTrigger=PropertyChanged}" Width="123" />
+			<ComboBox Text="{Binding AddRandomDay}" Width="123" >
+				<ComboBoxItem Content="0" />
+				<ComboBoxItem Content="1" />
+				<ComboBoxItem Content="10" />
+				<ComboBoxItem IsSelected="True" Content="100" />
+				<ComboBoxItem Content="1000" />
+				<ComboBoxItem Content="10000" />
+				<ComboBoxItem Content="1000000" />
+				<ListBoxItem Content="6543210"  />
+			</ComboBox>
+			<ComboBox ItemsSource="{Binding Genres}" Width="123"
+				DisplayMemberPath="Name" 
+				SelectedValue="{Binding CurGenre}" 
+				ToolTip="{Binding CurGenre.Desc}" 
+								/>
+			<!--
+								SelectedValuePath="ID"
+								Width="123"-->
+
+			<Button Content="_Load"					Command="{Binding LoadListCmd}" CommandParameter="{Binding ElementName=mainWin}"    IsDefault="True"  />
+			<Button Content="_Exit"					Command="{Binding CloseAppCmd}" CommandParameter="{Binding ElementName=mainWin}"    IsCancel="True"  />
+			<DataGrid x:Name="mediaUnitDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="5" ItemsSource="{Binding PlayList}" SelectedItem="{Binding CurMediaUnit}"
+				EnableRowVirtualization="True" AutoGenerateColumns="False" Grid.RowSpan="2" CanUserAddRows="False">
+				<DataGrid.Columns>
+					<DataGridTextColumn Header="Notes" Binding="{Binding Notes}"/>
+					<DataGridTextColumn Width="*" Header="Path File Ext Org" Binding="{Binding PathFileExtOrg}" />
+					<!--
+				<DataGridTextColumn Header="Path Name" Binding="{Binding PathName}"/>
+				<DataGridTemplateColumn Header="Added At">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding AddedAt}"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				<DataGridTextColumn Header="Cur Position Sec" Binding="{Binding CurPositionSec}"/>
+				<DataGridTextColumn Header="Duration Sec" Binding="{Binding DurationSec}"/>
+				<DataGridTextColumn Header="File Hash MD 5" Binding="{Binding FileHashMD5}"/>
+				<DataGridTextColumn Header="File Hash Qck" Binding="{Binding FileHashQck}"/>
+				<DataGridTextColumn Header="File Length" Binding="{Binding FileLength}"/>
+				<DataGridTextColumn Header="File Name" Binding="{Binding FileName}"/>
+				<DataGridTextColumn Header="Genre ID" Binding="{Binding GenreID}"/>
+				<DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+				-->
+				</DataGrid.Columns>
+			</DataGrid>
+			<ed:Arc ArcThickness="0" ArcThicknessUnit="Pixel" EndAngle="90" Fill="#FFF4F4F5" Height="100" Stretch="None" Stroke="Black" StartAngle="0" Width="100"/>
+		</WrapPanel>
+
+		<Grid x:Name="grid1" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Margin="3,3,3,0" VerticalAlignment="Top" Background="#dfe"
+			DataContext="{Binding CurMediaUnit}" Height="312">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			<Label Content="Added At:" Grid.Column="0" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="0" Text="{Binding AddedAt, StringFormat=\{0:yyyy-MM-dd HH:mm\}}" VerticalAlignment="Center"/>
+			<Label Content="Cur Pos Sec:" Grid.Column="0" HorizontalAlignment="Left" Margin="3 0" Grid.Row="1" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="1" Text="{Binding CurPositionSec, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+			<Label Content="Duration Sec:" Grid.Column="0" HorizontalAlignment="Left" Margin="3 0" Grid.Row="2" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="2" Text="{Binding DurationSec, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+			<Label Content="Hash MD 5:" Grid.Column="0" HorizontalAlignment="Left" Margin="3 0" Grid.Row="3" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="3" Text="{Binding FileHashMD5, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+			<Label Content="Hash Qck:" Grid.Column="0" HorizontalAlignment="Left" Margin="3 0" Grid.Row="4" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="4" Text="{Binding FileHashQck, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+			<Label Content="File Length:" Grid.Column="0" HorizontalAlignment="Left" Margin="3 0" Grid.Row="5" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="5" Text="{Binding FileLength, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+			<Label Content="File Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3 0" Grid.Row="6" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="6" Text="{Binding FileName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+			<Label Content="Genre ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3 0" Grid.Row="7" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="7" Text="{Binding GenreID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+			<Label Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3 0" Grid.Row="8" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="8" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+			<Label Content="Notes:" Grid.Column="0" HorizontalAlignment="Left" Margin="3 0" Grid.Row="9" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="9" Text="{Binding Notes, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+			<Label Content="PathFileExt:" Grid.Column="0" HorizontalAlignment="Left" Margin="3 0" Grid.Row="10" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="10" Text="{Binding PathFileExtOrg, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+			<Label Content="Path Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3 0" Grid.Row="11" VerticalAlignment="Center"/>
+			<TextBox Grid.Column="1" Grid.Row="11" Text="{Binding PathName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+		</Grid>
+
+		<DataGrid x:Name="muAuditionsDataGrid" AutoGenerateColumns="False" Grid.Column="1" EnableRowVirtualization="True" 
+			ItemsSource="{Binding CurMediaUnit.MuAuditions}" 
+			Margin="3" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="2"  CanUserAddRows="False">
+			<DataGrid.Columns>
+				<DataGridTextColumn Binding="{Binding DoneAt, StringFormat=\{0:yyyy-MM-dd HH:mm\}}" Header="At" />
+				<DataGridTextColumn Binding="{Binding DoneBy}" Header="By" Width="*"/>
+				<!--
+				<DataGridTextColumn Binding="{Binding PartyMode}" Header="IsParty" />
+				<DataGridTextColumn Binding="{Binding ID}" Header="ID" Width="SizeToHeader"/>
+				<DataGridTextColumn Binding="{Binding MediaUnitID}" Header="Media Unit ID" Width="SizeToHeader"/>-->
+			</DataGrid.Columns>
+		</DataGrid>
+
+
+
+		<MediaElement Volume="1" Grid.Row="3" x:Name="wmp" Source="{Binding CurMediaUnit.PathFileExtOrg, Mode=OneWay}" LoadedBehavior="Manual" UnloadedBehavior="Manual" Margin="3"/>
+
+		<TextBlock Text="{Binding TopRightTiny, FallbackValue=XAML}" FontSize="8" Background="Transparent" Margin="0,5,0,0"   Style="{StaticResource Header1}" VerticalAlignment="Top"    HorizontalAlignment="Right" Height="15" Width="37"       />
+
+		<Grid Grid.Row="0" Grid.ColumnSpan="2" Visibility="{Binding ChromeVisibility}" Margin="3" >
+			<TextBlock Text="{Binding TopRightInfo, FallbackValue=XAML}"            ToolTip="{Binding CurMediaUnit}"		Style="{StaticResource Header1}" VerticalAlignment="Top"    HorizontalAlignment="Right"  	/>
+			<TextBlock Text="{Binding CurMediaUnit.FileName, FallbackValue=XAML}"		ToolTip="{Binding CurMediaUnit}"		Style="{StaticResource Header1}" VerticalAlignment="Top"    HorizontalAlignment="Left"   		/>
+		</Grid>
+
+		<Grid Grid.Row="3" Grid.ColumnSpan="2" Visibility="{Binding ChromeVisibility}" Margin="3" >
+			<TextBlock Text="{Binding CurMedUnInfo, FallbackValue=XAML}"						ToolTip="{Binding CurMediaUnit}"		Style="{StaticResource Header1}" VerticalAlignment="Bottom" HorizontalAlignment="Left"   	 />
+			<TextBlock Text="{Binding BotmRghtInfo, FallbackValue=XAML}"						ToolTip="{Binding CurMediaUnit}"		Style="{StaticResource Header1}" VerticalAlignment="Bottom" HorizontalAlignment="Right"  	 />
+
+			<TextBlock Text="{Binding BotmCentrMsg, FallbackValue=Err}" Foreground="#fc8" ToolTip="{Binding CurMediaUnit}"    Style="{StaticResource Header1}" VerticalAlignment="Bottom" HorizontalAlignment="Center"  FontSize="10" TextWrapping="Wrap"  />
+		</Grid>
+
+
+	</Grid>
+</Window>
