@@ -41,7 +41,7 @@ namespace DDJ.Main.ViewModels
         _player.UnloadedBehavior = MediaState.Manual;
         _player.Volume = 1;// DDJ.Main.Properties.Settings.Default.QuietPCsCsv.Contains(Environment.MachineName) ? .1 : 1;
 
-        if (AutoStart == true)
+        if (AutoStarting == true)
           playAndStartCounters();
       }
     }

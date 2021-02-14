@@ -11,7 +11,7 @@ namespace DDJ.DB.Models
         }
 
         public DdjEf4DBContext()
-            : base("Name=DdjEf4DBContext")
+            : base(@"Data Source=.\sqlexpress;Initial Catalog=DdjEf4DB;Integrated Security=True;MultipleActiveResultSets=True")
         {
         }
 

@@ -18,32 +18,26 @@ namespace AsLink
   {
     static readonly string _subFolder = $@"Public\AppData\{Assembly.GetExecutingAssembly().GetName().Name}\{Environment.MachineName}.json";
     static readonly string _pathfile = OneDrive.Folder(_subFolder);
-    readonly StorageMode _storMode;
+    static readonly StorageMode _storMode = StorageMode.IsoProgDt;
 
-    public AppSettings() : this(StorageMode.OneDriveU) { }
-    public AppSettings(StorageMode storMode) => _storMode = storMode;
-
-    public void Save()
+    public AppSettings() { }
+    public static void Save()
     {
       if (_instance == null) return; //tu: ignore autosaves before fully rehydrated from the [iso] store.
 
       switch (_storMode)
       {
         default:
-        case StorageMode.OneDriveU: JsonFileSerializer.Save<AppSettings>(_instance, _pathfile); break;
-        case StorageMode.OneDrAlex: JsonFileSerializer.Save<AppSettings>(_instance, _pathfile); break;
-        case StorageMode.IsoProgDt: JsonIsoFileSerializer.Save<AppSettings>(_instance); break;
-        case StorageMode.IsoUsrLcl: JsonIsoFileSerializer.Save<AppSettings>(_instance, null, IsoConst.ULocA); break;
-        case StorageMode.IsoUsrRoa: JsonIsoFileSerializer.Save<AppSettings>(_instance, null, IsoConst.URoaA); break;
+        case StorageMode.OneDriveU: JsonFileSerializer.Save(_instance, _pathfile); break;
+        case StorageMode.OneDrAlex: JsonFileSerializer.Save(_instance, _pathfile); break;
+        case StorageMode.IsoProgDt: JsonIsoFileSerializer.Save(_instance); break;
+        case StorageMode.IsoUsrLcl: JsonIsoFileSerializer.Save(_instance, null, IsoConst.ULocA); break;
+        case StorageMode.IsoUsrRoa: JsonIsoFileSerializer.Save(_instance, null, IsoConst.URoaA); break;
       }
     }
 
     internal void SaveIfDirty_TODO() => Debug.WriteLine($" ** TODO: SaveIfDirty_TODO();  {_pathfile}");
 
-    //[Obsolete("//todo: review in view of singleton.", true)]
-    //public static void InitStore(StorageMode storageMode, string appSettingsFile = null) =>
-    //  //todo: _storMode = storageMode;
-    //  _pathfile = appSettingsFile ?? OneDrive.Folder(_subFolder);
 
     #region Singletone
     public static AppSettings Instance
@@ -56,12 +50,12 @@ namespace AsLink
           {
             if (_instance == null)
             {
-              _instance = JsonFileSerializer.Load<AppSettings>(_pathfile) as AppSettings;
-              //_storMode == StorageMode.IsoProgDt ? JsonIsoFileSerializer.Load<AppSetting>() as AppSetting :
-              //_storMode == StorageMode.IsoUsrLcl ? JsonIsoFileSerializer.Load<AppSetting>(null, IsoConst.ULocA) as AppSetting :
-              //_storMode == StorageMode.IsoUsrRoa ? JsonIsoFileSerializer.Load<AppSetting>(null, IsoConst.URoaA) as AppSetting :
-              //_storMode == StorageMode.OneDriveU ? JsonFileSerializer.Load<AppSetting>(_pathfile) as AppSetting :
-              //_storMode == StorageMode.OneDrAlex ? JsonFileSerializer.Load<AppSetting>(_pathfile) as AppSetting : JsonIsoFileSerializer.Load<AppSetting>() as AppSetting;
+              _instance =
+              _storMode == StorageMode.IsoProgDt ? JsonIsoFileSerializer.Load<AppSettings>() :
+              _storMode == StorageMode.IsoUsrLcl ? JsonIsoFileSerializer.Load<AppSettings>(null, IsoConst.ULocA) :
+              _storMode == StorageMode.IsoUsrRoa ? JsonIsoFileSerializer.Load<AppSettings>(null, IsoConst.URoaA) :
+              _storMode == StorageMode.OneDriveU ? JsonFileSerializer.Load<AppSettings>(_pathfile) :
+              _storMode == StorageMode.OneDrAlex ? JsonFileSerializer.Load<AppSettings>(_pathfile) : JsonIsoFileSerializer.Load<AppSettings>();
             }
 
             if (_instance == null)

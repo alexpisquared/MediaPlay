@@ -2,11 +2,11 @@
 {
     public class VMState
 	{
-		public int[] GenreFilter;
+		public int[] GenresFilter;
 		public string StringFilter;
 		public int AddRandomDay;
 		public int PlaylilstLen;
-		public bool? AutoStart;
+		public bool? AutoStarting;
 
 		//public MediaUnit CurMediaUnit;
 	}
