@@ -6,7 +6,7 @@
 		public string StringFilter;
 		public int AddRandomDay;
 		public int PlaylilstLen;
-		public bool? AutoStarting;
+		public bool? IsAutoPlay;
 
 		//public MediaUnit CurMediaUnit;
 	}

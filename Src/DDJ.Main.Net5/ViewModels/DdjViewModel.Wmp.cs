@@ -15,7 +15,7 @@ using AAV.Sys.Helpers;
 
 namespace DDJ.Main.ViewModels
 {
-    public partial class DdjViewModel : BindableBaseViewModel
+  public partial class DdjViewModel : BindableBaseViewModel
   {
     const int cAtLeast10Min = 10 * 60;
     bool HasPlayedEnough
@@ -41,7 +41,7 @@ namespace DDJ.Main.ViewModels
         _player.UnloadedBehavior = MediaState.Manual;
         _player.Volume = 1;// DDJ.Main.Properties.Settings.Default.QuietPCsCsv.Contains(Environment.MachineName) ? .1 : 1;
 
-        if (AutoStarting == true)
+        if (IsAutoPlay == true)
           playAndStartCounters();
       }
     }
@@ -112,8 +112,8 @@ namespace DDJ.Main.ViewModels
         if (File.Exists(CurMediaUnit.PathFileExtOrg.ToLower().Replace("m:\\", "c:\\1\\m\\")))
         {
           _player.Source = new Uri(CurMediaUnit.PathFileExtOrg = CurMediaUnit.PathFileExtOrg.ToLower().Replace("m:\\", "c:\\1\\m\\"));
-          saveAllToDb_Speak();
           ExceptionMsg = $"MediaFailed: SOLVED: renamed M:\\ to C:\\1\\M\\ {_player.Source.LocalPath} ";
+          DbSaveMsgBox.TrySaveAsk(_db, ExceptionMsg);
 
           await Task.Delay(500);
           //synth.Speak("Restarting...");
@@ -125,7 +125,7 @@ namespace DDJ.Main.ViewModels
         CurMediaUnit.Notes = FileSysProcessor.SAfeAddNote(CurMediaUnit, $" Found missing trying to play on {now.ToShortDateString()}.");
       }
 
-      saveAllToDb_Speak();
+      DbSaveMsgBox.TrySaveAsk(_db, ExceptionMsg);
 
       if (canMoveNext)
       {
@@ -223,21 +223,14 @@ namespace DDJ.Main.ViewModels
 
       Bpr.BeepOk();
 
-      saveAllToDb_Speak();
+      DbSaveMsgBox.TrySaveAsk(_db, nameof(logAuditionCurPosn));
     }
     void savePosIfLong()
     {
       if (CurMediaUnit.DurationSec > cAtLeast10Min && (CurMediaUnit.DurationSec - CurMediaUnit.CurPositionSec) < 60) // if a long multi-song unit and not very close to the end - save the position for the next start time
       {
-        saveAllToDb_Speak();
+        DbSaveMsgBox.TrySaveAsk(_db, "savePosIfLong()");
       }
-    }
-    void saveAllToDb_Speak()
-    {
-      var rows = DbSaveMsgBox.TrySaveAsk(_db);
-      Debug.WriteLine("{0} rows saved", rows);
-
-      //if (_AudioRprtg) synth.SpeakAsync($" {rows} rows saved. Position is {CurMediaUnit.CurPositionSec:N0} seconds.");
     }
   }
 }

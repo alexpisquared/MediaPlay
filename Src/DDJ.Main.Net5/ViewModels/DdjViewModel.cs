@@ -56,7 +56,7 @@ namespace DDJ.Main.ViewModels
         AddRandomDay = AddRandomDay,
         PlaylilstLen = PlaylilstLen,
         StringFilter = StringFilter,
-        AutoStarting = AutoStarting
+        IsAutoPlay = IsAutoPlay
       };
       AppSettings.Save();
     }
@@ -69,7 +69,7 @@ namespace DDJ.Main.ViewModels
         dvm.AddRandomDay = AppSettings.Instance.VMState.AddRandomDay < 1 ? 1 : AppSettings.Instance.VMState.AddRandomDay;
         dvm.PlaylilstLen = AppSettings.Instance.VMState.PlaylilstLen;
         dvm.StringFilter = AppSettings.Instance.VMState.StringFilter;
-        dvm.AutoStarting = AppSettings.Instance.VMState.AutoStarting;
+        dvm.IsAutoPlay = AppSettings.Instance.VMState.IsAutoPlay;
 
         foreach (var g in AppSettings.Instance.VMState.GenresFilter) { dvm.GenreFilter.Add(new LkuGenre { ID = g }); dvm.onTglGenre(g); }
       }
@@ -155,7 +155,7 @@ namespace DDJ.Main.ViewModels
     int _AddRandomDay = 1;
     public int PlaylilstLen { get => _PlaylilstLen; set => Set(ref _PlaylilstLen, value); }
     int _PlaylilstLen = 10;
-    public bool? AutoStarting { get => _AutoStart; set => Set(ref _AutoStart, value); }
+    public bool? IsAutoPlay { get => _AutoStart; set => Set(ref _AutoStart, value); }
     bool? _AutoStart = false;
     public bool? LastPiece { get => _LastPiece; set => Set(ref _LastPiece, value); }
     bool? _LastPiece = false;

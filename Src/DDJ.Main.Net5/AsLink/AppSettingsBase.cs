@@ -36,9 +36,6 @@ namespace AsLink
       }
     }
 
-    internal void SaveIfDirty_TODO() => Debug.WriteLine($" ** TODO: SaveIfDirty_TODO();  {_pathfile}");
-
-
     #region Singletone
     public static AppSettings Instance
     {

@@ -81,7 +81,7 @@
 		</Grid.ColumnDefinitions>
 
 		<WrapPanel Grid.Row="1" Grid.RowSpan="2" Margin="3" Background="#def">
-			<CheckBox IsChecked="{Binding AutoStart}" Content="AutoStart  " VerticalAlignment="Center" />
+			<CheckBox IsChecked="{Binding IsAutoPlay}" Content="IsAutoPlay  " VerticalAlignment="Center" />
 			<TextBox  Text="{Binding StringFilter, UpdateSourceTrigger=PropertyChanged}" Width="123" />
 			<ComboBox Text="{Binding AddRandomDay}" Width="123" >
 				<ComboBoxItem Content="0" />

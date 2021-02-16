@@ -1,9 +1,7 @@
 ﻿using AAV.WPF.Helpers;
-using AsLink;
 using DDJ.Main.ViewModels;
 using DDJ.Main.Views;
 using MVVM.Common;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -41,13 +39,6 @@ namespace DDJ.Main.Net5
     }
     DdjViewModel vmdl;
 
-    protected override void OnExit(ExitEventArgs e)
-    {
-      vmdl.SaveState();
-
-      //if (_vm.CurMediaUnit != null) Settings.Default.StartUpMedia = _vm.CurMediaUnit.PathFileExtOrg;//../Settings.Default.Save();
-
-      Debug.Write($"OnExit(ExitEventArgs e): {e}");
-    }
+    protected override void OnExit(ExitEventArgs e) => vmdl.SaveState();
   }
 }
