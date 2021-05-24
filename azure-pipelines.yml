@@ -2,7 +2,7 @@ resources:
   repositories:
   - repository: MyGitHubRepo
     type: github
-    endpoint: MyGitHubServiceConnection
+    endpoint: https://github.com/alexpisquared/MediaPlay
     name: alexpisquared/MediaPlay
 
 
