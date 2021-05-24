@@ -1,3 +1,11 @@
+resources:
+  repositories:
+  - repository: MyGitHubRepo
+    type: github
+    endpoint: MyGitHubServiceConnection
+    name: alexpisquared/MediaPlay
+
+
 # .NET Desktop
 # Build and run tests for .NET Desktop or Windows classic desktop solutions.
 # Add steps that publish symbols, save build artifacts, and more:
@@ -16,6 +24,11 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@1
+
+- checkout: self
+- checkout: MyGitHubRepo
+
+- script: dir $(Build.SourcesDirectory)
 
 - task: NuGetCommand@2
   inputs:
