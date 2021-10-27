@@ -20,11 +20,12 @@ namespace AsLink
       // if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this)) return Brushes.Red;
       try
       {
-        return        value is string && !string.IsNullOrEmpty((string)value) && !((string)value).Equals("ColorRGB")
+        return value is string && !string.IsNullOrEmpty((string)value) && !((string)value).Equals("ColorRGB")
           ? new SolidColorBrush((Color)ColorConverter.ConvertFromString((string)value))
           : Brushes.Teal;
       }
-      catch {
+      catch
+      {
         return Brushes.Red;
       }
     }
