@@ -184,7 +184,7 @@ namespace VPC.ViewModels
       if (VPModel.CrntMU != null)
       {
         _ignorePlayerPosnMove = true;
-        VPModel.CrntMU.PositionSec = (VPModel.CrntMU.Position = VMPosn = _vpcPlayer.Position).Value.TotalSeconds;
+        VPModel.CrntMU.PositionSec = (VPModel.CrntMU.Position = VMPosn = _vpcPlayer.Position).TotalSeconds;
         VPModel.CrntMU.IsLooping = _isLooping;
         VPModel.CrntMU.AuVolume = _vpcPlayer.Volume;
         _ignorePlayerPosnMove = false;
@@ -374,16 +374,16 @@ namespace VPC.ViewModels
     void doHome(object o) { flashKeyInfo(); _vpcPlayer.Position = TimeSpan.FromSeconds(0); }
     void doEnd_(object o) { flashKeyInfo(); _vpcPlayer.Position = _vpcPlayer.NaturalDuration.HasTimeSpan ? _vpcPlayer.NaturalDuration.TimeSpan.Subtract(TimeSpan.FromSeconds(5)) : TimeSpan.FromSeconds(0); }
 
-    public bool canPrevBmkCmd => VPModel.CrntMU != null && VPModel.CrntMU.Position.HasValue && VPModel.CrntMU.Bookmarks.FirstOrDefault(r => r.PositionSec < VPModel.CrntMU.Position.Value.TotalSeconds) != null;
-    public bool canNextBmkCmd => VPModel.CrntMU != null && VPModel.CrntMU.Position.HasValue && VPModel.CrntMU.Bookmarks.FirstOrDefault(r => r.PositionSec > VPModel.CrntMU.Position.Value.TotalSeconds) != null;
+    public bool canPrevBmkCmd => VPModel.CrntMU != null && VPModel.CrntMU.Bookmarks.FirstOrDefault(r => r.PositionSec < VPModel.CrntMU.Position.TotalSeconds) != null;
+    public bool canNextBmkCmd => VPModel.CrntMU != null && VPModel.CrntMU.Bookmarks.FirstOrDefault(r => r.PositionSec > VPModel.CrntMU.Position.TotalSeconds) != null;
     void do_PrevBmkCmd(object o)
     {
-      var p = VPModel.CrntMU.Bookmarks.Where(r => r.PositionSec < VPModel.CrntMU.Position.Value.TotalSeconds).Max(r => r.PositionSec);
+      var p = VPModel.CrntMU.Bookmarks.Where(r => r.PositionSec < VPModel.CrntMU.Position.TotalSeconds).Max(r => r.PositionSec);
       VPModel.CrntMU.Position = _vpcPlayer.Position = TimeSpan.FromSeconds(p - 1);
     }
     void do_NextBmkCmd(object o)
     {
-      var p = VPModel.CrntMU.Bookmarks.Where(r => r.PositionSec > VPModel.CrntMU.Position.Value.TotalSeconds).Min(r => r.PositionSec) + .01;
+      var p = VPModel.CrntMU.Bookmarks.Where(r => r.PositionSec > VPModel.CrntMU.Position.TotalSeconds).Min(r => r.PositionSec) + .01;
       VPModel.CrntMU.Position = _vpcPlayer.Position = TimeSpan.FromSeconds(p);
     }
 
@@ -738,7 +738,7 @@ namespace VPC.ViewModels
 
       if (_vpcPlayer.SpeedRatio == newSpeed) return; // avoid this terrible pause. Aug`20
 
-      Trace.WriteLine($"\n** 0) dPos: {(_vpcPlayer.Position - VPModel.CrntMU.Position.Value).TotalMilliseconds:N0}ms,  dSpeed: {_vpcPlayer.SpeedRatio - _speeds[VPModel.CrntMU.SpeedIdx]} (==0 always!!!)"); //Jan 2018: 2018 Sep: uncom-d:             if (_vpcPlayer.SpeedRatio != _speeds[VPModel.CrntMU.SpeedIdx]) _vpcPlayer.SpeedRatio  = _speeds[VPModel.CrntMU.SpeedIdx];
+      Trace.WriteLine($"\n** 0) dPos: {(_vpcPlayer.Position - VPModel.CrntMU.Position).TotalMilliseconds:N0}ms,  dSpeed: {_vpcPlayer.SpeedRatio - _speeds[VPModel.CrntMU.SpeedIdx]} (==0 always!!!)"); //Jan 2018: 2018 Sep: uncom-d:             if (_vpcPlayer.SpeedRatio != _speeds[VPModel.CrntMU.SpeedIdx]) _vpcPlayer.SpeedRatio  = _speeds[VPModel.CrntMU.SpeedIdx];
 
       Task.Run    /**/(async () => await Task.Delay(delayMs)).ContinueWith(_ => _vpcPlayer.SpeedRatio = tmpSpeed, TaskScheduler.FromCurrentSynchronizationContext()).ContinueWith(_ => Trace.WriteLine($"** 1)                      {_vpcPlayer.SpeedRatio} <= {tmpSpeed}?"))
           .ContinueWith(async _ => await Task.Delay(pauseMs)).ContinueWith(_ => _vpcPlayer.SpeedRatio = newSpeed, TaskScheduler.FromCurrentSynchronizationContext()).ContinueWith(_ => Trace.WriteLine($"** 2)                      {_vpcPlayer.SpeedRatio} <= {newSpeed}?"))
@@ -885,7 +885,7 @@ namespace VPC.ViewModels
       VPModel.CrntMU = MediaUnit.LoadMetaData(_vpcPlayer.Source.LocalPath, _vpcPlayer.NaturalDuration.TimeSpan, _vpcPlayer.NaturalVideoHeight, _vpcPlayer.NaturalVideoWidth);
       VPModel.CrntMU.Duration = _vpcPlayer.NaturalDuration.TimeSpan;
       if (_isJumpingTo != null) { _vpcPlayer.Position = _isJumpingTo.Value; _isJumpingTo = null; }
-      else if (VPModel.CrntMU.Position != null) { _lastStartPosn = _vpcPlayer.Position = VPModel.CrntMU.Position.Value; }
+      else { _lastStartPosn = _vpcPlayer.Position = VPModel.CrntMU.Position; }
       VPModel.CrntMU.PassedQA = true;
 
       setSpeed(); // _vpcPlayer.SpeedRatio  = _speeds[VPModel?.CrntMU?.SpeedIdx ?? 1];

@@ -102,7 +102,7 @@ namespace VPC.Models
       const int minLengthWorthSaving = 600;
       if (IsAudio(mu.FileName))
       {
-        if (mu.DurationSec < minLengthWorthSaving && (mu.Duration.Value.TotalSeconds < minLengthWorthSaving))
+        if (mu.DurationSec < minLengthWorthSaving && (mu.Duration.TotalSeconds < minLengthWorthSaving))
           return;
       }
 
@@ -153,10 +153,10 @@ namespace VPC.Models
     bool _IsLooping = false; public bool IsLooping { get => _IsLooping; set => Set(ref _IsLooping, value); }
     double _AuVolume = 1.00; public double AuVolume { get => _AuVolume; set => Set(ref _AuVolume, value); }
 
-    [XmlIgnore] public TimeSpan? Duration { get => _Duration; set { if (Set(ref _Duration, value) && value is not null && value.HasValue) DurationSec = value.Value.TotalSeconds; } }
-    [XmlIgnore] public TimeSpan? Position { get => _Position; set { if (Set(ref _Position, value) && value is not null && value.HasValue) PositionSec = value.Value.TotalSeconds; } }
-    [XmlIgnore] public TimeSpan? EventTime { get => _EventTime; set => Set(ref _EventTime, value); }
-    TimeSpan? _Duration, _Position, _EventTime;
+    [XmlIgnore] public TimeSpan Duration { get => _Duration; set { if (Set(ref _Duration, value) ) DurationSec = value.TotalSeconds; } }
+    [XmlIgnore] public TimeSpan Position { get => _Position; set { if (Set(ref _Position, value) ) PositionSec = value.TotalSeconds; } }
+    [XmlIgnore] public TimeSpan EventTime { get => _EventTime; set => Set(ref _EventTime, value); }
+    TimeSpan _Duration = TimeSpan.Zero, _Position = TimeSpan.Zero, _EventTime = TimeSpan.Zero;
 
     public double DurationSec { get; set; } // { return _DurationSec; } set { Set(ref this._DurationSec, value); } }
     public double PositionSec { get; set; } // { return _PositionSec; } set { Set(ref this._PositionSec, value); } }
