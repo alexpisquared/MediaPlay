@@ -177,7 +177,7 @@ namespace DDJ.Main.ViewModels
 #else
       var partyMode = true;
 #endif
-      Bpr.BeepOk();
+      //Bpr.BeepOk();
       if (UserA) _db.MuAuditions.Add(new MuAudition { DoneAt = now, PartyMode = partyMode, MediaUnitID = id, DoneBy = "Alex" });
       if (UserM) _db.MuAuditions.Add(new MuAudition { DoneAt = now, PartyMode = partyMode, MediaUnitID = id, DoneBy = "Mei" });
       if (UserN) _db.MuAuditions.Add(new MuAudition { DoneAt = now, PartyMode = partyMode, MediaUnitID = id, DoneBy = "Nadine" });
@@ -221,7 +221,7 @@ namespace DDJ.Main.ViewModels
       if (CurMediaUnit.CurPositionSec < 10)
         VMPosn = CurMediaUnit.CurPositionSec = 0;
 
-      Bpr.BeepOk();
+      //Bpr.BeepOk();
 
       DbSaveMsgBox.TrySaveAsk(_db, nameof(logAuditionCurPosn));
     }

@@ -189,7 +189,7 @@ namespace DDJ.Main.ViewModels
             if (_prevPosn == value)
             {
               _player.Position = TimeSpan.FromSeconds(CurMediaUnit.CurPositionSec = value);
-              Bpr.BeepOkB();
+              //Bpr.BeepOkB();
             }
           }, TaskScheduler.FromCurrentSynchronizationContext());
         }

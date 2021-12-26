@@ -64,7 +64,8 @@ namespace DDJ.Main.ViewModels
     public bool canMoveNext => LastPiece == false && PlayList.IndexOf(CurMediaUnit) < PlayList.Count() - 1;
     void onMoveNext(object x)
     {
-      Bpr.BeepOk(); savePosIfLong();
+      //Bpr.BeepOk(); 
+      savePosIfLong();
       if (LastPiece == true)
         pauseAndLog();
       else if (PlayList.IndexOf(CurMediaUnit) < PlayList.Count() - 1)
@@ -76,7 +77,8 @@ namespace DDJ.Main.ViewModels
     public bool canMovePrev => PlayList.IndexOf(CurMediaUnit) > 0;
     void onMovePrev(object x)
     {
-      Bpr.BeepOk(); savePosIfLong();
+      //Bpr.BeepOk(); 
+      savePosIfLong();
       if (canMovePrev) CurMediaUnit = PlayList[PlayList.IndexOf(CurMediaUnit) - 1];
     }
 
