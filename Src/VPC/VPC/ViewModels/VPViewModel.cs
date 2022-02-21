@@ -35,7 +35,7 @@ namespace VPC.ViewModels
     TimeSpan? _isJumpingTo = null;
     string _Top_CentrMsg, _BotmCentrMsg, _BotmRghtInfo, _TopRightInfo, _TopRightTiny, _BotmLeftInfo, _HelpMessage_, _Window_Title = "...", _EOTMsg = "Zoe, that is enough. Its time to go to bed?";
     int cntr = 0, _intervalPlay = 0, playerMargin = 0;
-    bool _isLooping = false, _popMenuAtEnd = true;
+    bool _isLooping = true, _popMenuAtEnd = true;
     ViewTimeLog _viewTimeLogCopy = ViewTimeLog.GetViewTimeLogSingleton();
     #region _speeds
     readonly int _v1x = 8, _v2x = 11;
