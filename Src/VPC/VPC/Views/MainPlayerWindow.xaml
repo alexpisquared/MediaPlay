@@ -318,7 +318,7 @@
         <ColumnDefinition Width="1*"/>
       </Grid.ColumnDefinitions>
 
-      <TextBlock Style="{StaticResource Header1}" VerticalAlignment="Top"    HorizontalAlignment="Right"	Text="{Binding TopRightTiny, FallbackValue=XAML}" FontSize="9" Foreground="#08f" Margin="0,-1,70,0" Grid.Column="1" />
+      <TextBlock Style="{StaticResource Header1}" VerticalAlignment="Top"    HorizontalAlignment="Right"	Text="{Binding TopRightTiny, FallbackValue=XAML}" FontSize="10" Foreground="#08f" Margin="0,-1,70,0" Grid.Column="1" />
       <TextBlock Style="{StaticResource Header1}" VerticalAlignment="Top"    HorizontalAlignment="Right"  Text="{Binding TopRightInfo, FallbackValue='22:22'}"         ToolTip="{Binding VPModel.CrntMU}" Grid.Column="1" Margin="0,8,5,0"  	/>
       <TextBlock Style="{StaticResource Header1}" VerticalAlignment="Top"    HorizontalAlignment="Left"   Text="{Binding VPModel.CrntMU.FileName, FallbackValue=XAML}" ToolTip="{Binding VPModel.CrntMU}" Margin="6"   Grid.ColumnSpan="2" 	/>
       <TextBlock Style="{StaticResource Header1}" VerticalAlignment="Bottom" HorizontalAlignment="Left"   Text="{Binding BotmLeftInfo, FallbackValue=XAML}"            ToolTip="{Binding VPModel.CrntMU}" Margin="6"   Grid.Row="1" Grid.ColumnSpan="2" Foreground="#4df" />

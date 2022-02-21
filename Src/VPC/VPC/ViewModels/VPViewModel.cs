@@ -167,7 +167,7 @@ namespace VPC.ViewModels
     {
       _timer.Tick += onTick;
       _timer.Start();
-      TopRightTiny = VerHelper.CurVerStr(".Net5");
+      TopRightTiny = VerHelper.CurVerStr("");
     }
 
     async void onTick(object s, EventArgs e)
