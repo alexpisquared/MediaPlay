@@ -108,23 +108,23 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\AsLink\PlatformNeutral\MediaHelper.cs">
-      <Link>AsLink\MediaHelper.cs</Link>
+    <Compile Include="..\..\..\..\C\Live\TIA\UwLogrApp\Logic\Converters.cs">
+      <Link>AsLink\Converters.cs</Link>
     </Compile>
-    <Compile Include="..\..\AsLink\UWP\AppSettingsHelper.cs">
+    <Compile Include="..\..\..\AAV.Shared\Src\AsLink\UWP\AppSettingsHelper.cs">
       <Link>AsLink\AppSettingsHelper.cs</Link>
     </Compile>
-    <Compile Include="..\..\AsLink\UWP\DevOp.uwp.cs">
+    <Compile Include="..\..\..\AAV.Shared\Src\AsLink\UWP\MediaHelper.cs">
+      <Link>AsLink\MediaHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\AAV.Shared\Src\AsLink\UWP\DevOp.uwp.cs">
       <Link>AsLink\DevOp.uwp.cs</Link>
     </Compile>
-    <Compile Include="..\..\AsLink\UWP\IsoStoreHelper.cs">
+    <Compile Include="..\..\..\AAV.Shared\Src\AsLink\UWP\IsoStoreHelper.cs">
       <Link>AsLink\IsoStoreHelper.cs</Link>
     </Compile>
-    <Compile Include="..\..\AsLink\UWP\SerialHelper.Json.cs">
+    <Compile Include="..\..\..\AAV.Shared\Src\AsLink\UWP\SerialHelper.Json.cs">
       <Link>AsLink\SerialHelper.Json.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Live\TIA\UwLogrApp\Logic\Converters.cs">
-      <Link>AsLink\Converters.cs</Link>
     </Compile>
     <Compile Include="Model\ApplicationSettingsConstants.cs" />
     <Compile Include="Model\MediaInfoDto.cs" />

@@ -21,14 +21,14 @@ namespace ABR
       Debug.WriteLine($"{ApplicationData.Current.LocalFolder.Path}\r\n{ApplicationData.Current.RoamingFolder.Path}");
       EnteredBackground += onEnteredBackground;
       LeavingBackground += onLeavingBackground;
-      UnhandledException += App_UnhandledException;
-    }
+      //UnhandledException += App_UnhandledException;
+    //}
 
-    async void App_UnhandledException(object s, UnhandledExceptionEventArgs e)
-    {
-      var msgbox = new Windows.UI.Popups.MessageDialog("Unhandled exception: " + e.Exception.ToString());
-      msgbox.Commands.Add(new Windows.UI.Popups.UICommand("close"));
-      await msgbox.ShowAsync();
+    //async void App_UnhandledException(object s, UnhandledExceptionEventArgs e)
+    //{
+    //  var msgbox = new Windows.UI.Popups.MessageDialog("Unhandled exception: " + e.Exception.ToString());
+    //  msgbox.Commands.Add(new Windows.UI.Popups.UICommand("close"));
+    //  await msgbox.ShowAsync();
     }
 
     protected override void OnLaunched(LaunchActivatedEventArgs e)

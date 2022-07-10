@@ -100,10 +100,10 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\AsLink\MVVM\RelayCommandEx.UWP.cs">
+    <Compile Include="..\..\..\AAV.Shared\Src\AsLink\UWP\RelayCommandEx.UWP.cs">
       <Link>mvvm\RelayCommandEx.UWP.cs</Link>
     </Compile>
-    <Compile Include="..\..\AsLink\MVVM\ViewModelBase.UWP.cs">
+    <Compile Include="..\..\..\AAV.Shared\Src\AsLink\UWP\ViewModelBase.UWP.cs">
       <Link>mvvm\ViewModelBase.UWP.cs</Link>
     </Compile>
     <Compile Include="App.xaml.cs">
@@ -157,9 +157,7 @@
     <Compile Include="Vws\Pg3_LibUC.xaml.cs">
       <DependentUpon>Pg3_LibUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\..\AsLink\UWP\WinTileHelper.cs">
-      <Link>Vws\WinTileHelper.cs</Link>
-    </Compile>
+    <Compile Include="Vws\WinTileHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

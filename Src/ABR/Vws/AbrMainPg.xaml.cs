@@ -18,7 +18,7 @@ namespace ABR
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled) return;
 
             _abrVM = ViewModelDispatcher.AbrVM;
-            btnPinTile.Visibility = WinTileHelper.IsPinned ? Visibility.Collapsed : Visibility.Visible;
+            btnPinTile.Visibility = /*WinTileHelper.IsPinned ? Visibility.Collapsed : */Visibility.Visible;
 
 #if DEBUG
             ApplicationView.GetForCurrentView().Title = /*tbVer.Text =*/ $@"Dbg: built {(DateTime.Now - DevOp.BuildTime(typeof(App))).TotalDays:N1} days ago";

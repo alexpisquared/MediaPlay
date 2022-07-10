@@ -16,20 +16,19 @@ namespace ABR.Vws
     {
       var pb = (ProgressBar)s;
       if (pb.Maximum == 0) return;
-      DrawArc(arc_pathBig, new Point(halfSize, halfSize), halfSize - 1 - arc_pathBig.StrokeThickness / 2, 0, Math.PI * 2 * pb.Value / pb.Maximum);
-      DrawArc(arc_pathSmr, new Point(halfSize, halfSize), halfSize - 1 - arc_pathSmr.StrokeThickness / 2, 0, Math.PI * 2 * pb.Value / pb.Maximum);
+      DrawArc(arc_pathBig, new Point(halfSize, halfSize), halfSize - 1 - (arc_pathBig.StrokeThickness / 2), 0, Math.PI * 2 * pb.Value / pb.Maximum);
+      DrawArc(arc_pathSmr, new Point(halfSize, halfSize), halfSize - 1 - (arc_pathSmr.StrokeThickness / 2), 0, Math.PI * 2 * pb.Value / pb.Maximum);
     }
 
     public void DrawArc(Path arc_path, Point center, double radius, double start_angle, double enndd_angle)
     {
-      start_angle = ((start_angle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
-      enndd_angle = ((enndd_angle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+      start_angle = ((start_angle % (Math.PI * 2)) + (Math.PI * 2)) % (Math.PI * 2);
+      enndd_angle = ((enndd_angle % (Math.PI * 2)) + (Math.PI * 2)) % (Math.PI * 2);
       if (enndd_angle < start_angle)
       {
-        var temp_angle = enndd_angle;
-        enndd_angle = start_angle;
-        start_angle = temp_angle;
+        (start_angle, enndd_angle) = (enndd_angle, start_angle);
       }
+
       var angle_diff = enndd_angle - start_angle;
 
       var pathGeometry = new PathGeometry();
@@ -39,9 +38,9 @@ namespace ABR.Vws
         IsLargeArc = angle_diff >= Math.PI
       };
       //Set start of arc
-      pathFigure.StartPoint = new Point(center.X + radius * Math.Cos(start_angle), center.Y + radius * Math.Sin(start_angle));
+      pathFigure.StartPoint = new Point(center.X + (radius * Math.Cos(start_angle)), center.Y + (radius * Math.Sin(start_angle)));
       //set end point of arc.
-      arcSegment.Point = new Point(center.X + radius * Math.Cos(enndd_angle), center.Y + radius * Math.Sin(enndd_angle));
+      arcSegment.Point = new Point(center.X + (radius * Math.Cos(enndd_angle)), center.Y + (radius * Math.Sin(enndd_angle)));
       arcSegment.Size = new Size(radius, radius);
       arcSegment.SweepDirection = SweepDirection.Clockwise;
 
