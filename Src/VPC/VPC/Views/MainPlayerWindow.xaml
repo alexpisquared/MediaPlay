@@ -2,8 +2,8 @@
     xmlns:cul="clr-namespace:Common.UI.Lib.Views;assembly=Common.UI.Lib" 
     xmlns:Lib="clr-namespace:Common.UI.Lib.Views;assembly=Common.UI.Lib"
     xmlns:vws="clr-namespace:VPC.Views" 				
-    xmlns:lnk="clr-namespace:AAV.WPF.Base;assembly=AAV.WPF" 				
-    Title="{Binding Window_Title}" Height="540" Width="960" MinHeight="108" MinWidth="192" AllowsTransparency="True" WindowStyle="None" ResizeMode="CanResize" 
+    xmlns:lnk="clr-namespace:AAV.WPF.Base;assembly=AAV.WPF" xmlns:viewmodels="clr-namespace:VPC.ViewModels" 
+                Title="{Binding Window_Title}" Height="540" Width="960" MinHeight="108" MinWidth="192" AllowsTransparency="True" WindowStyle="None" ResizeMode="CanResize" 
         Background="#321" 
     WindowStartupLocation="Manual" WindowState="Normal" x:Name="win" AllowDrop="True" Drop="wdw_Drop_1" Icon="/VPC;component/Assets/movies.ico"  >
   <WindowChrome.WindowChrome>
@@ -153,14 +153,14 @@
       </MenuItem>
       <Separator />
       <MenuItem Header="_Jump">
-        <MenuItem Command="{Binding MoveLefNCommand}" CommandParameter="{Binding VPModel}"  Header="_LefN"/>
-        <MenuItem Command="{Binding MoveRghNCommand}" CommandParameter="{Binding VPModel}"  Header="_RghN"/>
-        <MenuItem Command="{Binding MoveLefCCommand}" CommandParameter="{Binding VPModel}"  Header="_LefC"/>
-        <MenuItem Command="{Binding MoveRghCCommand}" CommandParameter="{Binding VPModel}"  Header="_RghC"/>
-        <MenuItem Command="{Binding MoveLefACommand}" CommandParameter="{Binding VPModel}"  Header="_LefA"/>
-        <MenuItem Command="{Binding MoveRghACommand}" CommandParameter="{Binding VPModel}"  Header="_RghA"/>
-        <MenuItem Command="{Binding MoveLefSCommand}" CommandParameter="{Binding VPModel}"  Header="_LefS"/>
-        <MenuItem Command="{Binding MoveRghSCommand}" CommandParameter="{Binding VPModel}"  Header="_RghS"/>
+        <MenuItem Command="{Binding MoveLefNCommand}" CommandParameter="{Binding VPModel}"  Header="_Lefт         \t   5 sec"/>
+        <MenuItem Command="{Binding MoveRghNCommand}" CommandParameter="{Binding VPModel}"  Header="_Rghт         \t   5 sec"/>
+        <MenuItem Command="{Binding MoveLefCCommand}" CommandParameter="{Binding VPModel}"  Header="_Lefт Ctrl    \t   1 sec"/>
+        <MenuItem Command="{Binding MoveRghCCommand}" CommandParameter="{Binding VPModel}"  Header="_Rghт Ctrl    \t   1 sec"/>
+        <MenuItem Command="{Binding MoveLefACommand}" CommandParameter="{Binding VPModel}"  Header="_Lefт Alt     \t 200 ms"/>
+        <MenuItem Command="{Binding MoveRghACommand}" CommandParameter="{Binding VPModel}"  Header="_Rghт Alt     \t 200 ms"/>
+        <MenuItem Command="{Binding MoveLefSCommand}" CommandParameter="{Binding VPModel}"  Header="_Lefт Shift   \t  70 ms"/>
+        <MenuItem Command="{Binding MoveRghSCommand}" CommandParameter="{Binding VPModel}"  Header="_Rghт Shift   \t  70 ms"/>
       </MenuItem>
       <MenuItem Header="_Speed">
         <MenuItem Command="{Binding GoFasterCommand}" CommandParameter="{Binding ElementName=wmp}"      Header="Speed_Up" />

@@ -44,6 +44,7 @@ namespace VPC.Models
 
 		internal void ShowHelp()		{		}
 		internal void MoveLeft()		{		}
+		internal void MoveRght()		{		}
 		internal void Highesst()		{		}
 	}
 }

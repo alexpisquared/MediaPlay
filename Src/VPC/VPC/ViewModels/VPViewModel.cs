@@ -672,14 +672,15 @@ namespace VPC.ViewModels
     void meetPrev(object fvc) { pauseCollectViewTimeAndUpdatePosnMuStatsAndSave(); _isJumpingTo = _vpcPlayer.Position; var prev = VPModel.MovePrev(_vpcPlayer.Source.LocalPath); if (!string.IsNullOrEmpty(prev)) { PlayNewFile(prev); _fvc.MovCurrentToPrev(); } }
     void meetNext(object fvc) { pauseCollectViewTimeAndUpdatePosnMuStatsAndSave(); _isJumpingTo = _vpcPlayer.Position; var next = VPModel.MoveNext(_vpcPlayer.Source.LocalPath); if (!string.IsNullOrEmpty(next)) { PlayNewFile(next); _fvc.MovCurrentToNext(); } }
 
+    const int _intrvl = 200, _corection = 96;
     void moveLeftN(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromSeconds(5); ((VPModel)o).MoveLeft(); }
-    void moveRghtN(object x) => _vpcPlayer.Position += TimeSpan.FromSeconds(5);
-    void moveLeftC(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromMinutes(1); ((VPModel)o).MoveLeft(); }
-    void moveRghtC(object x) => _vpcPlayer.Position += TimeSpan.FromMinutes(1);
-    void moveLeftA(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromMinutes(5); ((VPModel)o).MoveLeft(); }
-    void moveRghtA(object x) => _vpcPlayer.Position += TimeSpan.FromMinutes(5);
-    void moveLeftS(object o) { flashKeyInfo(); ((VPModel)o).MoveLeft(); }
-    void moveRghtS(object x) => _vpcPlayer.Position += TimeSpan.FromSeconds(.5);
+    void moveRghtN(object o) { flashKeyInfo(); _vpcPlayer.Position += TimeSpan.FromSeconds(5); ((VPModel)o).MoveLeft(); }
+    void moveLeftC(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromSeconds(1); ((VPModel)o).MoveLeft(); }
+    void moveRghtC(object o) { flashKeyInfo(); _vpcPlayer.Position += TimeSpan.FromSeconds(1); ((VPModel)o).MoveLeft(); }
+    void moveLeftA(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(_intrvl - _corection); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(200); ((VPModel)o).MoveLeft(); _vpcPlayer.Play(); Thread.Sleep(_intrvl); _vpcPlayer.Pause(); }
+    void moveRghtA(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(_intrvl); _vpcPlayer.Position += TimeSpan.FromMilliseconds(200); ((VPModel)o).MoveRght(); _vpcPlayer.Play(); Thread.Sleep(_intrvl); _vpcPlayer.Pause(); }
+    void moveLeftS(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(_intrvl - _corection); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(70); ((VPModel)o).MoveLeft(); _vpcPlayer.Play(); Thread.Sleep(_intrvl); _vpcPlayer.Pause(); }
+    void moveRghtS(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(_intrvl); _vpcPlayer.Position += TimeSpan.FromMilliseconds(70); ((VPModel)o).MoveRght(); _vpcPlayer.Play(); Thread.Sleep(_intrvl); _vpcPlayer.Pause(); }
 
     public bool canTglPlyPs => true;
     public bool canGoFaster => true;
@@ -689,14 +690,14 @@ namespace VPC.ViewModels
     public bool canMoveNext => _vpcPlayer.Source != null && File.Exists(_vpcPlayer.Source.LocalPath);
     public bool canMovePrev => _vpcPlayer.Source != null && File.Exists(_vpcPlayer.Source.LocalPath);
 
-    public bool canMoveLeftN => _vpcPlayer.Position > TimeSpan.FromSeconds(5);
-    public bool canMoveRghtN => _vpcPlayer.NaturalDuration - _vpcPlayer.Position > TimeSpan.FromSeconds(5);
-    public bool canMoveLeftC => _vpcPlayer.Position > TimeSpan.FromMinutes(1);
-    public bool canMoveRghtC => _vpcPlayer.NaturalDuration - _vpcPlayer.Position > TimeSpan.FromMinutes(1);
-    public bool canMoveLeftA => _vpcPlayer.Position > TimeSpan.FromMinutes(5);
-    public bool canMoveRghtA => _vpcPlayer.NaturalDuration - _vpcPlayer.Position > TimeSpan.FromMinutes(5);
-    public bool canMoveLeftS => _vpcPlayer.Position > TimeSpan.FromSeconds(.5);
-    public bool canMoveRghtS => _vpcPlayer.NaturalDuration - _vpcPlayer.Position > TimeSpan.FromSeconds(.5);
+    public bool canMoveLeftN => true; //_vpcPlayer.Position > TimeSpan.FromSeconds(5);
+    public bool canMoveRghtN => true; //_vpcPlayer.NaturalDuration - _vpcPlayer.Position > TimeSpan.FromSeconds(5);
+    public bool canMoveLeftC => true; //_vpcPlayer.Position > TimeSpan.FromMinutes(1);
+    public bool canMoveRghtC => true; //_vpcPlayer.NaturalDuration - _vpcPlayer.Position > TimeSpan.FromMinutes(1);
+    public bool canMoveLeftA => true; //vpcPlayer.Position > TimeSpan.FromMinutes(5);
+    public bool canMoveRghtA => true; //_vpcPlayer.NaturalDuration - _vpcPlayer.Position > TimeSpan.FromMinutes(5);
+    public bool canMoveLeftS => true; //_vpcPlayer.Position > TimeSpan.FromSeconds(.5);
+    public bool canMoveRghtS => true; //_vpcPlayer.NaturalDuration - _vpcPlayer.Position > TimeSpan.FromSeconds(.5);
     public bool canDeleteMU => VPModel != null && VPModel.CrntMU != null && !string.IsNullOrEmpty(VPModel.CrntMU.PathFileCur) && File.Exists(VPModel.CrntMU.PathFileCur);
 
     public bool can_B_ => true; // _player.Position.TotalSeconds > 15; } }  <= for splits can be anywhere
@@ -965,7 +966,14 @@ namespace VPC.ViewModels
       }
     }
 
-    void flashKeyInfo(string msg = "") { if (ChromeVisibility == Visibility.Visible) return; Task.Run(async () => { ChromeVisibility = Visibility.Visible; Top_CentrMsg = msg; await Task.Delay(2500); }).ContinueWith(_ => { Top_CentrMsg = ""; ChromeVisibility = Visibility.Collapsed; }, TaskScheduler.FromCurrentSynchronizationContext()); }
+    void flashKeyInfo(string msg = "")
+    {
+      Bpr.BeepShort();
+      if (ChromeVisibility == Visibility.Visible) return;
+      Task.
+        Run(async () => { ChromeVisibility = Visibility.Visible; Top_CentrMsg = msg; await Task.Delay(250); }).
+        ContinueWith(_ => { Top_CentrMsg = ""; ChromeVisibility = Visibility.Collapsed; }, TaskScheduler.FromCurrentSynchronizationContext());
+    }
 
     public void FlashAllControlls() => flashKeyInfo();
 
