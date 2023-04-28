@@ -25,7 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\..\..\..\c\AsLink\DevOpStartup.Wpf.cs" Link="Common\DevOpStartup.Wpf.cs" />
     <Compile Include="..\..\..\..\AAV.Shared\Src\AsLink\UWP\MediaHelper.cs" Link="Common\MediaHelper.cs" />
     <Compile Include="..\..\DDJ\DDJ.Main\AsLink\AppSettingsBase.cs" Link="Common\AppSettingsBase.cs" />
     <Compile Include="..\..\DDJ\DDJ.Main\AsLink\ConverterEx.cs" Link="Common\ConverterEx.cs" />
