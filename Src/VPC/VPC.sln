@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AAV.WPF", "..\..\..\AAV.Sha
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StandardLib", "..\..\..\AAV.Shared\Src\NetLts\StandardLib\StandardLib.csproj", "{3B0FD38E-1A0F-43A0-985B-D3DB701D7E68}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmbienceLib", "..\..\..\AAV.Shared\Src\NetLts\Ambience\AmbienceLib.csproj", "{80368039-A7A4-4389-9041-AEC0617BC59B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		BldRls|Any CPU = BldRls|Any CPU
@@ -209,6 +211,24 @@ Global
 		{3B0FD38E-1A0F-43A0-985B-D3DB701D7E68}.Release|x64.Build.0 = Release|x64
 		{3B0FD38E-1A0F-43A0-985B-D3DB701D7E68}.Release|x86.ActiveCfg = Release|Any CPU
 		{3B0FD38E-1A0F-43A0-985B-D3DB701D7E68}.Release|x86.Build.0 = Release|Any CPU
+		{80368039-A7A4-4389-9041-AEC0617BC59B}.BldRls|Any CPU.ActiveCfg = Debug|Any CPU
+		{80368039-A7A4-4389-9041-AEC0617BC59B}.BldRls|Any CPU.Build.0 = Debug|Any CPU
+		{80368039-A7A4-4389-9041-AEC0617BC59B}.BldRls|x64.ActiveCfg = Debug|x64
+		{80368039-A7A4-4389-9041-AEC0617BC59B}.BldRls|x64.Build.0 = Debug|x64
+		{80368039-A7A4-4389-9041-AEC0617BC59B}.BldRls|x86.ActiveCfg = Debug|Any CPU
+		{80368039-A7A4-4389-9041-AEC0617BC59B}.BldRls|x86.Build.0 = Debug|Any CPU
+		{80368039-A7A4-4389-9041-AEC0617BC59B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80368039-A7A4-4389-9041-AEC0617BC59B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80368039-A7A4-4389-9041-AEC0617BC59B}.Debug|x64.ActiveCfg = Debug|x64
+		{80368039-A7A4-4389-9041-AEC0617BC59B}.Debug|x64.Build.0 = Debug|x64
+		{80368039-A7A4-4389-9041-AEC0617BC59B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{80368039-A7A4-4389-9041-AEC0617BC59B}.Debug|x86.Build.0 = Debug|Any CPU
+		{80368039-A7A4-4389-9041-AEC0617BC59B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80368039-A7A4-4389-9041-AEC0617BC59B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80368039-A7A4-4389-9041-AEC0617BC59B}.Release|x64.ActiveCfg = Release|x64
+		{80368039-A7A4-4389-9041-AEC0617BC59B}.Release|x64.Build.0 = Release|x64
+		{80368039-A7A4-4389-9041-AEC0617BC59B}.Release|x86.ActiveCfg = Release|Any CPU
+		{80368039-A7A4-4389-9041-AEC0617BC59B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -224,6 +244,7 @@ Global
 		{01A0CE1F-5564-4B73-897B-0633B42EECBD} = {BB64AF01-2416-4698-81FE-F3D618CFDE9B}
 		{6F104FAF-73BE-4AA9-AAFC-7149F9CDEA75} = {BB64AF01-2416-4698-81FE-F3D618CFDE9B}
 		{3B0FD38E-1A0F-43A0-985B-D3DB701D7E68} = {BB64AF01-2416-4698-81FE-F3D618CFDE9B}
+		{80368039-A7A4-4389-9041-AEC0617BC59B} = {BB64AF01-2416-4698-81FE-F3D618CFDE9B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35;packages\Unity.Interception.2.1.505.2\lib\NET35

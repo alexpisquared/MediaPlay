@@ -39,6 +39,7 @@
     <ProjectReference Include="..\..\..\..\AAV.Shared\Src\Net6.0\AAV.Mvvm\AAV.Mvvm.csproj" />
     <ProjectReference Include="..\..\..\..\AAV.Shared\Src\Net6.0\AAV.Sys\AAV.Sys.csproj" />
     <ProjectReference Include="..\..\..\..\AAV.Shared\Src\Net6.0\AAV.WPF\AAV.WPF.csproj" />
+    <ProjectReference Include="..\..\..\..\AAV.Shared\Src\NetLts\Ambience\AmbienceLib.csproj" />
     <ProjectReference Include="..\..\Cmn\Common.UI.Lib\Common.UI.Lib.csproj" />
   </ItemGroup>
 

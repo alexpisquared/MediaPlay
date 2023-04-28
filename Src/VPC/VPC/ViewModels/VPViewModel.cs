@@ -63,6 +63,8 @@ namespace VPC.ViewModels
         };
     #endregion
 
+    AmbienceLib.Bpr _bpr = new();
+
     public int PlayerMargin
     {
       get => playerMargin;
@@ -968,7 +970,7 @@ namespace VPC.ViewModels
 
     void flashKeyInfo(string msg = "")
     {
-      Bpr.BeepShort();
+      _bpr.Tick();
       if (ChromeVisibility == Visibility.Visible) return;
       Task.
         Run(async () => { ChromeVisibility = Visibility.Visible; Top_CentrMsg = msg; await Task.Delay(250); }).
