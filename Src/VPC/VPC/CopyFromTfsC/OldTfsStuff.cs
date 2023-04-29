@@ -1,14 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.IO.IsolatedStorage;
-using System.Reflection;
-using System.Text;
-using System.Xml.Serialization;
-using AAV.Sys.Ext;
-using AAV.WPF.Ext;
-
-namespace AsLink;
+﻿namespace AsLink;
 
 public static class IsoStore
 {

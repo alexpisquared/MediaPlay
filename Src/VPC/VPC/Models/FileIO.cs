@@ -1,4 +1,3 @@
-﻿namespace VPC.Models
-{
-	class FileIO	{	}
-}
+﻿namespace VPC.Models;
+
+class FileIO { }

@@ -61,7 +61,7 @@
     <Resource Include="Assets\Video_Action.ico" />
     <Resource Include="Assets\ViewOn.ico" />
     <Resource Include="Assets\vpc.ico" />
-    <Resource Include="Video.ico" />
+    <Resource Include="Assets\Video.ico" />
   </ItemGroup>
 
   <ItemGroup>
