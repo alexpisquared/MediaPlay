@@ -5,7 +5,7 @@
     xmlns:lnk="clr-namespace:AAV.WPF.Base;assembly=AAV.WPF" xmlns:viewmodels="clr-namespace:VPC.ViewModels" 
                 Title="{Binding Window_Title}" Height="540" Width="960" MinHeight="108" MinWidth="192" AllowsTransparency="True" WindowStyle="None" ResizeMode="CanResize" 
         Background="#321" 
-    WindowStartupLocation="Manual" WindowState="Normal" x:Name="win" AllowDrop="True" Drop="wdw_Drop_1" Icon="/VPC;component/Assets/movies.ico"  >
+    WindowStartupLocation="Manual" WindowState="Normal" x:Name="wnd" AllowDrop="True" Drop="wdw_Drop_1" Icon="/VPC;component/Assets/movies.ico"  >
   <WindowChrome.WindowChrome>
     <WindowChrome CaptionHeight="0" ResizeBorderThickness="12" GlassFrameThickness="0" NonClientFrameEdges="None" />
   </WindowChrome.WindowChrome>
@@ -101,7 +101,7 @@
         <MenuItem Command="{Binding C_Command}" CommandParameter="{Binding ElementName=wmp}" Header="_C" />
         <MenuItem Command="{Binding D_Command}" CommandParameter="{Binding ElementName=wmp}" Header="_Done or Already watched" />
         <MenuItem Command="{Binding E_Command}" CommandParameter="{Binding ElementName=wmp}" Header="_E" />
-        <MenuItem Command="{Binding F_Command}" CommandParameter="{Binding ElementName=win}" Header="_Full Screen   (Dir moved to F12)" />
+        <MenuItem Command="{Binding F_Command}" CommandParameter="{Binding ElementName=wnd}" Header="_Full Screen   (Dir moved to F12)" />
         <MenuItem Command="{Binding G_Command}" CommandParameter="{Binding ElementName=fuc}" Header="_G Play new file ???" />
         <MenuItem Command="{Binding H_Command}" CommandParameter="{Binding ElementName=wmp}" Header="_Hide/Show" />
         <MenuItem Command="{Binding I_Command}" CommandParameter="{Binding ElementName=wmp}" Header="_I Squize" />
@@ -113,15 +113,15 @@
         <MenuItem Command="{Binding O_Command}" CommandParameter="{Binding ElementName=wmp}" Header="_O Use Classic Player" />
         <MenuItem Command="{Binding P_Command}" CommandParameter="{Binding ElementName=wmp}" Header="_P" />
         <MenuItem Command="{Binding Q_Command}" CommandParameter="{Binding ElementName=wmp}" Header="_Q Volume 0/Max" />
-        <MenuItem Command="{Binding R_Command}" CommandParameter="{Binding ElementName=win}" Header="_Review Daily View Time" />
+        <MenuItem Command="{Binding R_Command}" CommandParameter="{Binding ElementName=wnd}" Header="_Review Daily View Time" />
         <MenuItem Command="{Binding S_Command}" CommandParameter="{Binding ElementName=wmp}" Header="_Stretch" />
-        <MenuItem Command="{Binding T_Command}" CommandParameter="{Binding ElementName=win}" Header="_Timer Set up to stop in X minutes" />
+        <MenuItem Command="{Binding T_Command}" CommandParameter="{Binding ElementName=wnd}" Header="_Timer Set up to stop in X minutes" />
         <MenuItem Command="{Binding U_Command}" CommandParameter="{Binding ElementName=wmp}" Header="_U Play to" />
         <MenuItem Command="{Binding V_Command}" CommandParameter="{Binding ElementName=fuc}" Header="_View Later - Move to Folder" />
         <MenuItem Command="{Binding W_Command}" CommandParameter="{Binding ElementName=wmp}" Header="_W Use wmplayer.exe" />
-        <MenuItem Command="{Binding X_Command}" CommandParameter="{Binding ElementName=win}" Header="Ma_Ximize/Restore == Full Screen" />
+        <MenuItem Command="{Binding X_Command}" CommandParameter="{Binding ElementName=wnd}" Header="Ma_Ximize/Restore == Full Screen" />
         <MenuItem Command="{Binding Y_Command}" CommandParameter="{Binding ElementName=fuc}" Header="Y Histor_y" />
-        <MenuItem Command="{Binding Z_Command}" CommandParameter="{Binding ElementName=win}" Header="_Z-Order: Always on Top" />
+        <MenuItem Command="{Binding Z_Command}" CommandParameter="{Binding ElementName=wnd}" Header="_Z-Order: Always on Top" />
       </MenuItem>
       <Separator />
       <MenuItem Header="_1-0">
@@ -145,10 +145,10 @@
         <MenuItem Command="{Binding  F5_Command}" CommandParameter="{Binding ElementName=wmp}"       Header="F_5" />
         <MenuItem Command="{Binding  F6_Command}" CommandParameter="{Binding ElementName=wmp}"       Header="F_6" />
         <MenuItem Command="{Binding  F7_Command}" CommandParameter="{Binding ElementName=wmp}"       Header="F_7" />
-        <MenuItem Command="{Binding  F8_Command}" CommandParameter="{Binding ElementName=win}"       Header="F_8 - Size to original movie size" />
-        <MenuItem Command="{Binding  F9_Command}" CommandParameter="{Binding ElementName=win}"       Header="F_9 - Center" />
-        <MenuItem Command="{Binding F10_Command}" CommandParameter="{Binding ElementName=win}"       Header="F_10 - " />
-        <MenuItem Command="{Binding F11_Command}" CommandParameter="{Binding ElementName=win}"       Header="F_11 - " />
+        <MenuItem Command="{Binding  F8_Command}" CommandParameter="{Binding ElementName=wnd}"       Header="F_8 - Size to original movie size" />
+        <MenuItem Command="{Binding  F9_Command}" CommandParameter="{Binding ElementName=wnd}"       Header="F_9 - Center" />
+        <MenuItem Command="{Binding F10_Command}" CommandParameter="{Binding ElementName=wnd}"       Header="F_10 - " />
+        <MenuItem Command="{Binding F11_Command}" CommandParameter="{Binding ElementName=wnd}"       Header="F_11 - " />
         <MenuItem Command="{Binding F12_Command}" CommandParameter="{Binding ElementName=fuc}"       Header="F_12 - _Folder Content - Show/Hide" />
       </MenuItem>
       <Separator />
@@ -197,9 +197,9 @@
   </lnk:WindowBase.ContextMenu>
 
   <lnk:WindowBase.InputBindings>
-    <!--<MouseBinding MouseAction="LeftClick" Command="{Binding TglPlyPsCommand}" CommandParameter="{Binding ElementName=win}" />
-    <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding X_Command}" CommandParameter="{Binding ElementName=win}" />-->
-    <MouseBinding MouseAction="WheelClick"      Command="{Binding J_Command}" CommandParameter="{Binding ElementName=win}" />
+    <!--<MouseBinding MouseAction="LeftClick" Command="{Binding TglPlyPsCommand}" CommandParameter="{Binding ElementName=wnd}" />
+    <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding X_Command}" CommandParameter="{Binding ElementName=wnd}" />-->
+    <MouseBinding MouseAction="WheelClick"      Command="{Binding J_Command}" CommandParameter="{Binding ElementName=wnd}" />
     <!--
     <KeyBinding   Command="{Binding ChangClrCommand}" CommandParameter="{Binding ElementName=colorList, Path=SelectedItem}" Key="{Binding ChangClrCommand.GestureKey}" Modifiers="{Binding ChangClrCommand.GestureModifier}"/>
     <MouseBinding Command="{Binding ChangClrCommand}" CommandParameter="{Binding ElementName=colorList, Path=SelectedItem}" MouseAction="{Binding ChangClrCommand.MouseGesture}"/>
@@ -226,10 +226,10 @@
     <KeyBinding   Command="{Binding F5_Command}" CommandParameter="{Binding ElementName=wmp}" Key="{Binding F5_Command.GestureKey}" Modifiers="{Binding F5_Command.GestureModifier}" />
     <KeyBinding   Command="{Binding F6_Command}" CommandParameter="{Binding ElementName=wmp}" Key="{Binding F6_Command.GestureKey}" Modifiers="{Binding F6_Command.GestureModifier}" />
     <KeyBinding   Command="{Binding F7_Command}" CommandParameter="{Binding ElementName=wmp}" Key="{Binding F7_Command.GestureKey}" Modifiers="{Binding F7_Command.GestureModifier}" />
-    <KeyBinding   Command="{Binding F8_Command}" CommandParameter="{Binding ElementName=win}" Key="{Binding F8_Command.GestureKey}" Modifiers="{Binding F8_Command.GestureModifier}" />
-    <KeyBinding   Command="{Binding F9_Command}" CommandParameter="{Binding ElementName=win}" Key="{Binding F9_Command.GestureKey}" Modifiers="{Binding F9_Command.GestureModifier}" />
-    <KeyBinding   Command="{Binding F10_Command}" CommandParameter="{Binding ElementName=win}" Key="{Binding F10_Command.GestureKey}" Modifiers="{Binding F10_Command.GestureModifier}" />
-    <KeyBinding   Command="{Binding F11_Command}" CommandParameter="{Binding ElementName=win}" Key="{Binding F11_Command.GestureKey}" Modifiers="{Binding F11_Command.GestureModifier}" />
+    <KeyBinding   Command="{Binding F8_Command}" CommandParameter="{Binding ElementName=wnd}" Key="{Binding F8_Command.GestureKey}" Modifiers="{Binding F8_Command.GestureModifier}" />
+    <KeyBinding   Command="{Binding F9_Command}" CommandParameter="{Binding ElementName=wnd}" Key="{Binding F9_Command.GestureKey}" Modifiers="{Binding F9_Command.GestureModifier}" />
+    <KeyBinding   Command="{Binding F10_Command}" CommandParameter="{Binding ElementName=wnd}" Key="{Binding F10_Command.GestureKey}" Modifiers="{Binding F10_Command.GestureModifier}" />
+    <KeyBinding   Command="{Binding F11_Command}" CommandParameter="{Binding ElementName=wnd}" Key="{Binding F11_Command.GestureKey}" Modifiers="{Binding F11_Command.GestureModifier}" />
     <KeyBinding   Command="{Binding F12_Command}" CommandParameter="{Binding ElementName=fuc}" Key="{Binding F12_Command.GestureKey}" Modifiers="{Binding F12_Command.GestureModifier}" />
 
     <KeyBinding   Command="{Binding D0_Command}" CommandParameter="{Binding ElementName=wmp}" Key="{Binding D0_Command.GestureKey}" Modifiers="{Binding D0_Command.GestureModifier}" />
@@ -248,7 +248,7 @@
     <KeyBinding   Command="{Binding C_Command}" CommandParameter="{Binding ElementName=wmp}" Key="{Binding C_Command.GestureKey}" Modifiers="{Binding C_Command.GestureModifier}" />
     <KeyBinding   Command="{Binding D_Command}" CommandParameter="{Binding ElementName=wmp}" Key="{Binding D_Command.GestureKey}" Modifiers="{Binding D_Command.GestureModifier}" />
     <KeyBinding   Command="{Binding E_Command}" CommandParameter="{Binding ElementName=wmp}" Key="{Binding E_Command.GestureKey}" Modifiers="{Binding E_Command.GestureModifier}" />
-    <KeyBinding   Command="{Binding F_Command}" CommandParameter="{Binding ElementName=win}" Key="{Binding F_Command.GestureKey}" Modifiers="{Binding F_Command.GestureModifier}" />
+    <KeyBinding   Command="{Binding F_Command}" CommandParameter="{Binding ElementName=wnd}" Key="{Binding F_Command.GestureKey}" Modifiers="{Binding F_Command.GestureModifier}" />
     <KeyBinding   Command="{Binding G_Command}" CommandParameter="{Binding ElementName=fuc}" Key="{Binding G_Command.GestureKey}" Modifiers="{Binding G_Command.GestureModifier}" />
     <KeyBinding   Command="{Binding H_Command}" CommandParameter="{Binding ElementName=wmp}" Key="{Binding H_Command.GestureKey}" Modifiers="{Binding H_Command.GestureModifier}" />
     <KeyBinding   Command="{Binding I_Command}" CommandParameter="{Binding ElementName=wmp}" Key="{Binding I_Command.GestureKey}" Modifiers="{Binding I_Command.GestureModifier}" />
@@ -260,16 +260,16 @@
     <KeyBinding   Command="{Binding O_Command}" CommandParameter="{Binding ElementName=wmp}" Key="{Binding O_Command.GestureKey}" Modifiers="{Binding O_Command.GestureModifier}" />
     <KeyBinding   Command="{Binding P_Command}" CommandParameter="{Binding ElementName=wmp}" Key="{Binding P_Command.GestureKey}" Modifiers="{Binding P_Command.GestureModifier}" />
     <KeyBinding   Command="{Binding Q_Command}" CommandParameter="{Binding ElementName=wmp}" Key="{Binding Q_Command.GestureKey}" Modifiers="{Binding Q_Command.GestureModifier}" />
-    <KeyBinding   Command="{Binding R_Command}" CommandParameter="{Binding ElementName=win}" Key="{Binding R_Command.GestureKey}" Modifiers="{Binding R_Command.GestureModifier}" />
+    <KeyBinding   Command="{Binding R_Command}" CommandParameter="{Binding ElementName=wnd}" Key="{Binding R_Command.GestureKey}" Modifiers="{Binding R_Command.GestureModifier}" />
     <KeyBinding   Command="{Binding S_Command}" CommandParameter="{Binding ElementName=wmp}" Key="{Binding S_Command.GestureKey}" Modifiers="{Binding S_Command.GestureModifier}" />
-    <KeyBinding   Command="{Binding T_Command}" CommandParameter="{Binding ElementName=win}" Key="{Binding T_Command.GestureKey}" Modifiers="{Binding T_Command.GestureModifier}" />
+    <KeyBinding   Command="{Binding T_Command}" CommandParameter="{Binding ElementName=wnd}" Key="{Binding T_Command.GestureKey}" Modifiers="{Binding T_Command.GestureModifier}" />
     <KeyBinding   Command="{Binding U_Command}" CommandParameter="{Binding ElementName=wmp}" Key="{Binding U_Command.GestureKey}" Modifiers="{Binding U_Command.GestureModifier}" />
     <KeyBinding   Command="{Binding V_Command}" CommandParameter="{Binding ElementName=fuc}" Key="{Binding V_Command.GestureKey}" Modifiers="{Binding V_Command.GestureModifier}" />
     <KeyBinding   Command="{Binding W_Command}" CommandParameter="{Binding ElementName=wmp}" Key="{Binding W_Command.GestureKey}" Modifiers="{Binding W_Command.GestureModifier}" />
-    <KeyBinding   Command="{Binding X_Command}" CommandParameter="{Binding ElementName=win}" Key="{Binding X_Command.GestureKey}" Modifiers="{Binding X_Command.GestureModifier}" />
-    <KeyBinding   Command="{Binding X2Command}" CommandParameter="{Binding ElementName=win}" Key="{Binding X2Command.GestureKey}" Modifiers="{Binding X2Command.GestureModifier}" />
+    <KeyBinding   Command="{Binding X_Command}" CommandParameter="{Binding ElementName=wnd}" Key="{Binding X_Command.GestureKey}" Modifiers="{Binding X_Command.GestureModifier}" />
+    <KeyBinding   Command="{Binding X2Command}" CommandParameter="{Binding ElementName=wnd}" Key="{Binding X2Command.GestureKey}" Modifiers="{Binding X2Command.GestureModifier}" />
     <KeyBinding   Command="{Binding Y_Command}" CommandParameter="{Binding ElementName=fuc}" Key="{Binding Y_Command.GestureKey}" Modifiers="{Binding Y_Command.GestureModifier}" />
-    <KeyBinding   Command="{Binding Z_Command}" CommandParameter="{Binding ElementName=win}" Key="{Binding Z_Command.GestureKey}" Modifiers="{Binding Z_Command.GestureModifier}" />
+    <KeyBinding   Command="{Binding Z_Command}" CommandParameter="{Binding ElementName=wnd}" Key="{Binding Z_Command.GestureKey}" Modifiers="{Binding Z_Command.GestureModifier}" />
 
     <KeyBinding   Command="{Binding MovUpDirCommand}" CommandParameter="{Binding ElementName=fuc}" Key="{Binding MovUpDirCommand.GestureKey}" Modifiers="{Binding MovUpDirCommand.GestureModifier}" />
     <KeyBinding   Command="{Binding MoveNextCommand}" CommandParameter="{Binding ElementName=fuc}" Key="{Binding MoveNextCommand.GestureKey}" Modifiers="{Binding MoveNextCommand.GestureModifier}" />
@@ -298,6 +298,9 @@
   </lnk:WindowBase.InputBindings>
 
   <Grid x:Name="LayoutRoot" AllowDrop="True">
+    <Grid.LayoutTransform>
+      <ScaleTransform ScaleX="{Binding ZV, ElementName=wnd, FallbackValue=1}" ScaleY="{Binding ZV, ElementName=wnd, FallbackValue=1}" />
+    </Grid.LayoutTransform>
 
     <!--<Grid Visibility="{Binding ChromeVisibility}" HorizontalAlignment="Center" Margin="12" VerticalAlignment="Bottom">
       <vws:DailyViewTimeUsrCtrl TodayTotalC="{Binding TotalByNow, Mode=TwoWay}"/>
@@ -305,7 +308,11 @@
     </Grid>-->
 
     <MediaElement Volume="1" x:Name="wmp" Source="{Binding VPModel.CrntMU.PathFileCur, Mode=OneWay}" LoadedBehavior="Manual" UnloadedBehavior="Manual" Cursor="None" 
-                  MediaOpened="wmp_MediaOpened" />
+                  MediaOpened="wmp_MediaOpened" Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Center">
+      <MediaElement.LayoutTransform>
+        <ScaleTransform ScaleX="{Binding ZV, ElementName=wnd, FallbackValue=1}" ScaleY="{Binding ZV, ElementName=wnd, FallbackValue=1}" />
+      </MediaElement.LayoutTransform>
+    </MediaElement>
 
     <!--<Grid x:Name="ChromeGird" Visibility="{Binding ChromeVisibility}" Style="{StaticResource FadeInOnMouseMove}" >-->
     <Grid x:Name="ChromeGird" >
