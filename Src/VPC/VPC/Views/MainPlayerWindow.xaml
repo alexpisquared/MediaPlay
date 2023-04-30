@@ -1,9 +1,10 @@
 ﻿<lnk:WindowBase xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="VPC.MainPlayerWindow" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:es="clr-namespace:Microsoft.Expression.Shapes;assembly=Microsoft.Expression.Drawing" xmlns:em="clr-namespace:Microsoft.Expression.Media;assembly=Microsoft.Expression.Drawing" 
                 xmlns:cul="clr-namespace:Common.UI.Lib.Views;assembly=Common.UI.Lib"     
                 xmlns:vws="clr-namespace:VPC.Views" 				    
-                xmlns:lnk="clr-namespace:AAV.WPF.Base;assembly=AAV.WPF" xmlns:viewmodels="clr-namespace:VPC.ViewModels" 
+                xmlns:lnk="clr-namespace:AAV.WPF.Base;assembly=AAV.WPF" 
                 Title="{Binding Window_Title}" Height="540" Width="960" MinHeight="108" MinWidth="192" AllowsTransparency="True" WindowStyle="None" ResizeMode="CanResize" Background="#321" 
-                WindowStartupLocation="Manual" WindowState="Normal" x:Name="wnd" AllowDrop="True" Drop="wdw_Drop_1" Icon="/VPC;component/Assets/movies.ico"  >
+                WindowStartupLocation="Manual" WindowState="Normal" x:Name="wnd" AllowDrop="True" Drop="wdw_Drop_1" Icon="/VPC;component/Assets/movies.ico"  
+                >
   <!--          xmlns:xui="clr-namespace:WpfUserControlLib.Views;assembly=WpfUserControlLib"
   -->            
   <WindowChrome.WindowChrome>
@@ -297,7 +298,9 @@
 
   </lnk:WindowBase.InputBindings>
 
-  <Grid x:Name="LayoutRoot" AllowDrop="True">
+  <Grid x:Name="LayoutRoot" AllowDrop="True"
+                MouseWheel="ZoomablePicture_MouseWheel"
+        >
     <Grid.LayoutTransform>
       <ScaleTransform ScaleX="{Binding ZV, ElementName=wnd, FallbackValue=1}" ScaleY="{Binding ZV, ElementName=wnd, FallbackValue=1}" />
     </Grid.LayoutTransform>
@@ -307,8 +310,14 @@
       <vws:DailyViewTimeUsrCtrl HeaderInfo="{Binding ViewTimeLogCopy2.TodayTotal3}"  TotalDayViewTimes="{Binding ViewTimeLogCopy.DayList}" HorizontalAlignment="Center" Margin="6" VerticalAlignment="Stretch"/>
     </Grid>-->
 
-    <MediaElement Volume="1" x:Name="wmp" Source="{Binding VPModel.CrntMU.PathFileCur, Mode=OneWay}" LoadedBehavior="Manual" UnloadedBehavior="Manual" Cursor="None" 
-                  MediaOpened="wmp_MediaOpened" Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Center">
+    <MediaElement Volume="1" x:Name="wmp" Source="{Binding VPModel.CrntMU.PathFileCur, Mode=OneWay}" LoadedBehavior="Manual" UnloadedBehavior="Manual" 
+                  Cursor="Hand" 
+                  MediaOpened="wmp_MediaOpened" 
+                  Stretch="Uniform" 
+                  >
+                  <!--
+      Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Center"
+      -->
       <MediaElement.LayoutTransform>
         <ScaleTransform ScaleX="{Binding ZV, ElementName=wnd, FallbackValue=1}" ScaleY="{Binding ZV, ElementName=wnd, FallbackValue=1}" />
       </MediaElement.LayoutTransform>

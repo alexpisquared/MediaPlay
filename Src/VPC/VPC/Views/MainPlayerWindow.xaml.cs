@@ -35,4 +35,13 @@ public partial class MainPlayerWindow : AAV.WPF.Base.WindowBase
   }
 
   void wmp_MediaOpened(object s, RoutedEventArgs e) => ChromeGird.Style = Application.Current.TryFindResource(MediaHelper.IsAudio(((MediaElement)s).Source.AbsolutePath) ? "DefaultStyle12345" : "FadeInOnMouseMove") as Style;
+
+  double _scale = 1.0;
+  void ZoomablePicture_MouseWheel(object sender, MouseWheelEventArgs e)
+  {
+    _scale *= (e.Delta > 0 ? 1.1 : 0.9);
+
+    wmp.RenderTransformOrigin = new System.Windows.Point(e.GetPosition(wmp).X / wmp.ActualWidth, e.GetPosition(wmp).Y / wmp.ActualHeight);
+    wmp.RenderTransform = new System.Windows.Media.ScaleTransform(_scale, _scale);
+  }
 }
