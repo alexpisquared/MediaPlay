@@ -41,7 +41,7 @@ public partial class MainPlayerWindow : AAV.WPF.Base.WindowBase
   {
     _scale *= (e.Delta > 0 ? 1.1 : 0.9);
 
-    wmp.RenderTransformOrigin = new System.Windows.Point(e.GetPosition(wmp).X / wmp.ActualWidth, e.GetPosition(wmp).Y / wmp.ActualHeight);
-    wmp.RenderTransform = new System.Windows.Media.ScaleTransform(_scale, _scale);
+    wmp.RenderTransform = new ScaleTransform(_scale, _scale);
+    wmp.RenderTransformOrigin = new Point(e.GetPosition(wmp).X / wmp.ActualWidth, e.GetPosition(wmp).Y / wmp.ActualHeight);
   }
 }

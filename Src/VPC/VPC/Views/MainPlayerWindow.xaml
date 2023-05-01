@@ -317,10 +317,10 @@
                   >
                   <!--
       Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Center"
-      -->
       <MediaElement.LayoutTransform>
         <ScaleTransform ScaleX="{Binding ZV, ElementName=wnd, FallbackValue=1}" ScaleY="{Binding ZV, ElementName=wnd, FallbackValue=1}" />
       </MediaElement.LayoutTransform>
+      -->
     </MediaElement>
 
     <!--<Grid x:Name="ChromeGird" Visibility="{Binding ChromeVisibility}" Style="{StaticResource FadeInOnMouseMove}" >-->
