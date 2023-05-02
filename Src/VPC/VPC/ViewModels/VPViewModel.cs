@@ -101,7 +101,7 @@ public class VPViewModel : BindableBaseViewModel, IVPViewModel
           {
             if (_prevPosn == value)
             {
-              Bpr.BeepOk();
+              //Bpr.BeepOk();
               _vpcPlayer.Position = VPModel.CrntMU.Position = value;
             }
           }, TaskScheduler.FromCurrentSynchronizationContext());
@@ -950,7 +950,7 @@ public class VPViewModel : BindableBaseViewModel, IVPViewModel
 
   void flashKeyInfo(string msg = "")
   {
-    _bpr.Tick();
+    //_bpr.Tick();
     if (ChromeVisibility == Visibility.Visible) return;
 
     _ = Task
