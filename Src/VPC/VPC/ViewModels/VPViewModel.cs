@@ -924,7 +924,7 @@ public class VPViewModel : BindableBaseViewModel, IVPViewModel
     //if (VPModel.CrntMU.PassedQA == false && VPModel.CrntMU.LastPeekPC == Environment.MachineName) if (MessageBox.Show(mediaFile + "\n\ncrashed before...\n\n\n\t Continue?", "Continue?", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.Cancel) return;
 
     VPModel.CrntMU.PassedQA = false;
-    updatePosnMuStatsAndSave(); // pre-saving for crash analisys
+    updatePosnMuStatsAndSave(); // pre-saving for crash analysis.
 
     TglPlyPsCommand.Execute(_vpcPlayer);
   }
