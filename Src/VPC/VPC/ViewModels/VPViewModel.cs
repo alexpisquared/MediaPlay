@@ -655,14 +655,14 @@ public class VPViewModel : BindableBaseViewModel, IVPViewModel
   void meetNext(object fvc) { pauseCollectViewTimeAndUpdatePosnMuStatsAndSave(); _isJumpingTo = _vpcPlayer.Position; var next = VPModel.MoveNext(_vpcPlayer.Source.LocalPath); if (!string.IsNullOrEmpty(next)) { PlayNewFile(next); _fvc.MovCurrentToNext(); } }
 
   const int _intrvl = 200, _corection = 96;
-  void moveLeftN(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromSeconds(5); ((VPModel)o).MoveLeft(); }
-  void moveRghtN(object o) { flashKeyInfo(); _vpcPlayer.Position += TimeSpan.FromSeconds(5); ((VPModel)o).MoveLeft(); }
+  void moveLeftS(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromSeconds(5); ((VPModel)o).MoveLeft(); }
+  void moveRghtS(object o) { flashKeyInfo(); _vpcPlayer.Position += TimeSpan.FromSeconds(5); ((VPModel)o).MoveLeft(); }
   void moveLeftC(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromSeconds(1); ((VPModel)o).MoveLeft(); }
   void moveRghtC(object o) { flashKeyInfo(); _vpcPlayer.Position += TimeSpan.FromSeconds(1); ((VPModel)o).MoveLeft(); }
   void moveLeftA(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(_intrvl - _corection); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(200); ((VPModel)o).MoveLeft(); _vpcPlayer.Play(); Thread.Sleep(_intrvl); _vpcPlayer.Pause(); }
   void moveRghtA(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(_intrvl); _vpcPlayer.Position += TimeSpan.FromMilliseconds(200); ((VPModel)o).MoveRght(); _vpcPlayer.Play(); Thread.Sleep(_intrvl); _vpcPlayer.Pause(); }
-  void moveLeftS(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(_intrvl - _corection); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(70); ((VPModel)o).MoveLeft(); _vpcPlayer.Play(); Thread.Sleep(_intrvl); _vpcPlayer.Pause(); }
-  void moveRghtS(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(_intrvl); _vpcPlayer.Position += TimeSpan.FromMilliseconds(70); ((VPModel)o).MoveRght(); _vpcPlayer.Play(); Thread.Sleep(_intrvl); _vpcPlayer.Pause(); }
+  void moveLeftN(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(_intrvl - _corection); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(70); ((VPModel)o).MoveLeft(); _vpcPlayer.Play(); Thread.Sleep(_intrvl); _vpcPlayer.Pause(); }
+  void moveRghtN(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(_intrvl); _vpcPlayer.Position += TimeSpan.FromMilliseconds(70); ((VPModel)o).MoveRght(); _vpcPlayer.Play(); Thread.Sleep(_intrvl); _vpcPlayer.Pause(); }
 
   public bool canTglPlyPs => true;
   public bool canGoFaster => true;
