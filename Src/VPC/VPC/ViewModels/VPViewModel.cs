@@ -458,20 +458,24 @@ public class VPViewModel : BindableBaseViewModel, IVPViewModel
   void do_A_(object o) { flashKeyInfo(); _vpcPlayer.Position = _lastStartPosn; }
   void do_B_(object o)
   {
-    _vpcPlayer.Pause();
+    _vpcPlayer?.Pause();
+    var currentPosition = _vpcPlayer.Position;
+
     flashKeyInfo();
-    var cp = _vpcPlayer.Position;
-    Bpr.Click();
+    new AmbienceLib.Bpr().Click();
     var w = new RenameWindow(Window);
     var rv = w.ShowDialog();
     if (rv != true)
       return;
 
-    removeNearBookmarksInRangeOf(sec: 5);
-    var nbm = new MuBookmark { AddedAt = DateTime.Now, AddedBy = Environment.UserName, ID = VPModel.CrntMU.Bookmarks.Count, PositionSec = cp.TotalSeconds - (IsPlaying ? .333 : .0), Note = w.Filename };
+    //2023-12: too rude and confusing: removeNearBookmarksInRangeOf(sec: 5);
+
+    var nbm = VPModel.CrntMU.Bookmarks.FirstOrDefault(r => Math.Abs(r.PositionSec - currentPosition.TotalSeconds) < .001) 
+      ?? new MuBookmark { AddedAt = DateTime.Now, AddedBy = Environment.UserName, ID = VPModel.CrntMU.Bookmarks.Count, PositionSec = currentPosition.TotalSeconds, Note = w.Filename };
+
     VPModel.CrntMU.Bookmarks.Add(nbm);
     VPModel.CrntMU.OrderByPos();
-    updatePosnMuStatsAndSave(cp);
+    updatePosnMuStatsAndSave(currentPosition);
     playAndStartCounters();
   }
   void do_C_(object o) => flashKeyInfo();
