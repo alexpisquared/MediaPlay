@@ -68,7 +68,7 @@ public partial class AppSettings
     }
   }
 
-  static volatile AppSettings _instance;
+  static volatile AppSettings? _instance;
   static readonly object _syncRoot = new(); // multithreading support
   #endregion
 }

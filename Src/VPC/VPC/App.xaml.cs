@@ -30,10 +30,10 @@ public partial class App : Application
   protected override void OnExit(ExitEventArgs e)
   {
     Debug.Write($"{e}");
-    if (_viewModel.VPModel.CrntMU != null) _settings.LastVideo = _viewModel.VPModel.CrntMU.PathFileCur;
+    if (_viewModel?.VPModel.CrntMU != null) _settings.LastVideo = _viewModel.VPModel.CrntMU.PathFileCur;
     //Settings.Default.Save();
 
-    _viewModel.LogSessionViewTime(_daySsnStarted);
+    _viewModel?.LogSessionViewTime(_daySsnStarted);
   }
 
   //void OnStartup_Unity(StartupEventArgs e)

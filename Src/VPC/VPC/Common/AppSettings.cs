@@ -10,6 +10,6 @@ public partial class AppSettings
 
   public int PlayerMargin { get; set; }
 
-  public string AppSetting { get; internal set; }
-  public string LastVideo { get; internal set; }
+  public string AppSetting { get; internal set; } = "";
+  public string LastVideo { get; internal set; } = "";
 }
