@@ -2,8 +2,12 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows8.0</TargetFramework>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DDJ.AudioCompare.Lib.Net5\DDJ.AudioCompare.Lib.Net5.csproj" />
+  </ItemGroup>
 
 </Project>

@@ -2,26 +2,22 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows8.0</TargetFramework>
     <UseWPF>true</UseWPF>
     <AssemblyName>DDJ</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\AAV.Shared\Src\Net6.0\AAV.Sys\AAV.Sys.csproj" />
     <ProjectReference Include="..\..\..\AAV.Shared\Src\Net6.0\AAV.WPF\AAV.WPF.csproj" />
     <ProjectReference Include="..\Cmn\Common.UI.Lib\Common.UI.Lib.csproj" />
     <ProjectReference Include="..\DDJ.AudioCompare.Lib.Net5\DDJ.AudioCompare.Lib.Net5.csproj" />
     <ProjectReference Include="..\DDJ.DB.Net5\DDJ.DB.Net5.csproj" />
-    <ProjectReference Include="..\DDJ\DDJ.AudioCompare.App.Net5\DDJ.AudioCompare.App.Net5.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Microsoft.Expression.Controls">
-      <HintPath>..\..\..\..\Users\alexp\OneDrive\Public\bin\ScrSvr\Microsoft.Expression.Controls.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Expression.Drawing">
-      <HintPath>..\..\..\..\Users\alexp\OneDrive\Public\bin\ScrSvr\Microsoft.Expression.Drawing.dll</HintPath>
+      <HintPath>C:\Users\alexp\OneDrive\Public\bin\vpc\Microsoft.Expression.Controls.dll</HintPath>
+      <HintPath>C:\Users\alexp\OneDrive\Public\bin\vpc\Microsoft.Expression.Drawing.dll</HintPath>
     </Reference>
   </ItemGroup>
 

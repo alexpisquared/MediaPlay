@@ -180,7 +180,7 @@ namespace AudioCompare
 			foreach (int idToLeave in duplicateCrcsToRemove)
 				SmartCascadingDelete(idToLeave, idToStay);
 
-			int rows = DbSaveMsgBox.CheckAskSave(_db);
+			int rows = DbSaveMsgBox_OldRestoredInDec2023.CheckAskSave(_db);
 		}
 
 		public static void SetNewName(int ID, string fullNewName, DdjEf4DBContext db)
@@ -196,7 +196,7 @@ namespace AudioCompare
 				ap.PathFileExtOrg = fullNewName;
 			}
 
-			int rows = DbSaveMsgBox.CheckAskSave(db);
+			int rows = DbSaveMsgBox_OldRestoredInDec2023.CheckAskSave(db);
 		}
 	}
 }

@@ -113,7 +113,7 @@ namespace DDJ.Main.ViewModels
         {
           _player.Source = new Uri(CurMediaUnit.PathFileExtOrg = CurMediaUnit.PathFileExtOrg.ToLower().Replace("m:\\", "c:\\1\\m\\"));
           ExceptionMsg = $"MediaFailed: SOLVED: renamed M:\\ to C:\\1\\M\\ {_player.Source.LocalPath} ";
-          DbSaveMsgBox.TrySaveAsk(_db, ExceptionMsg);
+          DbSaveMsgBox_OldRestoredInDec2023.TrySaveAsk(_db, ExceptionMsg);
 
           await Task.Delay(500);
           //synth.Speak("Restarting...");
@@ -125,7 +125,7 @@ namespace DDJ.Main.ViewModels
         CurMediaUnit.Notes = FileSysProcessor.SAfeAddNote(CurMediaUnit, $" Found missing trying to play on {now.ToShortDateString()}.");
       }
 
-      DbSaveMsgBox.TrySaveAsk(_db, ExceptionMsg);
+      DbSaveMsgBox_OldRestoredInDec2023.TrySaveAsk(_db, ExceptionMsg);
 
       if (canMoveNext)
       {
@@ -223,13 +223,13 @@ namespace DDJ.Main.ViewModels
 
       //Bpr.BeepOk();
 
-      DbSaveMsgBox.TrySaveAsk(_db, nameof(logAuditionCurPosn));
+      DbSaveMsgBox_OldRestoredInDec2023.TrySaveAsk(_db, nameof(logAuditionCurPosn));
     }
     void savePosIfLong()
     {
       if (CurMediaUnit.DurationSec > cAtLeast10Min && (CurMediaUnit.DurationSec - CurMediaUnit.CurPositionSec) < 60) // if a long multi-song unit and not very close to the end - save the position for the next start time
       {
-        DbSaveMsgBox.TrySaveAsk(_db, "savePosIfLong()");
+        DbSaveMsgBox_OldRestoredInDec2023.TrySaveAsk(_db, "savePosIfLong()");
       }
     }
   }

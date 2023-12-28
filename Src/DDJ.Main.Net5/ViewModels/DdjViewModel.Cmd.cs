@@ -27,7 +27,7 @@ namespace DDJ.Main.ViewModels
       Bpr.BeepOk();
       var now = DateTime.Now;
       CurMediaUnit.DeletedAt = now; //in case of exceptions at least the intent is recorded.
-      var rows = DbSaveMsgBox.TrySaveAsk(_db, "on Deleted");
+      var rows = DbSaveMsgBox_OldRestoredInDec2023.TrySaveAsk(_db, "on Deleted");
 
       var ddir = @"C:\1\M.zDeleted";
       if (!Directory.Exists(ddir)) Directory.CreateDirectory(ddir);
@@ -155,7 +155,7 @@ namespace DDJ.Main.ViewModels
       if (UserN) _db.MuRateHists.Add(new MuRateHist { DoneAt = now, MediaUnitID = CurMediaUnit.ID, LikeUnit = like1, CurPositionSec = _player.Position.TotalSeconds, DoneBy = "Nadine" });
       if (UserZ) _db.MuRateHists.Add(new MuRateHist { DoneAt = now, MediaUnitID = CurMediaUnit.ID, LikeUnit = like1, CurPositionSec = _player.Position.TotalSeconds, DoneBy = "Zoe" });
 
-      var rows = DbSaveMsgBox.TrySaveAsk(_db, "Liked");
+      var rows = DbSaveMsgBox_OldRestoredInDec2023.TrySaveAsk(_db, "Liked");
     }
 
 
