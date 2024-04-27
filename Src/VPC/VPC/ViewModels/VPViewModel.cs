@@ -220,14 +220,14 @@ public class VPViewModel : BindableBaseViewModel, IVPViewModel
   ICommand meetNextCommand; public ICommand MeetNextCommand => meetNextCommand ??= new RelayCommand(x => meetNext(x), x => canMoveNext) { GestureKey = Key.Down, GestureModifier = ModifierKeys.Shift };
   ICommand meetPrevCommand; public ICommand MeetPrevCommand => meetPrevCommand ??= new RelayCommand(x => meetPrev(x), x => canMovePrev) { GestureKey = Key.Up, GestureModifier = ModifierKeys.Shift };
 
-  ICommand moveLefNCommand; public ICommand MoveLefNCommand => moveLefNCommand ??= new RelayCommand(x => moveLeftN(x), x => canMoveLeftN) { GestureKey = Key.Left };
-  ICommand moveRghNCommand; public ICommand MoveRghNCommand => moveRghNCommand ??= new RelayCommand(x => moveRghtN(x), x => canMoveRghtN) { GestureKey = Key.Right };
-  ICommand moveLefCCommand; public ICommand MoveLefCCommand => moveLefCCommand ??= new RelayCommand(x => moveLeftC(x), x => canMoveLeftC) { GestureKey = Key.Left, GestureModifier = ModifierKeys.Control };
-  ICommand moveRghCCommand; public ICommand MoveRghCCommand => moveRghCCommand ??= new RelayCommand(x => moveRghtC(x), x => canMoveRghtC) { GestureKey = Key.Right, GestureModifier = ModifierKeys.Control };
-  ICommand moveLefACommand; public ICommand MoveLefACommand => moveLefACommand ??= new RelayCommand(x => moveLeftA(x), x => canMoveLeftA) { GestureKey = Key.Left, GestureModifier = ModifierKeys.Alt };
-  ICommand moveRghACommand; public ICommand MoveRghACommand => moveRghACommand ??= new RelayCommand(x => moveRghtA(x), x => canMoveRghtA) { GestureKey = Key.Right, GestureModifier = ModifierKeys.Alt };
-  ICommand moveLefSCommand; public ICommand MoveLefSCommand => moveLefSCommand ??= new RelayCommand(x => moveLeftS(x), x => canMoveLeftS) { GestureKey = Key.Left, GestureModifier = ModifierKeys.Shift };
-  ICommand moveRghSCommand; public ICommand MoveRghSCommand => moveRghSCommand ??= new RelayCommand(x => moveRghtS(x), x => canMoveRghtS) { GestureKey = Key.Right, GestureModifier = ModifierKeys.Shift };
+  ICommand moveLefNCommand; public ICommand MoveLefNCommand => moveLefNCommand ??= new RelayCommand(x => moveLeftMS(x, 70), x => canMoveLeftN) { GestureKey = Key.Left };
+  ICommand moveRghNCommand; public ICommand MoveRghNCommand => moveRghNCommand ??= new RelayCommand(x => moveRghtMS(x, 70), x => canMoveRghtN) { GestureKey = Key.Right };
+  ICommand moveLefCCommand; public ICommand MoveLefCCommand => moveLefCCommand ??= new RelayCommand(x => moveSeconds(x, -1), x => canMoveLeftC) { GestureKey = Key.Left, GestureModifier = ModifierKeys.Control };
+  ICommand moveRghCCommand; public ICommand MoveRghCCommand => moveRghCCommand ??= new RelayCommand(x => moveSeconds(x, +1), x => canMoveRghtC) { GestureKey = Key.Right, GestureModifier = ModifierKeys.Control };
+  ICommand moveLefACommand; public ICommand MoveLefACommand => moveLefACommand ??= new RelayCommand(x => moveLeftMS(x, 200), x => canMoveLeftA) { GestureKey = Key.Left, GestureModifier = ModifierKeys.Alt };
+  ICommand moveRghACommand; public ICommand MoveRghACommand => moveRghACommand ??= new RelayCommand(x => moveRghtMS(x, 200), x => canMoveRghtA) { GestureKey = Key.Right, GestureModifier = ModifierKeys.Alt };
+  ICommand moveLefSCommand; public ICommand MoveLefSCommand => moveLefSCommand ??= new RelayCommand(x => moveSeconds(x, -5), x => canMoveLeftS) { GestureKey = Key.Left, GestureModifier = ModifierKeys.Shift };
+  ICommand moveRghSCommand; public ICommand MoveRghSCommand => moveRghSCommand ??= new RelayCommand(x => moveSeconds(x, +5), x => canMoveRghtS) { GestureKey = Key.Right, GestureModifier = ModifierKeys.Shift };
 
   ICommand _TglPlyPsCommand; public ICommand TglPlyPsCommand => _TglPlyPsCommand ??= new RelayCommand(x => doTglPlyPs(x)) { GestureKey = Key.Space };
 
@@ -659,14 +659,9 @@ public class VPViewModel : BindableBaseViewModel, IVPViewModel
   void meetNext(object fvc) { pauseCollectViewTimeAndUpdatePosnMuStatsAndSave(); _isJumpingTo = _vpcPlayer.Position; var next = VPModel.MoveNext(_vpcPlayer.Source.LocalPath); if (!string.IsNullOrEmpty(next)) { PlayNewFile(next); _fvc.MovCurrentToNext(); } }
 
   const int _intrvl = 200, _corection = 96;
-  void moveLeftS(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromSeconds(5); ((VPModel)o).MoveLeft(); }
-  void moveRghtS(object o) { flashKeyInfo(); _vpcPlayer.Position += TimeSpan.FromSeconds(5); ((VPModel)o).MoveLeft(); }
-  void moveLeftC(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromSeconds(1); ((VPModel)o).MoveLeft(); }
-  void moveRghtC(object o) { flashKeyInfo(); _vpcPlayer.Position += TimeSpan.FromSeconds(1); ((VPModel)o).MoveLeft(); }
-  void moveLeftA(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(_intrvl - _corection); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(200); ((VPModel)o).MoveLeft(); _vpcPlayer.Play(); Thread.Sleep(_intrvl); _vpcPlayer.Pause(); }
-  void moveRghtA(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(_intrvl); _vpcPlayer.Position += TimeSpan.FromMilliseconds(200); ((VPModel)o).MoveRght(); _vpcPlayer.Play(); Thread.Sleep(_intrvl); _vpcPlayer.Pause(); }
-  void moveLeftN(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(_intrvl - _corection); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(70); ((VPModel)o).MoveLeft(); _vpcPlayer.Play(); Thread.Sleep(_intrvl); _vpcPlayer.Pause(); }
-  void moveRghtN(object o) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(_intrvl); _vpcPlayer.Position += TimeSpan.FromMilliseconds(70); ((VPModel)o).MoveRght(); _vpcPlayer.Play(); Thread.Sleep(_intrvl); _vpcPlayer.Pause(); }
+  void moveLeftMS(object o, int ms) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(_intrvl - _corection); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(ms); ((VPModel)o).MoveLeft(); _vpcPlayer.Play(); Thread.Sleep(_intrvl); _vpcPlayer.Pause(); }
+  void moveRghtMS(object o, int ms) { flashKeyInfo(); _vpcPlayer.Position -= TimeSpan.FromMilliseconds(_intrvl); _vpcPlayer.Position += TimeSpan.FromMilliseconds(ms); ((VPModel)o).MoveRght(); _vpcPlayer.Play(); Thread.Sleep(_intrvl); _vpcPlayer.Pause(); }
+  void moveSeconds(object o, int seconds) { flashKeyInfo(); _vpcPlayer.Position += TimeSpan.FromSeconds(seconds); }
 
   public bool canTglPlyPs => true;
   public bool canGoFaster => true;
