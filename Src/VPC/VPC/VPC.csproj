@@ -6,7 +6,7 @@
     <UseWPF>true</UseWPF>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
-    <ApplicationIcon>Assets\vpc.ico</ApplicationIcon>
+    <ApplicationIcon>Assets\movies.ico</ApplicationIcon>
     <Configurations>Debug;Release;BldRls</Configurations>
   </PropertyGroup>
 
